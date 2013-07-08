@@ -23,6 +23,7 @@ body {
     -o-user-select: none;
     user-select: none;
     line-height: 1;
+    font-family: arial;
 }
 
 ol, ul {
@@ -44,10 +45,10 @@ blockquote:before, blockquote:after, q:before, q:after {
 }*/
 
 html, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+   width: 1000px;
+height: 100%;
+overflow: hidden;
+margin: auto;
 }
 
 
@@ -122,12 +123,13 @@ section{
     display: none;
 }
 h2{
-    margin: auto;
-    width: 500px;
-    font-size: 50px;
-    text-align: center;
-    margin-top: 40px;
-    text-decoration: underline;
+  margin: auto;
+width: 500px;
+font-size: 50px;
+text-align: center;
+margin-top: 40px;
+color: #5A5A5A;
+text-shadow: 2px 0px 3px gray;
 }
 
 table{
@@ -156,25 +158,33 @@ table td{
 }
 
 #mainPage ul{
-    margin: auto;
-    width: 500px;
-    margin-top: 50px;
+   margin: auto;
+width: 283px;
+margin-top: 50px;
     
 }
 
 #mainPage ul li{
-    height: 60px;
-    background-color: #e3dfdf; 
-    font-size: 50px;
-    text-align: center;
-    line-height: 60px;
-    border-bottom: 2px dotted;
-    margin-bottom: 10px;
-    cursor: pointer;
+  height: 60px;
+background-color: #e3dfdf;
+font-size: 32px;
+text-align: center;
+line-height: 60px;
+margin-bottom: 10px;
+cursor: pointer;
+box-shadow: 0px 1px 6px 1px gray;
+border-radius: 15px;
+color: #5A5A5A;
 }
 
 /*---------------------programsList-----------------------*/
 
 #programsList{
     display: none;
+}
+
+#goBack {
+    box-shadow: 0px 1px 2px 1px gray;
+border-radius: 4px;
+float: right;
 }
