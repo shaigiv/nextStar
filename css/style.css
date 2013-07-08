@@ -131,7 +131,7 @@ h2{
 }
 
 table{
-    width: 500px;
+    width: 1000px;
     margin: auto;
     margin-top: 50px;
     text-align: center;
@@ -141,9 +141,11 @@ table{
     height: 50px;
 }
 
-table th {
-    text-decoration: underline;
+table, th, td
+{
+border: 1px solid black;
 }
+
 
 table td{
     cursor: pointer;
@@ -178,3 +180,17 @@ table td{
 #programsList{
     display: none;
 }
+
+#rowOptions{
+    font-size: 20px;
+}
+
+#rowOptions span{
+    border-left: 1px dotted;
+    padding-left: 2px;
+}
+
+#rowOptions span:last-of-type {
+   border-left: none; 
+}
+
