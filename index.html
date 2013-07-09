@@ -9,7 +9,7 @@
 
         <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
-         <script type="text/javascript" charset="utf-8" src="js/navigate.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/navigate.js"></script>
     </head>
     <body>
         <button id="goBack">חזור</button>
@@ -30,7 +30,7 @@
         <section id="programsList">
             <h2>רשימת התוכניות</h2>
             <table border="1">
-                <tr  class="line">
+                <tr class="line">
                     <th>אפשרויות</th>
                     <th>כמות הצבעות</th>
                     <th>תאריך</th>
@@ -114,7 +114,7 @@
                         </tr>
                     </table>
                 </div>
-                <div id="addVote">
+                <div id="addVote" class="editingWindow">
                     <div class="addTitle">
                         הוספת הצבעה
                     </div>
@@ -161,6 +161,40 @@
                     </div>
 
                     <div class="voteRes">
+                        <div>
+                            <input type="radio" name="voteRestriction" value="oneVote">הצבעה אחת למשתמש
+                            <input type="radio" name="voteRestriction" value="OneVoteEach">הצבעה אחת למשתמש עבוד כל מועמד
+                        </div>
+                        <div >
+                            <input type="number" value="50" name="threshold" min="0" max="100">
+                            <label for="threshold">אחוז חסימה</label>
+                        </div>
+                    </div>
+
+                    <div class="controlButtons">
+                        <button type="button">הצג</button>
+                        <button type="button">הוסף</button>
+                        <button type="button">בטל</button>
+                    </div>
+                </div>
+
+                <div id="addPage" class="editingWindow">
+                    <div class="addTitle">
+                       הוספת עמוד המתנה
+                    </div>
+                    <p>בחר טמפלט לעמוד המתנה והזן את התוכן</p>
+    
+                        <select class="contestantsNames" name="screenTemplate">
+                            <option value="null">:בחר מתמודד</option>
+                            <option value="harel">הראל מויאל</option>
+                            <option value="ninet">נינט טייב</option>
+                            <option value="adi">עדי כהן</option>
+                            <option value="shiri">שירי מיימון</option>
+                        </select>
+                    <label for="screenTemplate">:טמפלט</label>
+
+
+                    <div class="voteRes">
                         <input type="radio" name="voteRestriction" value="oneVote">הצבעה אחת למשתמש
                         <input type="radio" name="voteRestriction" value="OneVoteEach">הצבעה אחת למשתמש עבוד כל מועמד
                         <input type="number" value="50" name="threshold" min="0" max="100">
@@ -171,10 +205,6 @@
                         <button type="button">הוסף</button>
                         <button type="button">בטל</button>
                     </div>
-                </div>
-
-
-                <div id="addPage">
                 </div>
 
 

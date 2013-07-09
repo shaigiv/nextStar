@@ -169,7 +169,7 @@ border: 1px solid black;
 
 table td{
     cursor: pointer;
-    underline;
+   /* text-decoration: underline;*/
 border-right: 1px solid black;
 }
 table td.last {
@@ -177,7 +177,7 @@ table td.last {
 }
 table th{
     cursor: pointer;
-    underline;
+    /* text-decoration: underline;*/
 border-right: 1px solid black;
 border-bottom: 1px solid black;
 }
@@ -255,7 +255,15 @@ float: right;
     margin-bottom: 50px;
 }
 
-#addVote{
+.editingWindow{
+    margin:50px auto 50px;
+    width: 75%;
+    height: 400px;
+    border: 1px solid;
+    text-align: right;
+    padding-right: 10px; 
+}
+/*#addVote{
     margin-top: 50px;
     margin-bottom: 50px;
     margin: auto;
@@ -264,7 +272,7 @@ float: right;
     border: 1px solid;
     text-align: right;
     padding-right: 10px;
-}
+}*/
 
 .addTitle{
     padding-left: 10px;
