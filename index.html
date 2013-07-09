@@ -14,7 +14,7 @@
     <body>
         <button id="goBack">חזור</button>
         <section id="mainPage">
-            <h2>מסך ראשי</h2>
+            <h2>מסך ראשי - מנהל</h2>
             <ul>
                 <li id="contestants">ניהול מתמודדים</li>
                 <li id="programs">רשימת התוכניות</li>
@@ -36,7 +36,7 @@
                     <th>תאריך</th>
                     <th>מספר תוכנית</th>
                 </tr>
-                <tr>
+                <tr id="prog10092013">
                     <td id="rowOptions">
                         <span>ערוך</span>
                         <span>מחק</span>
@@ -46,7 +46,7 @@
                     <td>10/9/2013</td>
                     <td>תוכנית 1</td>
                 </tr>
-                <tr>
+                <tr id="prog20092013">
                     <td id="rowOptions">
                         <span>ערוך</span>
                         <span>מחק</span>
@@ -68,6 +68,131 @@
         </section>
 
         <section id="manageVoting">
+        </section>
+
+        <section id="progPage">
+            <h2>עריכת תוכנית</h2>
+            <div id="progPage10092013" class="progPage">
+                <h3>
+                    <span>תוכנית 1 - </span>
+                    <span>10/9/2013 </span>
+                    <span id="editProgName">ערוך שם</span>
+                </h3>
+                <div class="lineup">
+                    <table border="1">
+                        <tr>
+                            <th>-</th>
+                            <th>אפשרויות</th>
+                            <th>סטטוס</th>
+                            <th>שיר</th>
+                            <th>מתמודד</th>
+                            <th>מס</th>
+                        </tr>
+                        <tr id="prog10092013song1">
+                            <td>פתח</td>
+                            <td id="rowOptions">
+                                <span>ערוך</span>
+                                <span>מחק</span>
+                                <span>שכפל</span>
+                            </td>
+                            <td>ממתין</td>
+                            <td>ים של דמעות<br>ים הרחמים</td>
+                            <td>אור טרגן<br>איטן גרינברג</td>
+                            <td>1</td>
+                        </tr>
+                        <tr id="prog10092013song1">
+                            <td>פתח</td>
+                            <td id="rowOptions">
+                                <span>ערוך</span>
+                                <span>מחק</span>
+                                <span>שכפל</span>
+                            </td>
+                            <td>ממתין</td>
+                            <td>אהבתיה</td>
+                            <td>צביקה פיק<br>יוסי צווילי</td>
+                            <td>2</td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="addVote">
+                    <div class="addTitle">
+                        הוספת הצבעה
+                    </div>
+                    <p>בחר את שם המתמודד והזן את שם השיר, במקרה של דואט יש לבחור שני מתמודדים</p>
+                    <div class="contestantDetails">
+                        <img src="img/ninet.jpg" alt="shiri" class="contestantImg">
+
+                        <select class="contestantsNames">
+                            <option value="null">:בחר מתמודד</option>
+                            <option value="harel">הראל מויאל</option>
+                            <option value="ninet">נינט טייב</option>
+                            <option value="adi">עדי כהן</option>
+                            <option value="shiri">שירי מיימון</option>
+                        </select>
+
+                        <select class="songsNames">
+                            <option value="null">:בחר שיר</option>
+                            <option value="badad">בדד</option>
+                            <option value="bamishol">במשעול</option>
+                            <option value="el">אל</option>
+                            <option value="haain">האין</option>
+                        </select>
+                    </div>
+
+                    <div class="contestantDetails">
+                        <img src="img/shiri.jpg" alt="shiri" class="contestantImg">
+
+                        <select class="contestantsNames">
+                            <option value="null">:בחר מתמודד</option>
+                            <option value="harel">הראל מויאל</option>
+                            <option value="ninet">נינט טייב</option>
+                            <option value="adi">עדי כהן</option>
+                            <option value="shiri">שירי מיימון</option>
+                        </select>
+
+                        <select class="songsNames">
+                            <option value="null">:בחר שיר</option>
+                            <option value="badad">בדד</option>
+                            <option value="bamishol">במשעול</option>
+                            <option value="el">אל</option>
+                            <option value="haain">האין</option>
+                        </select>
+
+                    </div>
+
+                    <div class="voteRes">
+                        <input type="radio" name="voteRestriction" value="oneVote">הצבעה אחת למשתמש
+                        <input type="radio" name="voteRestriction" value="OneVoteEach">הצבעה אחת למשתמש עבוד כל מועמד
+                        <input type="number" value="50" name="threshold" min="0" max="100">
+                    </div>
+
+                    <div class="controlButtons">
+                        <button type="button">הצג</button>
+                        <button type="button">הוסף</button>
+                        <button type="button">בטל</button>
+                    </div>
+                </div>
+
+
+                <div id="addPage">
+                </div>
+
+
+            </div>
+            <div id="progPage20092013" class="progPage">
+                <h3>
+                    <span>תוכנית 2 - </span>
+                    <span>20/9/2013 </span>
+                    <span id="editProgName">ערוך שם</span>
+                </h3>
+
+                <div class="lineup">
+
+                </div>
+
+            </div>
+
+
         </section>
 
     </body>

@@ -39,15 +39,15 @@ blockquote:before, blockquote:after, q:before, q:after {
     content: none;
 }
 
-/*table {
+table {
     border-collapse: collapse;
     border-spacing: 0;
-}*/
+}
 
 html, body {
-   width: 1000px;
+   width: 100%;
 height: 100%;
-overflow: hidden;
+/*overflow: scroll;*/
 margin: auto;
 }
 
@@ -121,6 +121,8 @@ margin: auto;
 
 section{
     display: none;
+    height: 100%;
+    width: 100%;
 }
 h2{
   margin: auto;
@@ -132,15 +134,26 @@ color: #5A5A5A;
 text-shadow: 2px 0px 3px gray;
 }
 
+h3{
+  margin: auto;
+width: 500px;
+font-size: 30px;
+text-align: center;
+margin-top: 40px;
+color: #5A5A5A;
+text-shadow: 1px 0px 2px gray;
+text-align: right;
+}
+
 table{
-    width: 1000px;
+    width: 90%;
     margin: auto;
     margin-top: 50px;
     text-align: center;
     /*border: 1px solid;*/
-    font-size: 30px;
-    line-height: 50px;
-    height: 50px;
+    font-size: 20px;
+    line-height: 30px;
+    height: 30px;
 }
 
 table, th, td
@@ -191,17 +204,93 @@ color: #5A5A5A;
 
 #rowOptions span{
     border-left: 1px dotted;
-    padding-left: 2px;
+    padding-left: 5px;
 }
 
 #rowOptions span:last-of-type {
    border-left: none; 
 }
 
-}
+
 
 #goBack {
     box-shadow: 0px 1px 2px 1px gray;
 border-radius: 4px;
 float: right;
 }
+
+/*---------------------progPage----------------------------*/
+
+#progPage .progPage{
+    display: none;
+    margin-bottom: 50px;
+}
+
+#editProgName{
+    font-size: 20px;
+    color: #2f82d1;
+    text-decoration: underline;
+}
+
+.lineup{
+    margin-bottom: 50px;
+}
+
+#addVote{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin: auto;
+    width: 75%;
+    height: 400px;
+    border: 1px solid;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.addTitle{
+    padding-left: 10px;
+    line-height: 20px; 
+    border: 1px solid;
+    width: 100%;
+    height: 30px;
+    
+}
+
+.contestantDetails{
+    width: 48%;
+    height: 55%;
+    display: inline-block;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.contestantImg{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 160px;
+    height: 140px;
+    display: block;
+    margin: auto; 
+}
+
+.contestantsNames{
+    margin: auto;
+    display: block;
+    margin-top: 20px;
+}
+
+.songsNames{
+    margin: auto;
+    display: block;
+    margin-top: 20px;
+}
+
+.voteRes{
+    display: block;
+}
+
+.controlButtons{
+    position: relative;
+    right: 620px;
+}
+

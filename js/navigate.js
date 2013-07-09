@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+    $("#goBack").click(function () {
+        $("section").hide();
+        $("#mainPage").show();
+    });
+
     $("#contestants").click(function () {
         $("#mainPage").hide();
         $("#contestantsList").show();
@@ -19,8 +24,17 @@ $(document).ready(function () {
         $("#usersList").show();
     });
 
-    $("#goBack").click(function (){
-    $("section").hide();
-    $("#mainPage").show();
+    $("#prog10092013").click(function () {
+        $("section").hide();
+        $("#progPage").show();
+        $("#progPage .progPage").hide();
+        $("#progPage10092013").show();
+    });
+
+      $("#prog20092013").click(function () {
+        $("section").hide();
+        $("#progPage").show();
+        $("#progPage .progPage").hide();
+        $("#progPage20092013").show();
     });
 });
