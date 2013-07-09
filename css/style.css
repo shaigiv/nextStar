@@ -133,7 +133,7 @@ text-shadow: 2px 0px 3px gray;
 }
 
 table{
-    width: 500px;
+    width: 1000px;
     margin: auto;
     margin-top: 50px;
     text-align: center;
@@ -146,9 +146,13 @@ table{
 box-shadow: 0px 1px 4px 1px gray;
 }
 
-table th {
+
     
+table, th, td
+{
+border: 1px solid black;
 }
+
 
 table td{
     cursor: pointer;
@@ -199,6 +203,19 @@ color: #5A5A5A;
 
 #programsList{
     display: none;
+}
+
+#rowOptions{
+    font-size: 20px;
+}
+
+#rowOptions span{
+    border-left: 1px dotted;
+    padding-left: 2px;
+}
+
+#rowOptions span:last-of-type {
+   border-left: none; 
 }
 
 #goBack {
