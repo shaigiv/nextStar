@@ -1,40 +1,75 @@
 $(document).ready(function () {
 
-    $("#goBack").click(function () {
+    $("#go-back").click(function () {
         $("section").hide();
-        $("#mainPage").show();
+        $("#main-page").show();
     });
 
     $("#contestants").click(function () {
-        $("#mainPage").hide();
-        $("#contestantsList").show();
+        window.location.href = window.location.origin + "/index.html#contestants-list";
+        switchHash();
     });
 
     $("#programs").click(function () {
-        $("#mainPage").hide();
-        $("#programsList").show();
+        window.location.href = window.location.origin + "/index.html#programs-list";
+        switchHash();
     });
 
     $("#settings").click(function () {
-        $("#mainPage").hide();
-        $("#settingsList").show();
+        window.location.href = window.location.origin + "/index.html#settings-list";
+        switchHash();
     });
+
     $("#users").click(function () {
-        $("#mainPage").hide();
-        $("#usersList").show();
+        window.location.href = window.location.origin + "/index.html#users-list";
+        switchHash();
     });
 
     $("#prog10092013").click(function () {
         $("section").hide();
-        $("#progPage").show();
-        $("#progPage .progPage").hide();
-        $("#progPage10092013").show();
+        $("#prog-page").show();
+        $("#prog-page .prog-page").hide();
+        $("#prog-page10092013").show();
     });
 
-      $("#prog20092013").click(function () {
+    $("#prog20092013").click(function () {
         $("section").hide();
-        $("#progPage").show();
-        $("#progPage .progPage").hide();
-        $("#progPage20092013").show();
+        $("#prog-page").show();
+        $("#prog-page .progPage").hide();
+        $("#prog-page20092013").show();
     });
+
+
 });
+
+function switchHash() { //navigates according to hash tag
+    var x;
+    switch (location.hash) {
+        case "":
+            $("section").hide();
+            $("#main-page").show();
+            break;
+        case "#contestants-list":
+            $("#main-page").hide();
+            $("#contestants-list").show();
+            break;
+        case "#programs-list":
+            $("#main-page").hide();
+            $("#programs-list").show();
+            break;
+        case "#settings-list":
+            $("#main-page").hide();
+            $("#settings-list").show();
+            break;
+        case "#users-list":
+            $("#main-page").hide();
+            $("#users-list").show();
+            break;
+        case "#programs-list":
+            $("section").hide();
+            $("#prog-page").show();
+            $("#prog-page .prog-page").hide();
+            $("#prog-page10092013").show();
+            break;
+    }
+}
