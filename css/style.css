@@ -45,10 +45,10 @@ table {
 }
 
 html, body {
-   width: 100%;
-height: 100%;
-/*overflow: scroll;*/
-margin: auto;
+    width: 100%;
+    height: 100%;
+    /*overflow: scroll;*/
+    margin: auto;
 }
 
 
@@ -118,37 +118,39 @@ margin: auto;
 }
 
 /*--------------------------------------------------------*/
-.mainWrap{
+.mainWrap {
     width: 900px;
-margin: auto;
+    margin: auto;
 }
-section{
+
+section {
     display: none;
     height: 100%;
     width: 100%;
 }
-h2{
-  margin: auto;
-width: 500px;
-font-size: 50px;
-text-align: center;
-margin-top: 40px;
-color: #5A5A5A;
-text-shadow: 2px 0px 3px gray;
+
+h2 {
+    margin: auto;
+    width: 500px;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 40px;
+    color: #5A5A5A;
+    text-shadow: 2px 0px 3px gray;
 }
 
-h3{
-  margin: auto;
-width: 344px;
-font-size: 30px;
-text-align: center;
-margin-top: 40px;
-color: #5A5A5A;
-text-shadow: 1px 0px 2px gray;
-text-align: right;
+h3 {
+    margin: auto;
+    width: 344px;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 40px;
+    color: #5A5A5A;
+    text-shadow: 1px 0px 2px gray;
+    text-align: right;
 }
 
-table{
+table {
     width: 90%;
     margin: auto;
     margin-top: 50px;
@@ -158,159 +160,179 @@ table{
     line-height: 30px;
     height: 30px;
     border-radius: 15px;
-    
-box-shadow: 0px 1px 4px 1px gray;
+    box-shadow: 0px 1px 4px 1px gray;
 }
 
 
-    
-table, th, td
-{
-border: 1px solid black;
-border: none;
-color: #000080;
+
+table, th, td {
+    border: 1px solid black;
+    border: none;
+    color: #000080;
 }
 
 
-table td{
+table td {
     cursor: pointer;
-   /* text-decoration: underline;*/
-border-right: 1px solid black;
-border-right: 1px solid #BEBEBE;
-border-bottom: 1px solid #BEBEBE;
-color: gray;
+    /* text-decoration: underline;*/
+    border-right: 1px solid black;
+    border-right: 1px solid #BEBEBE;
+    border-bottom: 1px solid #BEBEBE;
+    color: gray;
 }
+
 table td.last {
     border: none;
     border-right: none;
     border-bottom: 1px solid #BEBEBE;
 }
+
 table td.rightBottom {
     border-bottom: none;
 }
-table .bottom td{
-      border-bottom: none;
+
+table .bottom td {
+    border-bottom: none;
 }
 
-table th{
-   cursor: pointer;
-border-right: 1px solid #BEBEBE;
-border-bottom: 1px solid #000080;
-border-left: none;
-border-top: none;
+table th {
+    cursor: pointer;
+    border-right: 1px solid #BEBEBE;
+    border-bottom: 1px solid #000080;
+    border-left: none;
+    border-top: none;
 }
-table th:last-child{
-     border-right: none;   
+
+table th:last-child {
+    border-right: none;
 }
-table td:last-child{
-     border-right: none;   
+
+table td:last-child {
+    border-right: none;
 }
+
 table th.last {
-
 }
 
-table .right{
+table .right {
     border-right: none;
 }
 
 /*---------------------mainPage-----------------------*/
 
-#mainPage{
+#mainPage {
     display: block;
 }
 
-#mainPage ul{
-   margin: auto;
-width: 283px;
-margin-top: 50px;
-    
+#mainPage ul {
+    margin: auto;
+    width: 283px;
+    margin-top: 50px;
 }
 
-#mainPage ul li{
-  height: 60px;
-background-color: #e3dfdf;
-font-size: 32px;
-text-align: center;
-line-height: 60px;
-margin-bottom: 10px;
-cursor: pointer;
-box-shadow: 0px 1px 6px 1px gray;
-border-radius: 15px;
-color: #5A5A5A;
+#mainPage ul li {
+    height: 60px;
+    background-color: #e3dfdf;
+    font-size: 32px;
+    text-align: center;
+    line-height: 60px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    box-shadow: 0px 1px 6px 1px gray;
+    border-radius: 15px;
+    color: #5A5A5A;
 }
-#mainPage ul li:hover{
+
+#mainPage ul li:hover {
     background-color: #CDCDCD;
 }
 /*---------------------programsList-----------------------*/
 
-#programsList{
+#programsList {
     display: none;
 }
 
-#rowOptions{
+#rowOptions {
     font-size: 20px;
 }
 
-#rowOptions span{
+#rowOptions span {
     border-left: 1px dotted;
     padding-left: 5px;
 }
 
 #rowOptions span:last-of-type {
-   border-left: none; 
+    border-left: none;
 }
 
 
 #goBack {
     box-shadow: 0px 1px 2px 1px gray;
-border-radius: 4px;
-float: right;
+    border-radius: 4px;
+    float: right;
 }
 
 /*---------------------progPage----------------------------*/
 
-#progPage .progPage{
+#progPage .progPage {
     display: none;
     margin-bottom: 50px;
 }
 
-#editProgName{
+#editProgName {
     font-size: 20px;
     color: #2f82d1;
     text-decoration: underline;
 }
 
-.lineup{
+.lineup {
     margin-bottom: 50px;
 }
 
-.editingWindow{
-  margin: 50px auto 50px;
-width: 89%;
-height: 400px;
-text-align: right;
-padding-right: 10px;
-border-radius: 15px;
-box-shadow: 0px 1px 4px 1px gray;
-padding-top: 5px;
-
-.wrap-editing{
+.wrap-editing {
     border-collapse: collapse;
     border-spacing: 0;
     width: 75%;
     margin: auto;
 }
-.editingWindow p{padding-top: 10px;}
+
+/*.editingWindow {
+    margin: 50px auto 50px;
+    width: 89%;
+    height: 400px;
+    text-align: right;
+    padding-right: 10px;
+    border-radius: 15px;
+    box-shadow: 0px 1px 4px 1px gray;
+    padding-top: 5px;
+}*/
+
+.editingWindow {
+    margin: 0px auto 50px;
+    width: 100%;
+    height: 400px;
+    border: 1px solid;
+    text-align: right;
+}
+
+.addTitle p {
+    margin-right: 25px;
+}
+/*.editingWindow p {
+    padding-top: 10px;
+}*/
+
 /*#addVote{
     margin-top: 50px;
     margin-bottom: 50px;
     margin: auto;
     width: 75%;
     height: 400px;
-    border: 1px solid;
-.addTitle{
+    border: 1px solid;*/
+
+.addTitle {
     text-align: right;
-    line-height: 30px; 
+    line-height: 30px;
     border: 1px solid;
     width: 100%;
     height: 30px;
@@ -318,29 +340,21 @@ padding-top: 5px;
     background-position: right;
     background-size: 20px;
     background-repeat: no-repeat;
-    margin-top: 50px; 
-    text-indent: -5px;   
+    margin-top: 50px;
+    text-indent: -5px;
+}
+
+/*.addTitle {
     padding-right: 10px;
+    line-height: 20px;
+    border-bottom: 1px solid #000080;
+    width: 100%;
+    height: 30px;
+    color: #000080;
+    font-weight: bold;
 }*/
 
-.addTitle{
-   padding-right: 10px;
-line-height: 20px;
-border-bottom: 1px solid #000080;
-width: 100%;
-height: 30px;
-color: #000080;
-font-weight: bold;
-}
-.editingWindow{
-    margin:0px auto 50px;
-    width: 100%;
-    height: 400px;
-    border: 1px solid;
-    text-align: right; 
-}
-
-.contestantDetails{
+.contestantDetails {
     width: 48%;
     height: 55%;
     display: inline-block;
@@ -348,35 +362,34 @@ font-weight: bold;
     margin-top: 20px;
 }
 
-.contestantImg{
+.contestantImg {
     margin-top: 30px;
     margin-bottom: 30px;
     width: 160px;
     height: 140px;
     display: block;
-    margin: auto; 
     margin: auto;
-box-shadow: 0px 1px 10px 4px gray;
+    margin: auto;
+    box-shadow: 0px 1px 10px 4px gray;
 }
 
-.contestantsNames{
-    margin: auto;
-    display: block;
-    margin-top: 20px;
-}
-
-.songsNames{
+.contestantsNames {
     margin: auto;
     display: block;
     margin-top: 20px;
 }
 
-.voteRes{
+.songsNames {
+    margin: auto;
+    display: block;
+    margin-top: 20px;
+}
+
+.voteRes {
     display: block;
 }
 
-.controlButtons{
+.controlButtons {
     position: relative;
     right: 500px;
 }
-
