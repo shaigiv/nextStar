@@ -154,6 +154,20 @@ h3 {
 button{background-image: url('../img/bgBtn.png');
 background-size: 100% 100%;
 border: none;}
+
+ul.horizonal-list 
+{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+
+ul.horizonal-list li
+{
+display:inline;
+border-style: none;
+}
+
 table {
     width: 90%;
     margin: auto;
@@ -228,6 +242,17 @@ table .right {
     height: 0px;
 }
 
+.container-right{
+    display: inline-block;
+    width: 49%;
+    /*float: right;*/
+}
+
+.container-left{
+    display: inline-block;
+    width: 49%;
+    /*float: left;*/
+}
 /*---------------------mainPage-----------------------*/
 
 #main-page {
@@ -240,7 +265,7 @@ table .right {
     margin-top: 50px;
 }
 
-#main-page ul li {
+/*#main-page ul li {
     height: 60px;
     background-color: #e3dfdf;
     font-size: 32px;
@@ -251,7 +276,7 @@ table .right {
     box-shadow: 0px 1px 6px 1px gray;
     border-radius: 15px;
     color: #5A5A5A;
-}
+}*/
 
 #main-page ul li:hover {
     background-color: #CDCDCD;
@@ -259,19 +284,33 @@ table .right {
 
 /*---------------------contestants-list-----------------------*/
 #contestants-list{
+    display: inline-block;
+    width: 19%;
 }
 
-#contestants-list table img{
+#conestant-container{
+
+}
+
+#conestant-container>li{
+    border: 1px solid;
+}
+
+
+#contestants-list img{
     height: 40px;
     width: 30px;
     padding-top: 5px;
 }
 
 
+
+
 /*---------------------programs-list-----------------------*/
 
 #programs-list {
-    display: none;
+    display: inline-block;
+    width: 79%;
 }
 
 .row-options {
