@@ -179,7 +179,6 @@ table {
     margin: auto;
     margin-top: 50px;
     text-align: center;
-    /*border: 1px solid;*/
     font-size: 17px;
     line-height: 30px;
     height: 30px;
@@ -198,7 +197,6 @@ table, th, td {
 
 table td {
     cursor: pointer;
-    /* text-decoration: underline;*/
     border-right: 1px solid black;
     border-right: 1px solid #BEBEBE;
     border-bottom: 1px solid #BEBEBE;
@@ -251,13 +249,12 @@ table .right {
 .container-right{
     display: inline-block;
     width: 48%;
-    /*float: right;*/
 }
 
 .container-left{
     display: inline-block;
     width: 48%;
-    /*float: left;*/
+    float: left;
 }
 
 #go-back {
@@ -271,25 +268,6 @@ height: 30px;
 #main-page {
     display: block;
 }
-
-/*#main-page ul {
-    margin: auto;
-    width: 283px;
-    margin-top: 50px;
-}*/
-
-/*#main-page ul li {
-    height: 60px;
-    background-color: #e3dfdf;
-    font-size: 32px;
-    text-align: center;
-    line-height: 60px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    box-shadow: 0px 1px 6px 1px gray;
-    border-radius: 15px;
-    color: #5A5A5A;
-}*/
 
 #main-page ul li:hover {
     background-color: #CDCDCD;
@@ -323,8 +301,6 @@ height: 30px;
 }
 
 
-
-
 /*---------------------programs-list-----------------------*/
 
 #programs-list {
@@ -333,7 +309,7 @@ height: 30px;
 }
 
 .row-options {
-    /*font-size: 20px;*/
+  
 }
 
 .row-options span {
@@ -372,17 +348,6 @@ border-radius: 15px;
 box-shadow: 0px 1px 4px 1px gray;
 }
 
-/*.editingWindow {
-    margin: 50px auto 50px;
-    width: 89%;
-    height: 400px;
-    text-align: right;
-    padding-right: 10px;
-    border-radius: 15px;
-    box-shadow: 0px 1px 4px 1px gray;
-    padding-top: 5px;
-}*/
-
 .editing-window {
    margin: 0px auto;
     width: 100%;
@@ -393,19 +358,6 @@ box-shadow: 0px 1px 4px 1px gray;
     padding: 10px;
 }
 
-
-/*.editingWindow p {
-    padding-top: 10px;
-}*/
-
-/*#addVote{
-    margin-top: 50px;
-    margin-bottom: 50px;
-    margin: auto;
-    width: 75%;
-    height: 400px;
-    border: 1px solid;*/
-
 .add-title {
    text-align: right;
 line-height: 30px;
@@ -414,10 +366,6 @@ height: 30px;
 margin-top: 50px;
 border-bottom: 1px solid #000080;
 color: #000080;
-    /*background-image: url(../img/minimize.png);
-    background-position: right;
-    background-size: 20px;
-    background-repeat: no-repeat;*/
 }
 
 .add-title img{
@@ -432,15 +380,6 @@ color: #000080;
     margin-right: 5px;
 }
 
-/*.add-title {
-    padding-right: 10px;
-    line-height: 20px;
-    border-bottom: 1px solid #000080;
-    width: 100%;
-    height: 30px;
-    color: #000080;
-    font-weight: bold;
-}*/
 .editing-window  .line{
     padding-top: 5px;
     width: 487px;  
