@@ -16,7 +16,7 @@
             <div><button id="go-back">חזור</button></div>
             <section id="main-page">
                 <h2>הכוכב הבא- מערכת הצבעות</h2>
-                <nav dir="ltr">
+                <nav dir="ltr" style="margin-top: 10px;">
                     <a href="/index.html#users-list" id="users">ניהול משתתפים</a> |
                     <a href="#voting-screens" id="voting-screen">מוניטור</a> |
                     <a href="/index.html#settings-list" id="settings">הגדרות</a>
@@ -24,7 +24,7 @@
 
                 <div id="main-page-container">
                     <div id="programs-list" class="container-right">
-                        <div><span>רשימת התוכניות</span><button type="button">תוכנית חדשה</button></div>
+                        <h3><span>רשימת התוכניות</span> <button type="button">תוכנית חדשה</button></h3>
                         <table border="1">
                             <tr class="line">
                                 <th>מס</th>
@@ -53,9 +53,9 @@
                         </table>
                     </div>
 
-                    <div id="contestants-list" class="container-left">
-                        <div><span>מתמודדים</span>
-                            <button type="button"> + מועמד חדש</button></div>
+                    <div id="contestants-list" class="container-left wrap-editing">
+                        <div class="add-title"><h3><span>מתמודדים</span>
+                                <button type="button"> + מועמד חדש</button></h3></div>
                         <div>
                             <div id="add-contestant">
                                 <div>
@@ -67,19 +67,16 @@
                                         <label for="file">תמונה:</label>
                                         <input type="file" name="file" id="file">
                                         <input type="submit" name="submit" value="העלה תמונה">
+                                        <span style="float: left; margin-left: 5px;"><button type="button">הוסף</button>
+                                            <button type="button">בטל</button></span>
                                     </form>
-
-                                </div>
-                                <div class="control-buttons">
-                                    <button type="button">הוסף</button>
-                                    <button type="button">בטל</button>
                                 </div>
                             </div>
                             <ul id="conestant-container">
                                 <li>
                                     <div class="container-right">
                                         <div>
-                                            <span>.1</span><span>שירי מיימון</span>
+                                            <span>1. </span><span>שירי מיימון</span>
                                         </div>
                                         <div>
                                             <ul class="horizonal-list">
@@ -96,7 +93,7 @@
                                 <li>
                                     <div class="container-right">
                                         <div>
-                                            <span>.2</span><span>נינט טייב</span>
+                                            <span>2. </span><span>נינט טייב</span>
                                         </div>
                                         <div>
                                             <ul class="horizonal-list">
@@ -124,16 +121,22 @@
                 <h2>רשימת משתמשים</h2>
             </section>
 
-            <section id="voting-screens" style="display: block">
+            <section id="voting-screens" style="display: block;font-size: 20px; margin-bottom: 20px;">
                 <div style="clear: both;overflow: hidden;">
-                    <div style="display: inline-block;"><br>
+                    <div style="display: inline-block; margin-right: 100px; "><br>
                                  משתתפים:<span>0</span>
                     </div>
                     <div style="display: inline-block; float: left;">
-                        <div>נינט טייב <span>0</span>
-                        </div>
-                        <div>שירי מיימון <span>0</span>
-                        </div>
+                        <table border="1">
+                            <tr>
+                                <td>נינט טייב</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>שירי מיימון</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
@@ -160,15 +163,15 @@
                     <div class="container-right">
                         <img src="img/ninet.jpg" alt="shiri" class="contestant-img">
                         <div style="display: inline-block">
-                            <div>נינט טייב</div>
-                            <div>58.3%</div>
+                            <div class="voting-name">נינט טייב</div>
+                            <div class="voting-precent">58.3%</div>
                         </div>
                     </div>
                     <div class="container-left">
                         <img src="img/shiri.jpg" alt="shiri" class="contestant-img">
                         <div style="display: inline-block">
-                            <div>שירי מיימון</div>
-                            <div>42.3%</div>
+                            <div class="voting-name">שירי מיימון</div>
+                            <div class="voting-precent">42.3%</div>
                         </div>
                     </div>
 
@@ -309,7 +312,7 @@
                             </div>
 
                             <div class="line"><input type="text" id="screen-title" value="הערב בכוכב נולד"></div>
-                            <div class="line"><textarea id="screen-content" name="Text1" cols="40" rows="5" >יצאנו לפרסומות</textarea></div>
+                            <div class="line"><textarea id="screen-content" name="Text1" cols="40" rows="5">יצאנו לפרסומות</textarea></div>
                             <div class="line">
 
                                 <input type="text" id="screen-info" value="'מייד נמשיך בשידור'">

@@ -133,7 +133,7 @@ section {
 
 h2 {
     margin: auto;
-    width: 500px;
+    width: 100%;
     font-size: 50px;
     text-align: center;
     margin-top: 40px;
@@ -143,41 +143,49 @@ h2 {
 
 h3 {
     margin: auto;
-    width: 344px;
+    width: 70%;
     font-size: 30px;
     text-align: center;
-    margin-top: 40px;
+    margin-top: 30px;
     color: #5A5A5A;
     text-shadow: 1px 0px 2px gray;
     text-align: right;
+    position: relative;
 }
-button{background-image: url('../img/bgBtn.png');
-background-size: 100% 100%;
-border: none;}
 
-input[type=text]{
+h3 button {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+}
+
+button {
+    background-image: url('../img/bgBtn.png');
+    background-size: 100% 100%;
+    border: none;
+}
+
+input[type=text] {
     border-radius: 5px;
-border: 1px solid gray;
-padding-right: 5px;
+    border: 1px solid gray;
+    padding-right: 5px;
 }
 
-ul.horizonal-list 
-{
-list-style-type:none;
-margin:0;
-padding:0;
+ul.horizonal-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-ul.horizonal-list li
-{
-display:inline;
-border-style: none;
+ul.horizonal-list li {
+    display: inline;
+    border-style: none;
 }
 
 table {
     width: 70%;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 30px;
     text-align: center;
     font-size: 17px;
     line-height: 30px;
@@ -186,35 +194,10 @@ table {
     box-shadow: 0px 1px 4px 1px gray;
 }
 
-
-
 table, th, td {
     border: 1px solid black;
     border: none;
     color: #000080;
-}
-
-
-table td {
-    cursor: pointer;
-    border-right: 1px solid black;
-    border-right: 1px solid #BEBEBE;
-    border-bottom: 1px solid #BEBEBE;
-    color: gray;
-}
-
-table td.last {
-    border: none;
-    border-right: none;
-    border-bottom: 1px solid #BEBEBE;
-}
-
-table tr td:first-child {
-    border-right: none;
-}
-
-table .bottom td {
-    border-bottom: none;
 }
 
 table th {
@@ -229,39 +212,49 @@ table th:last-child {
     border-right: none;
 }
 
+table tr td:first-child {
+    border-right: none;
+}
+
+table tr:last-child {
+    border-bottom: none;
+}
+
+table td {
+    cursor: pointer;
+    border-right: 1px solid black;
+    border-left: 1px solid #BEBEBE;
+    border-bottom: 1px solid #BEBEBE;
+    color: gray;
+}
+
 table td:last-child {
-    border-right: none;
-}
-
-table th.last {
-}
-
-table .right {
-    border-right: none;
+    border: none;
+    border-left: none;
+    border-bottom: 1px solid #BEBEBE;
 }
 
 /*--------------------general classes-----------------*/
 
-.shrink-height{
+.shrink-height {
     height: 0px;
 }
 
-.container-right{
+.container-right {
     display: inline-block;
     width: 48%;
 }
 
-.container-left{
+.container-left {
     display: inline-block;
     width: 48%;
     float: left;
 }
 
 #go-back {
-  
     float: right;
     width: 100px;
-height: 30px;
+    height: 30px;
 }
 /*---------------------mainPage-----------------------*/
 
@@ -274,30 +267,55 @@ height: 30px;
 }
 
 /*---------------------contestants-list-----------------------*/
-#contestants-list{
+#contestants-list {
+    margin-top: 30px;
     display: inline-block;
-    width: 19%;
+    width: 24%;
     float: left;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
-#add-contestant{
+#contestants-list .add-title {
+    margin-top: 0px;
+}
+
+
+#contestants-list h3 {
+    margin-top: 0px;
     width: 100%;
-    border: 1px solid;
+    font-size: 28px;
 }
 
-#conestant-container{
-
+#contestants-list h3 button {
+    left: 5px;
 }
 
-#conestant-container>li{
-    border: 1px solid;
+#add-contestant {
 }
 
 
-#contestants-list img{
+#conestant-container li {
+    position: relative;
+}
+
+#conestant-container .horizonal-list {
+    position: absolute;
+    bottom: 5px;
+}
+
+#conestant-container > li {
+    height: 60px;
+    border-top: 1px solid;
+}
+
+
+#contestants-list img {
     height: 40px;
     width: 30px;
     padding-top: 5px;
+    float: left;
+    margin-left: 10px;
 }
 
 
@@ -305,11 +323,10 @@ height: 30px;
 
 #programs-list {
     display: inline-block;
-    width: 79%;
+    width: 74%;
 }
 
 .row-options {
-  
 }
 
 .row-options span {
@@ -341,15 +358,15 @@ height: 30px;
 
 .wrap-editing {
     border-collapse: collapse;
-border-spacing: 0;
-width: 70%;
-margin: auto;
-border-radius: 15px;
-box-shadow: 0px 1px 4px 1px gray;
+    border-spacing: 0;
+    width: 70%;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0px 1px 4px 1px gray;
 }
 
 .editing-window {
-   margin: 0px auto;
+    margin: 0px auto;
     width: 100%;
     height: 315px;
     text-align: right;
@@ -359,49 +376,54 @@ box-shadow: 0px 1px 4px 1px gray;
 }
 
 .add-title {
-   text-align: right;
-line-height: 30px;
-width: 100%;
-height: 30px;
-margin-top: 50px;
-border-bottom: 1px solid #000080;
-color: #000080;
+    text-align: right;
+    line-height: 30px;
+    width: 100%;
+    height: 30px;
+    margin-top: 50px;
+    border-bottom: 1px solid #000080;
+    color: #000080;
 }
 
-.add-title img{
+.add-title img {
     height: 20px;
     width: 20px;
-    margin-top:  5px;
+    margin-top: 5px;
     cursor: pointer;
-        
 }
 
 .add-title span {
     margin-right: 5px;
 }
 
-.editing-window  .line{
+.editing-window .line {
     padding-top: 5px;
-    width: 487px;  
-    clear: both;  
+    width: 487px;
+    clear: both;
 }
+
 .editing-window .line div {
     float: right;
 }
-.editing-window .line input{width: 328px;}
-.editing-window .line #screen-content{
+
+.editing-window .line input {
+    width: 328px;
+}
+
+.editing-window .line #screen-content {
     width: 497px;
     font-family: arial;
 }
 
-.editing-window .line #screen-name{
+.editing-window .line #screen-name {
     width: 96px;
     float: left;
 }
 
-#add-page{
+#add-page {
     height: 200px;
 }
+
 .contestant-details {
     width: 48%;
     height: 55%;
@@ -427,40 +449,102 @@ color: #000080;
     margin-top: 20px;
 }
 
-.template-wrap{
+.template-wrap {
     float: left;
     margin-right: 86px;
 }
+
 .songs-name {
     margin: auto;
     display: block;
     margin-top: 20px;
 }
-.song-name-wrap{
+
+.song-name-wrap {
     padding-top: 10px;
-width: 224px;
-margin: auto;
+    width: 224px;
+    margin: auto;
 }
+
 .vote-res {
-  display: block;
-width: 155px;
-padding-right: 84px;
+    display: block;
+    width: 155px;
+    padding-right: 84px;
 }
 
 .control-buttons {
-   width: 144px;
-position: absolute;
-left: 26px;
-bottom: 17px;
+    width: 144px;
+    position: absolute;
+    left: 26px;
+    bottom: 17px;
 }
 
 /*-----------------------voting-screens----------------------*/
 
-#voting-screens{
+#voting-screens {
     width: 80%;
     margin-top: 50px;
 }
 
-#voting-screens .contestant-img{
+#voting-screens .contestant-img {
     display: inline;
-} 
+}
+
+#voting-screens .horizonal-list {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+
+#voting-screens .horizonal-list li {
+    width: 120px;
+}
+
+#voting-screens .horizonal-list li a {
+    font-weight: bold;
+    /*color: #FFFFFF;*/
+    /*background-color: #98bf21;*/
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#voting-screens input[type=text] {
+    width: 120px;
+}
+
+#current-contestants {
+    margin-top: 30px;
+}
+
+.voting-name {
+    font-size: 30px;
+}
+
+.voting-precent {
+    font-size: 60px;
+}
+
+#voting-screens table {
+width: 140px;
+margin-left: 4px;
+margin-top: 3px;
+text-align: center;
+font-size: 20px;
+line-height: 30px;
+height: 30px;
+border-radius: 0;
+box-shadow: none;
+text-overflow: ellipsis;
+}
+
+#voting-screens table td:first-child{
+    border: none;
+    text-align: right;
+}
+
+#voting-screens table td:last-child{
+    border: 1px solid;
+    width: 40px;
+}
