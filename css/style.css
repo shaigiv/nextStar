@@ -155,6 +155,12 @@ button{background-image: url('../img/bgBtn.png');
 background-size: 100% 100%;
 border: none;}
 
+input[type=text]{
+    border-radius: 5px;
+border: 1px solid gray;
+padding-right: 5px;
+}
+
 ul.horizonal-list 
 {
 list-style-type:none;
@@ -169,12 +175,12 @@ border-style: none;
 }
 
 table {
-    width: 90%;
+    width: 70%;
     margin: auto;
     margin-top: 50px;
     text-align: center;
     /*border: 1px solid;*/
-    font-size: 20px;
+    font-size: 17px;
     line-height: 30px;
     height: 30px;
     border-radius: 15px;
@@ -314,7 +320,7 @@ table .right {
 }
 
 .row-options {
-    font-size: 20px;
+    /*font-size: 20px;*/
 }
 
 .row-options span {
@@ -352,7 +358,7 @@ table .right {
 .wrap-editing {
     border-collapse: collapse;
 border-spacing: 0;
-width: 90%;
+width: 70%;
 margin: auto;
 border-radius: 15px;
 box-shadow: 0px 1px 4px 1px gray;
@@ -428,9 +434,26 @@ color: #000080;
     font-weight: bold;
 }*/
 .editing-window  .line{
-    padding-top: 5px;    
+    padding-top: 5px;
+    width: 487px;  
+    clear: both;  
+}
+.editing-window .line div {
+    float: right;
+}
+.editing-window .line input{width: 328px;}
+.editing-window .line #screen-content{
+    width: 497px;
 }
 
+.editing-window .line #screen-name{
+    width: 96px;
+    float: left;
+}
+
+#add-page{
+    height: 200px;
+}
 .contestant-details {
     width: 48%;
     height: 55%;
@@ -456,6 +479,10 @@ color: #000080;
     margin-top: 20px;
 }
 
+.template-wrap{
+    float: left;
+    margin-right: 86px;
+}
 .songs-name {
     margin: auto;
     display: block;
