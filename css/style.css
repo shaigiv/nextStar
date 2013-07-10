@@ -263,6 +263,8 @@ table .right {
 #go-back {
   
     float: right;
+    width: 100px;
+height: 30px;
 }
 /*---------------------mainPage-----------------------*/
 
@@ -382,9 +384,9 @@ box-shadow: 0px 1px 4px 1px gray;
 }*/
 
 .editing-window {
-    margin: 0px auto 50px;
+   margin: 0px auto;
     width: 100%;
-    height: 400px;
+    height: 315px;
     text-align: right;
     padding-top: 5px;
     position: relative;
@@ -450,6 +452,7 @@ color: #000080;
 .editing-window .line input{width: 328px;}
 .editing-window .line #screen-content{
     width: 497px;
+    font-family: arial;
 }
 
 .editing-window .line #screen-name{
