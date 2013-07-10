@@ -1,8 +1,14 @@
 $(document).ready(function () {
 
     $("#go-back").click(function () {
+        window.location.href = window.location.origin + "/index.html";
         $("section").hide();
         $("#main-page").show();
+    });
+
+    $("#voting-screen").click(function () {
+        window.location.href = window.location.origin + "/index.html#voting-screens";
+        switchHash();
     });
 
     $("#contestants").click(function () {
@@ -71,5 +77,10 @@ function switchHash() { //navigates according to hash tag
             $("#prog-page .prog-page").hide();
             $("#prog-page10092013").show();
             break;
+        case "#voting-screens":
+            $("section").hide();
+            $("#voting-screens").show();
+            break;
+
     }
 }

@@ -13,26 +13,28 @@
     </head>
     <body onload="switchHash()">
         <div class="main-wrap">
-            <button id="go-back">חזור</button>
+            <div><button id="go-back">חזור</button></div>
             <section id="main-page">
-                <h2>מסך ראשי - מנהל</h2>
+                <h2>הכוכב הבא- מערכת הצבעות</h2>
                 <nav dir="ltr">
                     <a href="/index.html#users-list" id="users">ניהול משתתפים</a> |
-                    <a href="">מוניטור</a> |
+                    <a href="#voting-screens" id="voting-screen">מוניטור</a> |
                     <a href="/index.html#settings-list" id="settings">הגדרות</a>
                 </nav>
 
                 <div id="main-page-container">
-                    <div id="programs-list">
-                        <h2>רשימת התוכניות</h2>
+                    <div id="programs-list" class="container-right">
+                        <div><span>רשימת התוכניות</span><button type="button">תוכנית חדשה</button></div>
                         <table border="1">
                             <tr class="line">
-                                <th class="">שם תוכנית</th>
+                                <th>מס</th>
+                                <th>שם תוכנית</th>
                                 <th>סטטוס</th>
                                 <th>אפשרויות</th>
                             </tr>
                             <tr id="prog10092013" class="line">
-                                <td class="">תוכנית 1 10/9</td>
+                                <td>1</td>
+                                <td>תוכנית 1 10/9</td>
                                 <td>הצבעות (16 מתמודדים 8)</td>
                                 <td class="row-options">
                                     <span>ערוך</span>
@@ -40,7 +42,8 @@
                                 </td>
                             </tr>
                             <tr id="prog20092013" class="line">
-                                <td class="">תוכנית 2 20/9</td>
+                                <td>2</td>
+                                <td>תוכנית 2 20/9</td>
                                 <td>הצבעות (5 מתמודדים 5)</td>
                                 <td class="row-options">
                                     <span>ערוך</span>
@@ -50,9 +53,28 @@
                         </table>
                     </div>
 
-                    <div id="contestants-list">
-                        <h2>מתמודדים</h2>
+                    <div id="contestants-list" class="container-left">
+                        <div><span>מתמודדים</span>
+                            <button type="button"> + מועמד חדש</button></div>
                         <div>
+                            <div id="add-contestant">
+                                <div>
+                                    <label for="songs-name">שם המתמודד:</label>
+                                    <input type="text" id="songs-name">
+                                </div>
+                                <div>
+                                    <form action="upload_file.php" method="post" enctype="multipart/form-data">
+                                        <label for="file">תמונה:</label>
+                                        <input type="file" name="file" id="file">
+                                        <input type="submit" name="submit" value="העלה תמונה">
+                                    </form>
+
+                                </div>
+                                <div class="control-buttons">
+                                    <button type="button">הוסף</button>
+                                    <button type="button">בטל</button>
+                                </div>
+                            </div>
                             <ul id="conestant-container">
                                 <li>
                                     <div class="container-right">
@@ -67,7 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="container-left">
-                                       <img src="img/ninet.jpg" alt="ninet">
+                                        <img src="img/ninet.jpg" alt="ninet">
                                     </div>
                                 </li>
 
@@ -84,42 +106,14 @@
                                         </div>
                                     </div>
                                     <div class="container-left">
-                                       <img src="img/shiri.jpg" alt="shiri">
+                                        <img src="img/shiri.jpg" alt="shiri">
                                     </div>
                                 </li>
 
                             </ul>
                         </div>
                     </div>
-                
-                    
-                 <div class="wrap-editing">
-                            <div class="add-title"><span>הוספת מתמודד</span><img src="./img/minimize.png" alt="minimize"></div>
-                            <div id="add-contestant" class="editing-window">
-                                <p>הזן שם מתמודד ותמונה</p>
-                                <div>
-                                    <input type="text" id="songs-name">
-                                    <label for="songs-name">:שם המתמודד</label>
-                                </div>
-                                <div>
-                                    <form action="upload_file.php" method="post" enctype="multipart/form-data">
-                                        <input type="submit" name="submit" value="העלה תמונה">
-                                        <input type="file" name="file" id="file">
-                                        <label for="file">:תמונה</label>
-                                    </form>
-
-                                </div>
-                                <div class="control-buttons">
-                                    <button type="button">הוסף</button>
-                                    <button type="button">בטל</button>
-                                </div>
-                            </div>
-                        </div>
-                
                 </div>
-
-
-
             </section>
 
             <section id="settings-list">
@@ -131,28 +125,39 @@
             </section>
 
             <section id="voting-screens" style="display: block">
+                    <div style="clear: both;overflow: hidden;">
+                        <div style="display: inline-block;"><br>
+                                 משתתפים:<span>0</span>
+                        </div>
+                        <div style="display: inline-block; float: left;">
+                            <div>נינט טייב <span>0</span>
+                            </div>
+                            <div>שירי מיימון <span>0</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div>
-                    <div style="display: inline-block;">
-                        משתתפים:<span>0</span>
+                    <ul class="horizonal-list">
+                        <li><a href="">ממתין</a></li> 
+                        <li><a href="/css/">פתיחת הרשמה</a></li> 
+                        <li><a href="/js/">פתיחת הצבעה</a></li> 
+                        <li><a href="/jquery/">סגירת הצבעה</a></li> 
+                        <li><a href="/jquery/">פרסם תוצאות</a></li>
+                   </ul>
+                <div id="current-contestants">
+                    <div class="container-right">
+                        <img src="img/ninet.jpg" alt="shiri" class="contestant-img">
+                        נינט טייב
                     </div>
-                    <div style="display: inline-block;">
-                        <div>נינט טייב<span>0</span>
-                        </div>
-                        <div>שירי מיימון <span>0</span>
-                        </div>
+                    <div class="container-left">
+                        <img src="img/shiri.jpg" alt="shiri" class="contestant-img">
+                        שירי מיימון
                     </div>
+
                 </div>
 
-                <nav>
-                    <a href="">ממתין</a> |
-                    <a href="/css/">פתיחת הרשמה</a> |
-                    <a href="/js/">פתיחת הצבעה</a> |
-                    <a href="/jquery/">סגירת הצבעה</a>|
-                    <a href="/jquery/">סגירת הצבעה</a>
-                </nav>
 
-
+                
 
             </section>
 

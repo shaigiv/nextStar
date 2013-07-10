@@ -244,14 +244,19 @@ table .right {
 
 .container-right{
     display: inline-block;
-    width: 49%;
+    width: 48%;
     /*float: right;*/
 }
 
 .container-left{
     display: inline-block;
-    width: 49%;
+    width: 48%;
     /*float: left;*/
+}
+
+#go-back {
+  
+    float: right;
 }
 /*---------------------mainPage-----------------------*/
 
@@ -259,11 +264,11 @@ table .right {
     display: block;
 }
 
-#main-page ul {
+/*#main-page ul {
     margin: auto;
     width: 283px;
     margin-top: 50px;
-}
+}*/
 
 /*#main-page ul li {
     height: 60px;
@@ -286,6 +291,12 @@ table .right {
 #contestants-list{
     display: inline-block;
     width: 19%;
+    float: left;
+}
+
+#add-contestant{
+    width: 100%;
+    border: 1px solid;
 }
 
 #conestant-container{
@@ -326,11 +337,6 @@ table .right {
     border-left: none;
 }
 
-
-#go-back {
-  
-    float: right;
-}
 
 /*---------------------progPage----------------------------*/
 
@@ -479,3 +485,13 @@ left: 26px;
 bottom: 17px;
 }
 
+/*-----------------------voting-screens----------------------*/
+
+#voting-screens{
+    width: 80%;
+    margin-top: 50px;
+}
+
+#voting-screens .contestant-img{
+    display: inline;
+} 
