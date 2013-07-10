@@ -172,42 +172,53 @@
                     <div class="lineup">
                         <table border="1">
                             <tr>
-                                <th>-</th>
-                                <th>אפשרויות</th>
-                                <th>סטטוס</th>
-                                <th>שיר</th>
-                                <th>מתמודד</th>
                                 <th class="right">מס</th>
+                                <th>מתמודד</th>
+                                <th>שיר</th>
+                                <th>סטטוס</th>
+                                <th>אפשרויות</th>
+                                <th>-</th>
+                                
+                                
+                                
+                                
+                                
+                                
                             </tr>
                             <tr id="prog10092013song1">
-                                <td>פתח</td>
+                               <td>1</td> 
+                                <td>אור טרגן<br>איטן גרינברג</td>
+                                <td>ים של דמעות<br>ים הרחמים</td>
+                                <td>ממתין</td>
                                 <td class="row-options">
                                     <span>ערוך</span>
                                     <span>מחק</span>
                                     <span>שכפל</span>
-                                </td>
-                                <td>ממתין</td>
-                                <td>ים של דמעות<br>ים הרחמים</td>
-                                <td>אור טרגן<br>איטן גרינברג</td>
-                                <td>1</td>
+                                </td> 
+                                <td>פתח</td>
+                                
+                                
+                               
+                                
                             </tr>
                             <tr id="prog10092013song2" class="bottom">
-                                <td>פתח</td>
+                                 <td class="right-bottom">2</td>
+                                <td>צביקה פיק<br>יוסי צווילי</td>
+                                <td>אהבתיה</td>
+                                <td>ממתין</td>
                                 <td class="row-options">
                                     <span>ערוך</span>
                                     <span>מחק</span>
                                     <span>שכפל</span>
                                 </td>
-                                <td>ממתין</td>
-                                <td>אהבתיה</td>
-                                <td>צביקה פיק<br>יוסי צווילי</td>
-                                <td class="right-bottom">2</td>
+                                <td>פתח</td>
+                                
                             </tr>
                         </table>
                     </div>
 
                     <div class="wrap-editing">
-                        <div class="add-title"><span>הוספת הצבעה</span><img src="./img/minimize.png" alt="minimize"></div>
+                        <div class="add-title"><img src="./img/minimize.png" alt="minimize"><span>הוספת הצבעה</span></div>
                         <div id="add-vote" class="editing-window">
                             <p>בחר את שם המתמודד והזן את שם השיר, במקרה של דואט יש לבחור שני מתמודדים</p>
                             <div class="contestant-details">
@@ -222,8 +233,9 @@
                                 </select>
 
                                 <div class="song-name-wrap">
-                                    <input type="text" id="songs-name">
-                                    <label for="songs-name">:שם השיר</label>
+                                   
+                                    <label for="songs-name">שם השיר</label>
+                                     <input type="text" id="songs-name">
                                 </div>
                             </div>
 
@@ -239,14 +251,16 @@
                                 </select>
 
                                 <div class="song-name-wrap">
+                                    
+                                    <label for="songs-name">שם השיר</label>
                                     <input type="text" id="songs-name">
-                                    <label for="songs-name">:שם השיר</label>
                                 </div>
                             </div>
 
                             <div class="vote-res">
-                                <input type="number" value="50" name="threshold" min="0" max="100">
+                                
                                 <label for="threshold">אחוז חסימה</label>
+                                <input type="number" value="50" name="threshold" min="0" max="100">
                             </div>
 
                             <div class="control-buttons">
@@ -258,28 +272,30 @@
                     </div>
 
                     <div class="wrap-editing">
-                        <div class="add-title"><span>הוספת עמוד המתנה</span><img src="./img/minimize.png" alt="minimize"></div>
+                        <div class="add-title"><img src="./img/minimize.png" alt="minimize"><span>הוספת עמוד המתנה</span></div>
                         <div id="add-page" class="editing-window">
 
 
-                            <div>
- בחר טמפלט לעמוד המתנה והזן את התוכן
+                            <div class="line">
+                                <div>בחר טמפלט לעמוד המתנה והזן את התוכן</div>
+                                <div class="template-wrap">
+                                    <label for="screen-template">טמפלט</label>
+                                    <select class="screen-template" name="screen-template">
+                                        <option value="open-screen">מסך פתיחה</option>
+                                        <option value="end-screen">מסך סיום</option>
+                                        <option value="wait-screen">מסך המתנה רגיל</option>
+                                        <option value="ad-screen">יצאנו לפרסומות</option>
+                                    </select>
+                                </div>
+                                
                             </div>
 
-                            <div class="line">
-                                <select class="screen-template" name="screen-template">
-                                    <option value="open-screen">מסך פתיחה</option>
-                                    <option value="end-screen">מסך סיום</option>
-                                    <option value="wait-screen">מסך המתנה רגיל</option>
-                                    <option value="ad-screen">יצאנו לפרסומות</option>
-                                </select>
-                                <label for="screen-template">:טמפלט</label>
-                            </div>
                             <div class="line"><input type="text" id="screen-title" value="הערב בכוכב נולד"></div>
                             <div class="line"><input type="text" id="screen-content" value="יצאנו לפרסומות"></div>
                             <div class="line">
-                                <input type="text" id="screen-name" value="הזן שם מסך">
+                               
                                 <input type="text" id="screen-info" value="'מייד נמשיך בשידור'">
+                                 <input type="text" id="screen-name" value="הזן שם מסך">
                             </div>
 
                             <div class="control-buttons">
