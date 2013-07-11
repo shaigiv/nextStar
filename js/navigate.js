@@ -6,7 +6,7 @@ $(document).ready(function () {
         $("#main-page").show();
     });
 
-    $("#voting-screen").click(function () {
+    $(".open-voting").click(function () {
         window.location.href = window.location.origin + "/index.html#voting-screens";
         switchHash();
     });
@@ -31,21 +31,15 @@ $(document).ready(function () {
         switchHash();
     });
 
-    $("#prog10092013").click(function () {
-        $("section").hide();
-        $("#prog-page").show();
-        $("#prog-page .prog-page").hide();
-        $("#prog-page10092013").show();
+    $("#prog10092013 .open-prog").click(function () {
+        window.location.href = window.location.origin + "/index.html#prog-page10092013";
+        switchHash();
     });
 
-    $("#prog20092013").click(function () {
-        $("section").hide();
-        $("#prog-page").show();
-        $("#prog-page .progPage").hide();
-        $("#prog-page20092013").show();
+    $("#prog20092013 .open-prog").click(function () {
+        window.location.href = window.location.origin + "/index.html#prog-page20092013";
+        switchHash();
     });
-
-
 });
 
 function switchHash() { //navigates according to hash tag
@@ -82,5 +76,18 @@ function switchHash() { //navigates according to hash tag
             $("#voting-screens").show();
             break;
 
+        case "#prog-page10092013":
+            $("section").hide();
+            $("#prog-page").show();
+            $("#prog-page .prog-page").hide();
+            $("#prog-page10092013").show();
+            break;
+
+        case "#prog-page20092013":
+            $("section").hide();
+            $("#prog-page").show();
+            $("#prog-page .prog-page").hide();
+            $("#prog-page20092013").show();
+            break;
     }
 }

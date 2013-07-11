@@ -18,7 +18,7 @@
                 <h2>הכוכב הבא- מערכת הצבעות</h2>
                 <nav dir="ltr" style="margin-top: 10px;">
                     <a href="/index.html#users-list" id="users">ניהול משתתפים</a> |
-                    <a href="#voting-screens" id="voting-screen">מוניטור</a> |
+                    <a href="" id="voting-screen">מוניטור</a> |
                     <a href="/index.html#settings-list" id="settings">הגדרות</a>
                 </nav>
 
@@ -37,8 +37,8 @@
                                 <td>תוכנית 1 10/9</td>
                                 <td>הצבעות (16 מתמודדים 8)</td>
                                 <td class="row-options">
-                                    <span>ערוך</span>
-                                    <span>מחק</span>
+                                    <span class="delete-prog">מחק</span>
+                                    <span class="open-prog">פתח</span>
                                 </td>
                             </tr>
                             <tr id="prog20092013" class="line">
@@ -46,8 +46,8 @@
                                 <td>תוכנית 2 20/9</td>
                                 <td>הצבעות (5 מתמודדים 5)</td>
                                 <td class="row-options">
-                                    <span>ערוך</span>
-                                    <span>מחק</span>
+                                    <span class="delete-prog">מחק</span>
+                                    <span class="open-prog">פתח</span>
                                 </td>
                             </tr>
                         </table>
@@ -115,26 +115,48 @@
 
             <section id="settings-list">
                 <h2>הגדרות כלליות</h2>
+
+                <div class="wrap-editing">
+                    <div id="" class="editing-window">
+
+                        <div class="vote-res">
+
+                            <label for="threshold-default">אחוז עובר- ברירת מחדל</label>
+                            <input type="number" value="50" name="threshold-default" min="0" max="100">
+                        </div>
+
+            
+
+
+                        <div class="control-buttons">
+                            <button type="button">אשר</button>
+                            <button type="button">בטל</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </section>
 
             <section id="users-list">
                 <h2>רשימת משתמשים</h2>
             </section>
 
-            <section id="voting-screens" style="display: block;font-size: 20px; margin-bottom: 20px;">
+            <section id="voting-screens" style="font-size: 20px; margin-bottom: 20px;">
                 <div style="clear: both;overflow: hidden;">
-                    <div style="display: inline-block; margin-right: 100px; "><br>
+                    <div style="display: inline-block; margin-right: 100px; "><br><br>
                                  משתתפים:<span>0</span>
                     </div>
                     <div style="display: inline-block; float: left;">
                         <table border="1">
                             <tr>
                                 <td>נינט טייב</td>
-                                <td>0</td>
+                                <td><input type="text" value="0"></td>
                             </tr>
                             <tr>
                                 <td>שירי מיימון</td>
-                                <td>0</td>
+                                <td><input type="text" value="0"></td>
                             </tr>
                         </table>
                     </div>
@@ -142,13 +164,14 @@
 
                 <ul class="horizonal-list">
                     <li><a href="">ממתין</a></li>
-                    <li><a href="/css/">פתיחת הרשמה</a></li>
+                    <li><a href="/css/">פתיחת הרשמה</a>
+                        <div></div></li>
                     <li><a href="/js/">פתיחת הצבעה</a></li>
                     <li><a href="/jquery/">סגירת הצבעה</a></li>
                     <li><a href="/jquery/">פרסם תוצאות</a></li>
                 </ul>
 
-                <div>
+                <div id="announcements">
                     <input type="text" value="ממתין לפתיחת הצבעה" id="wait-open" onclick="checkOpen()">
                     <input type="checkbox" disabled="disabled" checked="checked" id="wait-open-check">
                     <input type="text" value="ממתין לסגירת הצבעה" id="wait-close" onclick="checkClose()">
@@ -164,14 +187,14 @@
                         <img src="img/ninet.jpg" alt="shiri" class="contestant-img">
                         <div style="display: inline-block">
                             <div class="voting-name">נינט טייב</div>
-                            <div class="voting-precent">58.3%</div>
+                            <div class="voting-precent green-text">58.3%</div>
                         </div>
                     </div>
                     <div class="container-left">
                         <img src="img/shiri.jpg" alt="shiri" class="contestant-img">
                         <div style="display: inline-block">
                             <div class="voting-name">שירי מיימון</div>
-                            <div class="voting-precent">42.3%</div>
+                            <div class="voting-precent red-text">42.3%</div>
                         </div>
                     </div>
 
@@ -188,25 +211,31 @@
                     <h3>
                         <span>תוכנית 1 - </span>
                         <span>10/9/2013 </span>
-                        <span id="edit-prog-name">ערוך שם</span>
+                        <span id="edit-prog-name">ערוך שם
+                            <span>
+                                <input type="text">
+                                <button type="button" style="left: 45px;">אשר</button>
+                                <button type="button">בטל</button>
+                            </span>
+                        </span>
                     </h3>
                     <div class="lineup">
                         <table border="1">
                             <tr>
-                                <th class="right">מס</th>
+                                <th rowspan="2" colspan="2">מס</th>
+                                <th rowspan="1" colspan="2">פרטים</th>
+                                <th rowspan="2" colspan="1">סטטוס</th>
+                                <th rowspan="2" colspan="1">אפשרויות</th>
+                                <th rowspan="2" colspan="1">תצוגה</th>
+                                <th rowspan="2" colspan="1">הפעלה</th>
+                            </tr>
+
+                            <tr>
                                 <th>מתמודד</th>
                                 <th>שיר</th>
-                                <th>סטטוס</th>
-                                <th>אפשרויות</th>
-                                <th>-</th>
-
-
-
-
-
-
                             </tr>
                             <tr id="prog10092013song1">
+                                <td><img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow"></td>
                                 <td>1</td>
                                 <td>אור טרגן<br>איטן גרינברג</td>
                                 <td>ים של דמעות<br>ים הרחמים</td>
@@ -216,13 +245,16 @@
                                     <span>מחק</span>
                                     <span>שכפל</span>
                                 </td>
-                                <td>פתח</td>
+                                <td>פריוויו</td>
+                                <td class="open-voting">פתח</td>
 
 
 
 
                             </tr>
                             <tr id="prog10092013song2" class="bottom">
+                                <td><img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow">
+                                <img src="./img/Up Arrow.png" alt="arrow" class="nav-arrow"></td>
                                 <td class="right-bottom">2</td>
                                 <td>צביקה פיק<br>יוסי צווילי</td>
                                 <td>אהבתיה</td>
@@ -232,14 +264,17 @@
                                     <span>מחק</span>
                                     <span>שכפל</span>
                                 </td>
-                                <td>פתח</td>
-
+                                <td>פריוויו</td>
+                                <td class="open-voting">פתח</td>
                             </tr>
                         </table>
                     </div>
 
                     <div class="wrap-editing">
-                        <div class="add-title"><img src="./img/minimize.png" alt="minimize"><span>הוספת הצבעה</span></div>
+                        <div class="add-title">
+                            <div id="add-vote-title" class="toggle-edit minimize"></div>
+                            <span>הוספת הצבעה</span>
+                        </div>
                         <div id="add-vote" class="editing-window">
                             <p>בחר את שם המתמודד והזן את שם השיר, במקרה של דואט יש לבחור שני מתמודדים</p>
                             <div class="contestant-details">
@@ -293,10 +328,11 @@
                     </div>
 
                     <div class="wrap-editing">
-                        <div class="add-title"><img src="./img/minimize.png" alt="minimize"><span>הוספת עמוד המתנה</span></div>
+                        <div class="add-title">
+                            <div id="add-page-title" class="toggle-edit minimize"></div>
+                            <span>הוספת עמוד המתנה</span>
+                        </div>
                         <div id="add-page" class="editing-window">
-
-
                             <div class="line">
                                 <div>בחר טמפלט לעמוד המתנה והזן את התוכן</div>
                                 <div class="template-wrap">

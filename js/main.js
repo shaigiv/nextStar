@@ -1,21 +1,22 @@
 $(document).ready(function () {
 
-    $(".add-title img").click(
-    function () {
-        $("#add-vote").addClass("shrink-height");
+    $("#add-vote-title").click(function () {
+        if ($(".toggle-edit").hasClass('minimize')) {
+            $("#add-vote").slideToggle();
+            $("#add-vote-title").toggleClass('minimize maximize');
+        }
     });
 
-    //$(".wait-open-vote").click(
-    //function () {
-    //  //   document.getElementById("wait-open-vote-check").checked=true;
-    //   document.getElementById("check1").checked=true;
+     $("#add-page-title").click(function () {
+        if ($(".toggle-edit").hasClass('minimize')) {
+            $("#add-page").slideToggle();
+            $("#add-page-title").toggleClass('minimize maximize');
+        }
+    });
 
-    //});
-
-
-
-
-
+    $("#edit-prog-name").click(function () {
+        $("#edit-prog-name span").show();
+    });
 
 
 });
