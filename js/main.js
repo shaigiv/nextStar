@@ -1,20 +1,21 @@
-$(document).ready(function () {
-
-    $("#add-vote-title").click(function () {
-        if ($(".toggle-edit").hasClass('minimize')) {
+$(document).ready(function() {
+    getHomePageData();
+    homePageInitEvents();
+    $("#add-vote-title").click(function() {
+        if($(".toggle-edit").hasClass('minimize')) {
             $("#add-vote").slideToggle();
             $("#add-vote-title").toggleClass('minimize maximize');
         }
     });
 
-     $("#add-page-title").click(function () {
-        if ($(".toggle-edit").hasClass('minimize')) {
+    $("#add-page-title").click(function() {
+        if($(".toggle-edit").hasClass('minimize')) {
             $("#add-page").slideToggle();
             $("#add-page-title").toggleClass('minimize maximize');
         }
     });
 
-    $("#edit-prog-name").click(function () {
+    $("#edit-prog-name").click(function() {
         $("#edit-prog-name span").show();
     });
 

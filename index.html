@@ -10,22 +10,54 @@
         <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/navigate.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/homepage.js"></script>
     </head>
-    <body onload="switchHash()">
-        <div class="main-wrap">
-            <div><button id="go-back">חזור</button></div>
-            <section id="main-page">
-                <h2>הכוכב הבא- מערכת הצבעות</h2>
-                <nav dir="ltr" style="margin-top: 10px;">
+    <!--<body onload="switchHash()">-->
+    <body>
+      <div class="bg-wrap">
+           <header>
+              <div class="main-header">
+                <div class="logo-wrap">
+                    <div class="logo"></div>
+                    <div class="title">מערכת הצבעות</div>
+                </div>
+                <div class="menu">
                     <a href="/index.html#users-list" id="users">ניהול משתתפים</a> |
                     <a href="" id="voting-screen">מוניטור</a> |
                     <a href="/index.html#settings-list" id="settings">הגדרות</a>
-                </nav>
-
+                </div>
+               </div>
+            </header>
+        <div class="main-wrap">
+           
+            <!--<div><button id="go-back">חזור</button></div>-->
+            <section id="main-page">
                 <div id="main-page-container">
-                    <div id="programs-list" class="container-right">
-                        <h3><span>רשימת התוכניות</span> <button type="button">תוכנית חדשה</button></h3>
-                        <table border="1">
+                    <div id="programs-list-wrap" class="container-right">
+                        <span class="title">רשימת התוכניות</span> <button class="plus-btn" id="addShow" type="button">תוכנית חדשה</button>
+                        <div class="programs-list">
+                            <div class="list-titles">
+                                <div class="program-number">מס'</div>
+                                <div class="program-name">שם התוכנית</div>
+                                <div class="program-status">סטאטוס</div>
+                                <div class="program-options">אפשרויות</div>
+                            </div>
+                            <ul>
+                                <li class="">
+                                    <div class="program-number">1</div>
+                                    <div class="program-name">11.07.13</div>
+                                    <div class="program-status">ממתין... .... ..</div>
+                                    <div class="program-options"><span class="delete">מחק</span><span> |</span> <span class="delete">פתח</span></div>
+                                </li>
+                                <li class="last">
+                                    <div class="program-number">1</div>
+                                    <div class="program-name">11.07.13</div>
+                                    <div class="program-status">ממתין... .... ..</div>
+                                    <div class="program-options"><span class="delete">מחק</span><span> |</span> <span class="delete">פתח</span></div>
+                                </li>
+                            </ul>
+                        </div>
+                      <!--  <table border="1">
                             <tr class="line">
                                 <th>מס</th>
                                 <th>שם תוכנית</th>
@@ -50,25 +82,38 @@
                                     <span class="open-prog">פתח</span>
                                 </td>
                             </tr>
-                        </table>
+                        </table>-->
                     </div>
 
-                    <div id="contestants-list" class="container-left wrap-editing">
-                        <div class="add-title"><h3><span>מתמודדים</span>
-                                <button type="button"> + מועמד חדש</button></h3></div>
-                        <div>
+                    <div id="contestants-list-wrap" class="container-left wrap-editing">
+                        <div class="add-title"><span class="title">מתמודדים</span>
+                                <button class="plus-btn" type="button">מועמד חדש</button></div>
+                        <div id="contestants-list">
                             <div id="add-contestant">
-                                <div>
+                                <div class="add-comp-name">
                                     <label for="songs-name">שם המתמודד:</label>
-                                    <input type="text" id="songs-name">
+                                    <input type="text" id="add-competitor-name">
                                 </div>
                                 <div>
-                                    <form action="upload_file.php" method="post" enctype="multipart/form-data">
-                                        <label for="file">תמונה:</label>
-                                        <input type="file" name="file" id="file">
-                                        <input type="submit" name="submit" value="העלה תמונה">
-                                        <span style="float: left; margin-left: 5px;"><button type="button">הוסף</button>
-                                            <button type="button">בטל</button></span>
+                                    <form class="add-comp-img-wrap" action="upload_file.php" method="post" enctype="multipart/form-data">
+                                        <div class="add-comp-img">
+                                            <div>
+                                                <label for="file">תמונה קטנה:</label>
+                                                 <input class="" type="file" name="smallImg" id="">
+                                            </div>
+                                            <div>
+                                                <label for="file">תמונה גדולה:</label>
+                                                 <input class="" type="file" name="largeImg" id="">
+                                            </div>
+                                            <input class="upload" type="submit" name="submit" value="העלה תמונה">
+                                            <img src="" />
+                                        </div>
+                                        
+                                        <div class="buttons">
+                                            <span style="float: left; margin-left: 5px;"><button class="add" id="addComp" type="button">הוסף</button>
+                                            <button class="cancel" type="button">בטל</button></span>
+                                        </div>
+                                        
                                     </form>
                                 </div>
                             </div>
@@ -76,7 +121,7 @@
                                 <li>
                                     <div class="container-right">
                                         <div>
-                                            <span>1. </span><span>שירי מיימון</span>
+                                            <span class="title">1. </span><span>שירי מיימון</span>
                                         </div>
                                         <div>
                                             <ul class="horizonal-list">
@@ -93,7 +138,7 @@
                                 <li>
                                     <div class="container-right">
                                         <div>
-                                            <span>2. </span><span>נינט טייב</span>
+                                            <span class="title">2. </span><span>נינט טייב</span>
                                         </div>
                                         <div>
                                             <ul class="horizonal-list">
@@ -290,7 +335,7 @@
 
                                 <div class="song-name-wrap">
 
-                                    <label for="songs-name">שם השיר</label>
+                                    <label class="songs-name">שם השיר</label>
                                     <input type="text" id="songs-name">
                                 </div>
                             </div>
@@ -379,5 +424,6 @@
 
 
         </div>
+       </div>
     </body>
 </html>

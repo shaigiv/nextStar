@@ -91,3 +91,12 @@ function switchHash() { //navigates according to hash tag
             break;
     }
 }
+
+function showShowPage(showId){
+    $("section").hide();
+    $("#prog-page").show();
+    $("#prog-page .prog-page").hide();
+
+    $("#showid" + showId).show();
+
+}
