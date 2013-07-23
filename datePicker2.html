@@ -1,0 +1,42 @@
+﻿<!doctype html>
+ 
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>jQuery UI Datepicker - Localize calendar</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="http://jqueryui.com/resources/demos/datepicker/jquery.ui.datepicker-he.js"></script>
+  
+  <style>	
+	body {
+		font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+		font-size: 62.5%;
+	}
+  </style>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker( {
+      showButtonPanel: true,
+    },$.datepicker.regional[ "he" ] );
+	
+	//set date:
+	$( "#datepicker" ).datepicker( "setDate", new Date(1373403600000) );
+	
+	$('#a').click(function(){
+		var currentDate = $( "#datepicker" ).datepicker( "getDate" );
+		alert(currentDate.getTime());
+	});
+  });
+  </script>
+</head>
+<body>
+ 
+<p>Date: <input type="text" id="datepicker" />
+<button id="a">get value</button>
+
+ 
+ 
+</body>
+</html>

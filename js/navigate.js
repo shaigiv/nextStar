@@ -1,44 +1,49 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
-    $("#go-back").click(function () {
+    $("#programs-list-ul").delegate(".open", "click", function() {
+        showProgPage();
+    });
+
+    $("#go-back").click(function() {
         window.location.href = window.location.origin + "/index.html";
         $("section").hide();
         $("#main-page").show();
     });
 
-    $(".open-voting").click(function () {
+    $(".open-voting").click(function() {
         window.location.href = window.location.origin + "/index.html#voting-screens";
-        switchHash();
+        //switchHash();
     });
 
-    $("#contestants").click(function () {
+    $("#contestants").click(function() {
         window.location.href = window.location.origin + "/index.html#contestants-list";
-        switchHash();
+        // switchHash();
     });
 
-    $("#programs").click(function () {
+    $("#programs").click(function() {
         window.location.href = window.location.origin + "/index.html#programs-list";
-        switchHash();
+        //switchHash();
     });
 
-    $("#settings").click(function () {
-        window.location.href = window.location.origin + "/index.html#settings-list";
-        switchHash();
+    $("#settings").click(function() {
+        // window.location.href = window.location.origin + "/index.html#settings-list";
+        // switchHash();
+        showSettingsPage();
     });
 
-    $("#users").click(function () {
+    $("#users").click(function() {
         window.location.href = window.location.origin + "/index.html#users-list";
-        switchHash();
+        // switchHash();
     });
 
-    $("#prog10092013 .open-prog").click(function () {
+    $("#prog10092013 .open-prog").click(function() {
         window.location.href = window.location.origin + "/index.html#prog-page10092013";
-        switchHash();
+        // switchHash();
     });
 
-    $("#prog20092013 .open-prog").click(function () {
+    $("#prog20092013 .open-prog").click(function() {
         window.location.href = window.location.origin + "/index.html#prog-page20092013";
-        switchHash();
+        // switchHash();
     });
 });
 
@@ -99,4 +104,14 @@ function showShowPage(showId){
 
     $("#showid" + showId).show();
 
+}
+
+function showProgPage(progLine){
+    $("section").hide();
+    $("#prog-page").show();
+}
+
+function showSettingsPage(){
+       $("section").hide();
+    $("#settings-list").show();
 }

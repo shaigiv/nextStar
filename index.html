@@ -11,6 +11,11 @@
         <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/navigate.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/homepage.js"></script>
+
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="http://jqueryui.com/resources/demos/datepicker/jquery.ui.datepicker-he.js"></script>
     </head>
     <!--<body onload="switchHash()">-->
     <body>
@@ -35,6 +40,22 @@
                 <div id="main-page-container">
                     <div id="programs-list-wrap" class="container-right">
                         <span class="title">רשימת התוכניות</span> <button class="plus-btn" id="addShow" type="button">תוכנית חדשה</button>
+                        <div class="add-program-wrap">
+                            <div class="prog-name">
+                                <div><span class="">שם התוכנית: </span></div>
+                                <div><input id="add-prog-name" type="text" /></div>
+                            </div>
+                            <div class="prog-date-picker">
+                                <div><span>זמן שידור התוכנית</span></div>
+                                <div><input id="datepicker" type="text" /></div>
+                                <div><img width="30px" height="30px" id="datepicker-icon" src="img/calendar.png" /></div>
+                            </div>
+                            <div class="buttons">
+                                 <span style="float: left; margin-left: 5px;"><button class="add" id="addProg" type="button">הוסף</button>
+                                 <button class="cancel" id="addShowCancel" type="button">בטל</button></span>
+                            </div>
+                        </div>
+                        
                         <div class="programs-list">
                             <div class="list-titles">
                                 <div class="program-number">מס'</div>
@@ -42,8 +63,8 @@
                                 <div class="program-status">סטאטוס</div>
                                 <div class="program-options">אפשרויות</div>
                             </div>
-                            <ul>
-                                <li class="">
+                            <ul id="programs-list-ul">
+                              <!--  <li class="">
                                     <div class="program-number">1</div>
                                     <div class="program-name">11.07.13</div>
                                     <div class="program-status">ממתין... .... ..</div>
@@ -54,7 +75,7 @@
                                     <div class="program-name">11.07.13</div>
                                     <div class="program-status">ממתין... .... ..</div>
                                     <div class="program-options"><span class="delete">מחק</span><span> |</span> <span class="delete">פתח</span></div>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
                       <!--  <table border="1">
@@ -87,7 +108,7 @@
 
                     <div id="contestants-list-wrap" class="container-left wrap-editing">
                         <div class="add-title"><span class="title">מתמודדים</span>
-                                <button class="plus-btn" type="button">מועמד חדש</button></div>
+                            <button id="open-new-comp" class="plus-btn" type="button">מועמד חדש</button></div>
                         <div id="contestants-list">
                             <div id="add-contestant">
                                 <div class="add-comp-name">
@@ -106,7 +127,7 @@
                                                  <input class="" type="file" name="largeImg" id="">
                                             </div>
                                             <input class="upload" type="submit" name="submit" value="העלה תמונה">
-                                            <img src="" />
+                                            <img id="add-competitor-imgFile" src="" />
                                         </div>
                                         
                                         <div class="buttons">
@@ -118,7 +139,35 @@
                                 </div>
                             </div>
                             <ul id="conestant-container">
-                                <li>
+                              <li id="edit-contestant"><div>
+                                <div class="add-comp-name">
+                                    <label for="songs-name">שם המתמודד:</label>
+                                    <input type="text" id="edit-competitor-name">
+                                </div>
+                                <div>
+                                    <form class="edit-comp-img-wrap" action="upload_file.php" method="post" enctype="multipart/form-data">
+                                        <div class="add-comp-img">
+                                            <div>
+                                                <label for="file">תמונה קטנה:</label>
+                                                 <input class="" type="file" name="smallImg" id="">
+                                            </div>
+                                            <div>
+                                                <label for="file">תמונה גדולה:</label>
+                                                 <input class="" type="file" name="largeImg" id="">
+                                            </div>
+                                            <input class="upload" type="submit" name="submit" value="העלה תמונה">
+                                            <img id="edit-competitor-imgFile" src="" />
+                                        </div>
+                                        
+                                        <div class="buttons">
+                                            <span style="float: left; margin-left: 5px;"><button class="add" id="editComp" type="button">ערוך</button>
+                                            <button class="cancel" type="button">בטל</button></span>
+                                        </div>
+                                        
+                                    </form>
+                                </div>
+                            </div></li>
+                               <!-- <li>
                                     <div class="container-right">
                                         <div>
                                             <span class="title">1. </span><span>שירי מיימון</span>
@@ -150,7 +199,7 @@
                                     <div class="container-left">
                                         <img src="img/shiri.jpg" alt="shiri">
                                     </div>
-                                </li>
+                                </li>-->
 
                             </ul>
                         </div>
@@ -252,7 +301,7 @@
 
             <section id="prog-page">
                 <h2>עריכת תוכנית</h2>
-                <div id="prog-page10092013" class="prog-page">
+                <div id="" class="prog-page">
                     <h3>
                         <span>תוכנית 1 - </span>
                         <span>10/9/2013 </span>
@@ -409,16 +458,7 @@
                     </div>
                 </div>
 
-                <div id="prog-page20092013" class="prog-page">
-                    <h3>
-                        <span>תוכנית 2 - </span>
-                        <span>20/9/2013 </span>
-                        <span id="edit-prog-name">ערוך שם</span>
-                    </h3>
-
-                    <div class="lineup">
-                    </div>
-                </div>
+            
             </section>
 
 

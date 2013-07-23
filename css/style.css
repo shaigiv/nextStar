@@ -351,7 +351,39 @@ border: 1px solid #01ACEA;
 /*#main-page ul li:hover {
     background-color: #CDCDCD;
 }*/
+.add-program-wrap{display: none;}
+.add-program-wrap div{
+    display: inline-block;
+}
 
+.add-program-wrap{
+    border: 1px solid #CDCDCD;
+margin-top: 22px;
+padding: 7px;
+position: relative
+}
+
+#datepicker-icon{
+    margin-bottom: -9px;
+    cursor: pointer;
+}
+.add-program-wrap .buttons{
+   position: absolute;
+left: 8px;
+}
+.add-program-wrap .buttons .add{
+width: 70px;
+height: 25px;
+}
+.add-program-wrap .buttons .cancel{
+   width: 70px;
+height: 25px; 
+}
+.add-program-wrap .buttons  span{
+    
+margin-left: 5px;
+display: inline-block;
+}
 /*---------------------contestants-list-----------------------*/
 #contestants-list-wrap {
    
@@ -377,8 +409,9 @@ border: 1px solid #01ACEA;
     left: 5px;
 }
 
-#add-contestant {
+#add-contestant,  #edit-contestant{
 border: 1px solid #CDCDCD;
+display: none;
 }
 .add-comp-name{
    border-bottom: 1px solid #CDCDCD;
@@ -411,6 +444,9 @@ padding-top: 9px;
 height: 45px;
 }
 
+#conestant-container li#edit-contestant{
+    height: 174px;
+}
 
 #contestants-list-wrap img {
     height: 40px;
@@ -425,6 +461,7 @@ height: 45px;
 #conestant-container a{
     color: gray;
     text-decoration: underline;
+    padding: 0px 2px;
 }
 #conestant-container a:hover{
     color: #01ACEA;
@@ -469,8 +506,14 @@ padding-top: 5px;
 .programs-list .program-name{
     width: 150px;
 }
+.programs-list .list-titles .program-name {
+    margin-right: -2px;
+}
 .programs-list .program-status{
     width: 185px;
+}
+.programs-list .list-titles .program-status {
+    margin-right: -4px;
 }
 .programs-list .program-options{
     width: 115px;
@@ -527,7 +570,6 @@ padding-top: 5px;
 /*---------------------progPage----------------------------*/
 
 #prog-page .prog-page {
-    display: none;
     margin-bottom: 30px;
 }
 
@@ -686,12 +728,26 @@ color: white;
 margin-right: 164px;
 margin-top: 2px;
 }
+#edit-contestant{
+    display: none;
+}
 .add-comp-img-wrap{
    height: 109px;
 padding: 4px;
 position: relative;
 }
+.edit-comp-img-wrap{
+   height: 109px;
+padding: 4px;
+position: relative;
+}
 .add-comp-img-wrap img{
+   display: inline-block;
+position: absolute;
+left: 4px;
+top: 11px;
+}
+.edit-comp-img-wrap img{
    display: inline-block;
 position: absolute;
 left: 4px;
@@ -714,12 +770,14 @@ top: 11px;
     background-size: 100% 100%;
     width: 115px;
     height: 30px;
+    display: inline-block;
 }
 .cancel{
     background-image: url('../img/button_red.png');
     background-size: 100% 100%;
     width: 115px;
     height: 30px;
+    display: inline-block;ad
 }
 
 .vote-res {
