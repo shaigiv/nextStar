@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     $(".open-voting").click(function() {
         window.location.href = window.location.origin + "/index.html#voting-screens";
-        //switchHash();
+       //switchHash();
     });
 
     $("#contestants").click(function() {

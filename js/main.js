@@ -3,17 +3,25 @@ $(document).ready(function() {
     homePageInitEvents();
     initInputFile();
 
-    $("#add-vote-title").click(function() {
+    $("#add-vote-title").on('click',$("#add-vote-title"),function() {
         if($(".toggle-edit").hasClass('minimize')) {
             $("#add-vote").slideToggle();
+			if($("#add-page-title").hasClass('maximize')){
+			 $("#add-page").slideUp();
+			 $("#add-page-title").removeClass('maximize').addClass('minimize');
+			}
             $("#add-vote-title").toggleClass('minimize maximize');
         }
     });
 
-    $("#add-page-title").click(function() {
+    $("#add-page-title").on('click',$("#add-page-title"),function() {
         if($(".toggle-edit").hasClass('minimize')) {
             $("#add-page").slideToggle();
-            $("#add-page-title").toggleClass('minimize maximize');
+			if($("#add-vote-title").hasClass('maximize')){
+			 $("#add-vote").slideUp();
+			 $('#add-vote-title').removeClass('maximize').addClass('minimize');
+			}
+		    $("#add-page-title").toggleClass('minimize maximize');
         }
     });
 
