@@ -273,6 +273,8 @@ ul.horizonal-list {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    background-color: #4798b8;
+    border-radius: 5px;
 }
 
 ul.horizonal-list li {
@@ -350,7 +352,7 @@ table td:last-child {
 }
 
 .container-right {
-    display: inline-block;
+    float: right;
     width: 48%;
 }
 
@@ -360,8 +362,9 @@ table td:last-child {
     float: left;
 }
 .container-left img{
-    height: 45px;
-width: 46px;
+    height: 140px;
+
+    width: 160px;
 border: 1px solid #01ACEA;
 }
 #go-back {
@@ -378,7 +381,7 @@ border: 1px solid #01ACEA;
 }
 
 #main-page {
-    display: block;
+     display: block; 
 }
 
 #main-page h2 {
@@ -656,7 +659,9 @@ padding-top: 5px;
 .open-voting {
     cursor: pointer;
 }
-
+.open-voting:hover {
+    color:#00aeef;
+}
 .wrap-editing {
     width: 70%;
     margin: auto;
@@ -874,23 +879,21 @@ top: 11px;
 }
 
 #voting-screens .contestant-img {
-    display: inline;
+    display: block;
 }
 
 #voting-screens .horizonal-list {
-    margin-bottom: 20px;
     margin-top: 20px;
+    width: 100%;
+    height: 35px;
 }
 
 
 #voting-screens .horizonal-list li {
-    background-color: rgb(215, 218, 207);
+    background-color: #4798b8;
     float: right;
     text-align: center;
-    padding-left: 26px;
-    padding-right: 34px;
-    padding-top: 6px;
-    padding-bottom: 18px;
+    margin: 7px 5px 0 34px;
 }
 
 #voting-screens .horizonal-list li a {
@@ -903,8 +906,7 @@ top: 11px;
 }
 
 #announcements {
-    margin-right: 150px;
-    margin-top: 58px;
+    margin-top: 17px;
 }
 
 #announcements input[type=text] {
@@ -917,11 +919,14 @@ top: 11px;
 }
 
 .voting-name {
-    font-size: 30px;
+    font-size: 25px;
+    text-align: center;
+    margin-top: 15px;
 }
 
 .voting-precent {
-    font-size: 60px;
+    font-size: 45px;
+    text-align: center;
 }
 
 #voting-screens table {
@@ -957,7 +962,7 @@ top: 11px;
 }
 .usersVote{
 	float:left;
-	width:150px;
+	width: 180px;
 }
 .usersVote label {
 	float: right;
@@ -965,9 +970,17 @@ top: 11px;
 	color:#00aeef;
 }
 .userV{
-	background-color:transparent;
+	background-color: transparent;
 	color: #fff;
 	width: 50px;
 	float: left;
-	border:none;
+	border: none !important;
+}
+.result{
+	width: 200px;
+	margin: 0 auto;
+}
+#announcements input {
+	background-color: transparent;
+	color: #fff;
 }
