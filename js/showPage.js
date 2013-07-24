@@ -1,4 +1,4 @@
-
+var currentShowId = "";
 function showEvents(){
 
     $("#voteAndWaitList").delegate(".delete", "click", function() {
@@ -9,22 +9,36 @@ function showEvents(){
         getVoteData($(this));
         openVotingPage(this);
     });
+
+
+    $("#firstCompAddVote").change(function(){
+        setImgOnAddVote(this);
+    });
+     $("#secondCompAddVote").change(function(){
+        setImgOnAddVote(this);
+    });
+
+    $("#addVoteBtn").click(function(){
+        addVote();
+    });
+
     }
 
 function openShow(show){
     // window.location.href = window.location.origin + "/index.html#prog-page10092013";
         //switchHash();
         var showId = show.parents("li").data("showId");
-       
-        getShowData(showId);
+        currentShowId = showId;
+        getShowData();
+        setCompSelectList();
 
 }
 
-function getShowData(showId){
+function getShowData(){
     $.ajax({
         type: "POST",
         url: domain + "type=getPages",
-        data: { "showId": showId },
+        data: { "showId": currentShowId },
         success: function(data) {
             console.log("success getPages: " + data);
              setGetShow(data);
@@ -58,13 +72,13 @@ function setGetShow(data){
 
                 if(numOfComp == 1) {
                   songsHtml = this.votes[0].songName;
-                    compsHtml = getCompNameByID(this.votes[0].id)
+                    compsHtml = getCompNameByID(this.votes[0].cid)
 
                 }
                 else if(numOfComp == 2) {
                     
                       songsHtml = this.votes[0].songName + "</br>" + this.votes[1].songName;
-                    compsHtml = getCompNameByID(this.votes[0].id) + "</br>" + getCompNameByID(this.votes[1].id);
+                    compsHtml = getCompNameByID(this.votes[0].cid) + "</br>" + getCompNameByID(this.votes[1].cid);
                 }
 
                 var status = setStatusText(this, numOfComp);
@@ -99,17 +113,17 @@ function setGetShow(data){
 var pageHtml;
 function pageDelete(pageItem){
     var pageData =$(pageItem).parents("tr").data();
-    var id =pageData.pageData.id;
+    var id =currentShowId;
     pageHtml = $(pageItem).parents("tr");
 
 
     $.ajax({
         type: "POST",
-        url: domain + "type=updatePageStatus",
+        url: domain + "type=deletePage",
         data: { "pageId": id, "newStatus": -1 },
         success: function(data) {
             console.log("success updatePageStatus-delete: " + data);
-            if(data.error !="illegal Status."){
+            if(data.error == "success"){
                 setPageDelete(data);
             }
             
@@ -168,3 +182,92 @@ function setStatusText(data,numOfComp){
         return text;
 }
 
+function setCompSelectList(){
+    $(compArray).each(function(){
+        var name = this.name;
+        var id= this.id;
+        var imgUrl =this.imageUrlA;
+        $("#secondCompAddVote").append('<option value="'+id+'">'+name+'</option>');
+        $("#firstCompAddVote").append('<option value="'+id+'">'+name+'</option>');
+        //save the data for images
+        $("#secondCompAddVote").children("option:last").data("compData", this);
+        $("#firstCompAddVote").children("option:last").data("compData", this);
+    });
+}
+
+function setImgOnAddVote(selectItem){
+    var selectedItem = $(selectItem).children("option:selected");
+    //if is a null comp -do nothing
+    if($(selectedItem).val() == "0"){
+         $(selectItem).parent(".contestant-details").children(".contestant-img").attr("src","");
+    }
+    else{
+         var selectedItemData = selectedItem.data("compData");
+        $(selectItem).parent(".contestant-details").children(".contestant-img").attr("src",selectedItemData.imageUrlA);
+    }
+   
+}
+
+function addVote(){
+    var selectedItemFirst = $("#firstCompAddVote").children("option:selected");
+    var selectedItemSecond = $("#secondCompAddVote").children("option:selected");
+    var threshold =$("#threshold-add-vote").val();
+    var numOfComp =0;
+    var firstSongName ="";
+    var secondSongName="";
+    var firstId=0;
+    var secondId=0;
+    //if comp not chosen
+    if($(selectedItemFirst).val() == "0" && $(selectedItemSecond).val() == "0"){
+        alert("עליך לבחור לפחות מועמד אחד");
+     }
+     else{
+         //if chosen one comp
+         if($(selectedItemFirst).val() != "0"){
+             numOfComp =1;
+             firstSongName = $("#first-songs-name").val();
+             firstId =selectedItemFirst.data("compData").id;
+         }
+        if($(selectedItemSecond).val() != "0"){
+             numOfComp =2;
+             secondSongName = $("#second-songs-name").val();
+             secondId =selectedItemSecond.data("compData").id;
+         }
+
+        //check that insert name and song
+         if(firstSongName == "" || firstId == undefined){
+             alert("עליך להכניס משתמש ושם שיר");
+         }
+         else if(numOfComp ==2 && (secondSongName == "" || secondId == undefined)){
+             alert("עליך להכניס משתמש ושם שיר");
+         }
+         else{
+
+             $.ajax({
+                type: "POST",
+                url: domain + "type=addVotePage",
+                data: { "showId": currentShowId,"competitor_id1": firstId,"SongName1":firstSongName,"competitor_id2":secondId,
+                         "SongName2":secondSongName,"threshold":threshold,
+                         "textWaitRegister":"","textWaitVote":"","textWaitCalc":"","textWaitContinue":""},
+                success: function(data) {
+                    console.log("success addVotePage" + data);
+                    //if(data.error == "success"){
+                        setAddVote(data);
+                    //}
+            
+
+                },
+                error: function(data) {
+                    console.log("error addVotePage " + data);
+                }
+            });
+             
+         }
+
+     }
+   
+}
+
+function setAddVote(data){
+    
+}

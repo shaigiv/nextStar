@@ -480,6 +480,7 @@ padding-right: 10px;
 #conestant-container .horizonal-list {
     position: absolute;
     bottom: 5px;
+    background-color: transparent;
 }
 
 #conestant-container > li {
@@ -845,13 +846,17 @@ top: 11px;
     width: 115px;
     height: 30px;
     display: inline-block;
+    background-color: transparent;
+border: none;
 }
 .cancel{
     background-image: url('../img/button_red.png');
     background-size: 100% 100%;
     width: 115px;
     height: 30px;
-    display: inline-block;ad
+    display: inline-block;
+    background-color: transparent;
+border: none;
 }
 
 .vote-res {

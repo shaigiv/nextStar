@@ -12,7 +12,7 @@ function getCompNameByID(id){
     var name;
     var index=0;
     for(var i=0; i<compArray.length; i++){
-        if (compArray[i].id == 25){
+        if (compArray[i].id == id){
            name =  compArray[i].name;
             break;
         }  

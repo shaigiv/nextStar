@@ -324,40 +324,42 @@
 					<div id="add-vote" class="editing-window">
 						<p>בחר את שם המתמודד והזן את שם השיר, במקרה של דואט יש לבחור שני מתמודדים</p>
 						<div class="contestant-details">
-						 	<img src="img/ninet.jpg" alt="shiri" class="contestant-img">
-							<select class="contestants-names">
-								<option value="null">:בחר מתמודד</option>
+						 	<img src="" alt="" class="contestant-img">
+							<select class="contestants-names"  id="firstCompAddVote">
+                                <option value="0">לא נבחר מתמודד</option>
+								<!--<option value="null">:בחר מתמודד</option>
 								<option value="harel">הראל מויאל</option>
 								<option value="ninet">נינט טייב</option>
 								<option value="adi">עדי כהן</option>
-								<option value="shiri">שירי מיימון</option>
+								<option value="shiri">שירי מיימון</option>-->
 							</select>
 							<div class="song-name-wrap">
 								<label class="songs-name">שם השיר</label>
-								<input type="text" id="songs-name">
+								<input type="text" id="first-songs-name">
 							</div>
 						</div>
 						<div class="contestant-details"> 
-							<img src="img/shiri.jpg" alt="shiri" class="contestant-img">
-							<select class="contestants-names">
-								<option value="null">:בחר מתמודד</option>
+							<img src="" alt="" class="contestant-img">
+							<select class="contestants-names" id="secondCompAddVote">
+                                 <option value="0">לא נבחר מתמודד</option>
+								<!--<option value="null">:בחר מתמודד</option>
 								<option value="harel">הראל מויאל</option>
 								<option value="ninet">נינט טייב</option>
 								<option value="adi">עדי כהן</option>
-								<option value="shiri">שירי מיימון</option>
+								<option value="shiri">שירי מיימון</option>-->
 							</select>
 							<div class="song-name-wrap">
 								<label for="songs-name">שם השיר</label>
-								<input type="text" id="songs-name">
+								<input type="text" id="second-songs-name">
 							</div>
 						</div>
 						<div class="vote-res">
 							<label for="threshold">אחוז חסימה</label>
-							<input type="number" value="50" name="threshold" min="0" max="100">
+							<input type="number" id="threshold-add-vote" value="50" name="threshold" min="0" max="100">
 						</div>
 						<div class="control-buttons">
 							<button type="button" class="button_show">הצג</button>
-							<button type="button" class="button_add">הוסף</button>
+							<button type="button" id="addVoteBtn" class="button_add">הוסף</button>
 							<button type="button" class="button_cancel">בטל</button>
 						</div>
 					</div>
