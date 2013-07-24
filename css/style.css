@@ -316,8 +316,10 @@ table tr td:first-child {
     border-right: none;
     margin: 0;
     padding: 0;
-    clear: both;
+    width: 35px;
+    position: relative;
 }
+
 
 table tr:last-child {
     border-bottom: none;
@@ -608,6 +610,9 @@ padding-top: 5px;
     padding-left: 5px;
     cursor: pointer;
 }
+.row-options span:hover{
+	color:#00aeef;
+}
 
 .row-options span:last-of-type {
     border-left: none;
@@ -646,15 +651,18 @@ padding-top: 5px;
     margin: 10px 3px 0 2px;
 }
 .nav-arrow.up{
-	float:right;
+	position: absolute;
+	right: 0px;
+	top: 12px;
 }
 .nav-arrow.down{
-	float:right;
-	clear:both;
+	position: absolute;
+	right: 0px;
+	top: 22px;
 }
 .namber{
-	position: relative;
-	top: 10px;
+	position: absolute;
+	top: 18px;
 }
 .open-voting {
     cursor: pointer;
