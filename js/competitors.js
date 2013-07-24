@@ -9,9 +9,13 @@ function   setCompArray(data){
 /*****************************/
 
 function getCompNameByID(id){
-    $(compArray).each(function(){
-        //if (){
-        //    
-        //}
-    });
+    var name;
+    var index=0;
+    for(var i=0; i<compArray.length; i++){
+        if (compArray[i].id == 25){
+           name =  compArray[i].name;
+            break;
+        }  
+     }
+    return name;
 }

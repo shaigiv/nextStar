@@ -1,0 +1,3 @@
+function getVoteData(voteItem){
+    
+}

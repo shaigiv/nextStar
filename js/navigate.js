@@ -101,3 +101,8 @@ function showSettingsPage(){
        $("section").hide();
     $("#settings-list").show();
 }
+
+function openVotingPage(){
+      $("section").hide();
+    $("#voting-screens").show();
+}
