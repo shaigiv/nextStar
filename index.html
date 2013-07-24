@@ -12,6 +12,7 @@
         <script type="text/javascript" charset="utf-8" src="js/navigate.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/homepage.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/uploadImgs.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/showPage.js"></script>
 
 
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
@@ -126,7 +127,7 @@
                                             </div>
                                             <div>
                                                 <label for="file">תמונה גדולה:</label>
-                                                 <input class="" type="file" name="largeImg" class="largeImg">
+                                                 <input type="file" name="largeImg" class="largeImg">
                                             </div>
                                             <input id="add-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
                                             <img id="add-competitor-imgFile" src="" />
@@ -148,7 +149,7 @@
                                     <input type="text" id="edit-competitor-name">
                                 </div>
                                 <div>
-                                    <form class="edit-comp-img-wrap" action="upload_file.php" method="post" enctype="multipart/form-data">
+                                   <form class="edit-comp-img-wrap" action="http://makosrv1.egoline.co.il/nextStar/upload" method="post" enctype="multipart/form-data" target="editIframeResult">
                                         <div class="add-comp-img">
                                             <div>
                                                 <label for="file">תמונה קטנה:</label>
@@ -156,9 +157,9 @@
                                             </div>
                                             <div>
                                                 <label for="file">תמונה גדולה:</label>
-                                                 <input class="" type="file" name="largeImg" class="largeImg">
+                                                 <input type="file" name="largeImg" class="largeImg">
                                             </div>
-                                            <input class="upload" type="submit" name="submit" value="העלה תמונה">
+                                            <input id="edit-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
                                             <img id="edit-competitor-imgFile" src="" />
                                         </div>
                                         
@@ -166,8 +167,9 @@
                                             <span style="float: left; margin-left: 5px;"><button class="add" id="editComp" type="button">ערוך</button>
                                             <button class="cancel" type="button">בטל</button></span>
                                         </div>
-                                        
+                                        <input class="uploadSub" type="submit" style="display: none" id="edit-submit" name="submit2" value="Submit">
                                     </form>
+                                    <iframe style="display: none" id="editIframeResultId" name="editIframeResult" onload="editImageUploaded()"></iframe>
                                 </div>
                             </div></li>
                                <!-- <li>
@@ -302,167 +304,136 @@
 
             </section>
 
-            <section id="prog-page">
-                <h2>עריכת תוכנית</h2>
-                <div id="" class="prog-page">
-                    <h3>
-                        <span>תוכנית 1 - </span>
-                        <span>10/9/2013 </span>
-                        <span id="edit-prog-name">ערוך שם
-                            <span>
-                                <input type="text">
-                                <button type="button" style="left: 45px;">אשר</button>
-                                <button type="button">בטל</button>
-                            </span>
-                        </span>
-                    </h3>
-                    <div class="lineup">
-                        <table border="1">
-                            <tr>
-                                <th rowspan="2" colspan="2">מס</th>
-                                <th rowspan="1" colspan="2">פרטים</th>
-                                <th rowspan="2" colspan="1">סטטוס</th>
-                                <th rowspan="2" colspan="1">אפשרויות</th>
-                                <th rowspan="2" colspan="1">תצוגה</th>
-                                <th rowspan="2" colspan="1">הפעלה</th>
-                            </tr>
-
-                            <tr>
-                                <th>מתמודד</th>
-                                <th>שיר</th>
-                            </tr>
-                            <tr id="prog10092013song1">
-                                <td><img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow"></td>
-                                <td>1</td>
-                                <td>אור טרגן<br>איטן גרינברג</td>
-                                <td>ים של דמעות<br>ים הרחמים</td>
-                                <td>ממתין</td>
-                                <td class="row-options">
-                                    <span>ערוך</span>
-                                    <span>מחק</span>
-                                    <span>שכפל</span>
-                                </td>
-                                <td>פריוויו</td>
-                                <td class="open-voting">פתח</td>
-
-
-
-
-                            </tr>
-                            <tr id="prog10092013song2" class="bottom">
-                                <td><img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow">
-                                <img src="./img/Up Arrow.png" alt="arrow" class="nav-arrow"></td>
-                                <td class="right-bottom">2</td>
-                                <td>צביקה פיק<br>יוסי צווילי</td>
-                                <td>אהבתיה</td>
-                                <td>ממתין</td>
-                                <td class="row-options">
-                                    <span>ערוך</span>
-                                    <span>מחק</span>
-                                    <span>שכפל</span>
-                                </td>
-                                <td>פריוויו</td>
-                                <td class="open-voting">פתח</td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div class="wrap-editing">
-                        <div class="add-title">
-                            <div id="add-vote-title" class="toggle-edit minimize"></div>
-                            <span>הוספת הצבעה</span>
-                        </div>
-                        <div id="add-vote" class="editing-window">
-                            <p>בחר את שם המתמודד והזן את שם השיר, במקרה של דואט יש לבחור שני מתמודדים</p>
-                            <div class="contestant-details">
-                                <img src="img/ninet.jpg" alt="shiri" class="contestant-img">
-
-                                <select class="contestants-names">
-                                    <option value="null">:בחר מתמודד</option>
-                                    <option value="harel">הראל מויאל</option>
-                                    <option value="ninet">נינט טייב</option>
-                                    <option value="adi">עדי כהן</option>
-                                    <option value="shiri">שירי מיימון</option>
-                                </select>
-
-                                <div class="song-name-wrap">
-
-                                    <label class="songs-name">שם השיר</label>
-                                    <input type="text" id="songs-name">
-                                </div>
-                            </div>
-
-                            <div class="contestant-details">
-                                <img src="img/shiri.jpg" alt="shiri" class="contestant-img">
-
-                                <select class="contestants-names">
-                                    <option value="null">:בחר מתמודד</option>
-                                    <option value="harel">הראל מויאל</option>
-                                    <option value="ninet">נינט טייב</option>
-                                    <option value="adi">עדי כהן</option>
-                                    <option value="shiri">שירי מיימון</option>
-                                </select>
-
-                                <div class="song-name-wrap">
-
-                                    <label for="songs-name">שם השיר</label>
-                                    <input type="text" id="songs-name">
-                                </div>
-                            </div>
-
-                            <div class="vote-res">
-
-                                <label for="threshold">אחוז חסימה</label>
-                                <input type="number" value="50" name="threshold" min="0" max="100">
-                            </div>
-
-                            <div class="control-buttons">
-                                <button type="button">הצג</button>
-                                <button type="button">הוסף</button>
-                                <button type="button">בטל</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="wrap-editing">
-                        <div class="add-title">
-                            <div id="add-page-title" class="toggle-edit minimize"></div>
-                            <span>הוספת עמוד המתנה</span>
-                        </div>
-                        <div id="add-page" class="editing-window">
-                            <div class="line">
-                                <div>בחר טמפלט לעמוד המתנה והזן את התוכן</div>
-                                <div class="template-wrap">
-                                    <label for="screen-template">טמפלט</label>
-                                    <select class="screen-template" name="screen-template">
-                                        <option value="open-screen">מסך פתיחה</option>
-                                        <option value="end-screen">מסך סיום</option>
-                                        <option value="wait-screen">מסך המתנה רגיל</option>
-                                        <option value="ad-screen">יצאנו לפרסומות</option>
-                                    </select>
-                                </div>
-
-                            </div>
-
-                            <div class="line"><input type="text" id="screen-title" value="הערב בכוכב נולד"></div>
-                            <div class="line"><textarea id="screen-content" name="Text1" cols="40" rows="5">יצאנו לפרסומות</textarea></div>
-                            <div class="line">
-
-                                <input type="text" id="screen-info" value="'מייד נמשיך בשידור'">
-                                <input type="text" id="screen-name" value="הזן שם מסך">
-                            </div>
-
-                            <div class="control-buttons">
-                                <button type="button">הצג</button>
-                                <button type="button">הוסף</button>
-                                <button type="button">בטל</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            
-            </section>
+           <section id="prog-page">
+			<!--<h2>עריכת תוכנית</h2>-->
+			<div id="" class="prog-page">
+				<h3> <span class="prog_title">תוכנית 1 - 10/9/2013 </span> <span id="edit-prog-name">ערוך שם <span>
+					<input type="text">
+					<button type="button" style="left: 45px;">אשר</button>
+					<button type="button">בטל</button>
+					</span> </span> </h3>
+				<div class="lineup">
+					<table border="1" id="voteAndWaitList">
+						<tr>
+							<th class="blueH">מס</th>
+							<th class="blueL">מתמודד</th>
+							<th class="blueL">שיר</th>
+							<th class="blueH">סטטוס</th>
+							<th class="blueH">אפשרויות</th>
+							<th class="blueH">תצוגה</th>
+							<th class="blueH">הפעלה</th>
+						</tr>
+						<tr id="prog10092013song1">
+							<td>
+								<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">
+								<span class="namber">1</span>
+							</td>
+							<td>אור טרגן<br>
+								איטן גרינברג</td>
+							<td>ים של דמעות<br>
+								ים הרחמים</td>
+							<td>ממתין</td>
+							<td class="row-options"><span>ערוך</span> <span>מחק</span> <span>שכפל</span></td>
+							<td>פריוויו</td>
+							<td class="open-voting">פתח</td>
+						</tr>
+						<tr id="prog10092013song2" class="bottom">
+							<td> 
+								<img src="./img/Up Arrow.png" alt="arrow" class="nav-arrow up">
+								<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">
+								<span class="namber">2</span>
+							</td>
+							<td>צביקה פיק<br>
+								יוסי צווילי</td>
+							<td>אהבתיה</td>
+							<td>ממתין</td>
+							<td class="row-options"><span>ערוך</span> <span>מחק</span> <span>שכפל</span></td>
+							<td>פריוויו</td>
+							<td class="open-voting">פתח</td>
+						</tr>
+					</table>
+				</div>
+				<div class="wrap-editing">
+					<div class="add-title blueL">
+						<div id="add-vote-title" class="toggle-edit minimize"><span>הוספת הצבעה</span></div>
+					</div>
+					<div id="add-vote" class="editing-window">
+						<p>בחר את שם המתמודד והזן את שם השיר, במקרה של דואט יש לבחור שני מתמודדים</p>
+						<div class="contestant-details">
+						 	<img src="img/ninet.jpg" alt="shiri" class="contestant-img">
+							<select class="contestants-names">
+								<option value="null">:בחר מתמודד</option>
+								<option value="harel">הראל מויאל</option>
+								<option value="ninet">נינט טייב</option>
+								<option value="adi">עדי כהן</option>
+								<option value="shiri">שירי מיימון</option>
+							</select>
+							<div class="song-name-wrap">
+								<label class="songs-name">שם השיר</label>
+								<input type="text" id="songs-name">
+							</div>
+						</div>
+						<div class="contestant-details"> 
+							<img src="img/shiri.jpg" alt="shiri" class="contestant-img">
+							<select class="contestants-names">
+								<option value="null">:בחר מתמודד</option>
+								<option value="harel">הראל מויאל</option>
+								<option value="ninet">נינט טייב</option>
+								<option value="adi">עדי כהן</option>
+								<option value="shiri">שירי מיימון</option>
+							</select>
+							<div class="song-name-wrap">
+								<label for="songs-name">שם השיר</label>
+								<input type="text" id="songs-name">
+							</div>
+						</div>
+						<div class="vote-res">
+							<label for="threshold">אחוז חסימה</label>
+							<input type="number" value="50" name="threshold" min="0" max="100">
+						</div>
+						<div class="control-buttons">
+							<button type="button" class="button_show">הצג</button>
+							<button type="button" class="button_add">הוסף</button>
+							<button type="button" class="button_cancel">בטל</button>
+						</div>
+					</div>
+				</div>
+				<div class="wrap-editing">
+					<div class="add-title blueL">
+						<div id="add-page-title" class="toggle-edit minimize"><span>הוספת עמוד המתנה</span> </div>
+						</div>
+					<div id="add-page" class="editing-window">
+						<div class="line">
+							<div>בחר טמפלט לעמוד המתנה והזן את התוכן</div>
+							<div class="template-wrap">
+								<label for="screen-template">טמפלט</label>
+								<select class="screen-template" name="screen-template">
+									<option value="open-screen">מסך פתיחה</option>
+									<option value="end-screen">מסך סיום</option>
+									<option value="wait-screen">מסך המתנה רגיל</option>
+									<option value="ad-screen">יצאנו לפרסומות</option>
+								</select>
+							</div>
+						</div>
+						<div class="line">
+							<input type="text" id="screen-title" value="הערב בכוכב נולד">
+						</div>
+						<div class="line">
+							<textarea id="screen-content" name="Text1" cols="40" rows="5">יצאנו לפרסומות</textarea>
+						</div>
+						<div class="line">
+							<input type="text" id="screen-info" value="'מייד נמשיך בשידור'">
+							<input type="text" id="screen-name" value="הזן שם מסך">
+						</div>
+						<div class="control-buttons">
+							<button type="button">הצג</button>
+							<button type="button">הוסף</button>
+							<button type="button">בטל</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
 
 

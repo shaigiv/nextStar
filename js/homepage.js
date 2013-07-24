@@ -6,21 +6,37 @@ var deleteCompHtml = "";
 var deletedShowHtml="";
 var imgUrlSmall ="";
 var imgUrlLarge ="";
+var smallImgAdded=false;
+var largeImgAdded=false;
+var smallImgUploadedByAdd=false;
+var largeImgUploadedByAdd=false;
+var smallImgUploadedByEdit=false;
+var largeImgUploadedByEdit=false;
+var smallImgEdited =false;
+var largeImgEdited =false;
 
 function  homePageInitEvents(){
     $(".programs-list").delegate(".delete","click",function(){
         deleteShow($(this));
     });
-    $("#programs-list").delegate(".open-prog","click",function(){
+    $(".programs-list").delegate(".open","click",function(){
         openShow($(this));
     });
     $("#conestant-container").delegate(".delete", "click",function(){
         deleteCompetitor(this);
     });
      $("#conestant-container").delegate(".edit", "click",function(){
-        editcompetitor(this);
+         if($("#edit-contestant").is(":visible")){
+           $("#edit-contestant").fadeOut();  
+         }
+         else{
+             $("#edit-contestant").fadeIn(); 
+             editcompetitor(this);
+         }
+        
     });
     $("#addComp").click(function(){
+        
         addCompetitor();
     });
      $("#editComp").click(function(){
@@ -30,7 +46,12 @@ function  homePageInitEvents(){
 
     /*add show events*/
     $("#addShow").click(function(){
-        $(".add-program-wrap").fadeIn();
+        if($(".add-program-wrap").is(':visible')){
+             $(".add-program-wrap").fadeOut();
+        }
+        else{
+             $(".add-program-wrap").fadeIn();
+        }
         
     });
     $("#addProg").click(function(){
@@ -42,7 +63,13 @@ function  homePageInitEvents(){
 
 
     $("#open-new-comp").click(function(){
-        $("#add-contestant").show();
+        if($("#add-contestant").is(':visible')){
+             $("#add-contestant").fadeOut();
+        }
+        else{
+             $("#add-contestant").fadeIn();
+        }
+       
     });
 
     datepickerInit();
@@ -93,7 +120,7 @@ function setShowList(data){
 function deleteShow(show){
      var showId = show.parents("li").data("showId");
     var name =show.parents("li").children(".program-name").text();
-     var r=confirm("האם אתה בטוח שברצונל למחוק את "+ name);
+     var r=confirm("האם אתה בטוח שברצונך למחוק את "+ name);
     if (r==true)
       {
             deletedShowHtml =show.parents("li");
@@ -120,12 +147,7 @@ function setShowDeleted(data){
     deletedShowHtml.fadeOut();
    // deletedShowHtml.remove();
 }
-function openShow(show){
-    // window.location.href = window.location.origin + "/index.html#prog-page10092013";
-        //switchHash();
-        var showId = show.parents(".line").data("showID");
-        showShowPage(showId);
-}
+
 
 function addShow(){
     
@@ -212,30 +234,44 @@ function setCompetitorsList(data){
     });
 }
 function addCompetitor(){
-     var name= $("#add-competitor-name").val();
-     
-     $.ajax({
-         type: "POST",
-         url: domain + "type=addCompetitor",
-         data: { "name": name, "imgUrlA": imgUrlSmall, "imgUrlB": imgUrlLarge },
-         success: function(data) {
-             console.log("success addCompetitor: " + data);
-             setAddCompetitor(data);
-             alert("המשתמש " + data.name + " נוסף בהצלחה");
-             $("#add-contestant").fadeOut();
+    if(!smallImgAdded || !largeImgAdded){
+        alert("עליך להעלות 2 תמונות");
+    }
+    //check if the user upload the img to the server
+    if(smallImgUploadedByAdd == false || largeImgUploadedByAdd == false){
+        alert("עליך להעלות את התמונות לפני הוספת מתמודד");
+    }
+    else{
+          var name= $("#add-competitor-name").val();
+         var imgUrlSmall = $(".add-comp-img-wrap .smallImg").data("url");
+         var imgUrlLarge = $(".add-comp-img-wrap .largeImg").data("url");
+         $.ajax({
+             type: "POST",
+             url: domain + "type=addCompetitor",
+             data: { "name": name, "imgUrlA": imgUrlSmall, "imgUrlB": imgUrlLarge },
+             success: function(data) {
+                 console.log("success addCompetitor: " + data);
+                 setAddCompetitor(data);
+                 alert("המשתמש " + data.name + " נוסף בהצלחה");
+                 $("#add-contestant").fadeOut();
 
          },
          error: function(data) {
              console.log("error addCompetitor: " + data);
          }
      });
+    }
+   
 }
 
 function setAddCompetitor(data){
      console.log(data);
+     //init the add upload 
      $("#add-competitor-name").val("");
-     imgUrlSmall ="";
-     imgUrlLarge ="";
+     $(".add-comp-img-wrap .smallImg").data("url", "");
+     $(".add-comp-img-wrap .largeImg").data("url", "");
+     smallImgUploadedByAdd = false;
+     largeImgUploadedByAdd = false;
      var name = data.name;
      var img = data["imageUrlA"];
      var id = data.id;
@@ -274,7 +310,7 @@ function editcompetitor(editItem){
     editCompHtml = comp;
     var compId = comp.data("compId");
     editCompId = compId;
-    $("#edit-form").show();
+    //$("#edit-form").show();
     //open the add competitor box and set the details
     $("#edit-contestant").show();
     editCompHtml.after( $("#edit-contestant")); 
@@ -291,33 +327,71 @@ function editcompetitor(editItem){
 
 function editCompetitorSend(){
       var name= $("#edit-competitor-name").val();
-      var imgUrla = "imgUrla.png";
-      var imgUrlb = "imgUrlb.png";
-      var id = editCompId;
-     $.ajax({
-        type:"POST",
-        url: domain + "type=updateComptitor",
-        data:{"id":id,"name":name,"imgUrlA":imgUrla, "imgUrlB":imgUrlb},
-        success: function(data) {
-            console.log("success editCompetitor: " + data);
-            setEditCompetitor(data);
-        },
-        error: function(data) {
-            console.log("error addCompetitor: " + data);
-        }
-    });
+      var imgUrla = "";
+      var imgUrlb = "";
+      var id = editCompHtml.data("compData").id;
+      
+      //if the img was chosen but not uploaded to server
+      if((smallImgEdited == true && smallImgUploadedByEdit == false) ||  (largeImgEdited == true && largeImgUploadedByEdit == false)){
+         alert("עליך להעלות את התמונה/ות לפני הוספת משתמש"); 
+      }
+      else{
+           //if small img not updated -send the old url
+          if($(".edit-comp-img-wrap .smallImg").data("url") == undefined || $(".edit-comp-img-wrap .smallImg").data("url") == ""){
+              imgUrla = editCompHtml.data("compData").imageUrlA;
+          }
+          //if small img updated - send the new url
+          else{
+              imgUrla = $(".edit-comp-img-wrap .smallImg").data("url");
+          }
+          //if large img not updated - send the old url
+          if($(".edit-comp-img-wrap .largeImg").data("url") == undefined || $(".edit-comp-img-wrap .largeImg").data("url") == ""){
+              imgUrlb = editCompHtml.data("compData").imageUrlB;
+          }
+          //if large img updated - send the new url
+          else{
+              imgUrlb = $(".edit-comp-img-wrap .largeImg").data("url");
+          }
+    
+      
+         $.ajax({
+            type:"POST",
+            url: domain + "type=updateComptitor",
+            data:{"id":id,"name":name,"imgUrlA":imgUrla, "imgUrlB":imgUrlb},
+            success: function(data) {
+                console.log("success editCompetitor: " + data);
+                if(data == "parameter miss"){
+                    console.log("parameter miss");
+                }
+                else{
+                    setEditCompetitor(data);
+                }
+            
+            },
+            error: function(data) {
+                console.log("error addCompetitor: " + data);
+            }
+        });
+      }
+     
 }
 
 function setEditCompetitor(data){
     var name = data.name;
-    var imgUrla = data.imgUrlA;
-    var imgUrlb = data.imgUrlB;
+    var imgUrla = data.imageUrlA;
+    var imgUrlb = data.imageUrlB;
 
     editCompHtml.children(".container-right").children("div:first").children("span:last").text(name);
     editCompHtml.children(".container-left").children("img").attr("src",imgUrla);
-
+    //set the data compData
+    editCompHtml.data("compData",data);
     editCompHtml = "";  
-    
+    //init fields
+    smallImgUploadedByEdit = false;
+    largeImgUploadedByEdit = false;
+    $(".edit-comp-img-wrap .smallImg").data("url","");
+    $(".edit-comp-img-wrap .largeImg").data("url","");
+
     //hide the edit box
     $("#edit-contestant").fadeOut();
     

@@ -1,9 +1,5 @@
 $(document).ready(function() {
 
-    $("#programs-list-ul").delegate(".open", "click", function() {
-        showProgPage();
-    });
-
     $("#go-back").click(function() {
         window.location.href = window.location.origin + "/index.html";
         $("section").hide();
@@ -12,7 +8,7 @@ $(document).ready(function() {
 
     $(".open-voting").click(function() {
         window.location.href = window.location.origin + "/index.html#voting-screens";
-        //switchHash();
+       //switchHash();
     });
 
     $("#contestants").click(function() {
@@ -36,15 +32,7 @@ $(document).ready(function() {
         // switchHash();
     });
 
-    $("#prog10092013 .open-prog").click(function() {
-        window.location.href = window.location.origin + "/index.html#prog-page10092013";
-        // switchHash();
-    });
-
-    $("#prog20092013 .open-prog").click(function() {
-        window.location.href = window.location.origin + "/index.html#prog-page20092013";
-        // switchHash();
-    });
+    
 });
 
 function switchHash() { //navigates according to hash tag
@@ -97,12 +85,10 @@ function switchHash() { //navigates according to hash tag
     }
 }
 
-function showShowPage(showId){
+function showShowPage(){
     $("section").hide();
     $("#prog-page").show();
-    $("#prog-page .prog-page").hide();
-
-    $("#showid" + showId).show();
+   
 
 }
 
