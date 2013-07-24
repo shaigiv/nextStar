@@ -50,3 +50,5 @@ function checkContinue() {
     document.getElementById("wait-continue-check").disabled = false;
     document.getElementById("wait-continue-check").checked = false;
 }
+
+

@@ -24,35 +24,57 @@ function getShowData(showId){
 
 function setGetShow(data){
 
-    $(data).each(function(){
-        
+    $(data).each(function() {
+        var numOfComp = 0;
+        var firstComp;
+        var secondComp;
+        var compsHtml = "";
+        var songsHtml = "";
         //if the page deleted
-        if(this.status != -1){
+        if(this.status != -1) {
             //if the page is vote
-            if(this.type=="vote"){
-            var status= setStatusText(this,0);
+            if(this.type == "vote") {
+                //check if the vote is double
+                if(this.votes.length == 1) {
+                    numOfComp = 1;
+                }
+                else if(this.votes.length == 2) {
+                    numOfComp = 2;
+                }
 
-            $("#voteAndWaitList").append('<tr>'+
-							'<td>'+
-								'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
-								'<span class="namber">1</span>'+
-							'</td>'+
-							'<td>אור טרגן<br>'+
-								'איטן גרינברג</td>'+
-							'<td>ים של דמעות<br>'+
-								'ים הרחמים</td>'+
-							'<td>'+status+'</td>'+
-							'<td class="row-options"><span>ערוך</span> <span>מחק</span> <span>שכפל</span></td>'+
-							'<td>פריוויו</td>'+
-							'<td class="open-voting">פתח</td>'+
+                if(numOfComp == 1) {
+                    songsHtml = this.votes[0].songName + "</br>" + this.votes[1].songName;
+                    compsHtml = getCompNameByID(this.votes[0].id) + "</br>" + getCompNameByID(this.votes[1].id);
+
+                }
+                else if(numOfComp == 2) {
+                    songsHtml = this.votes[0].songName;
+                    compsHtml = getCompNameByID(this.votes[0].id)
+                }
+
+                var status = setStatusText(this, numOfComp);
+
+                $("#voteAndWaitList").append('<tr>' +
+							'<td>' +
+								'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">' +
+								'<span class="namber">1</span>' +
+							'</td>' +
+							'<td>אור טרגן<br>' +
+								'איטן גרינברג</td>' +
+							'<td>ים של דמעות<br>' +
+								'ים הרחמים</td>' +
+							'<td>' + status + '</td>' +
+							'<td class="row-options"><span>ערוך</span> <span>מחק</span> <span>שכפל</span></td>' +
+							'<td>פריוויו</td>' +
+							'<td class="open-voting">פתח</td>' +
 						'</tr>');
             }
             //else if the page is static
-            else{
-                
+            else {
+
             }
         }
-        
+
 
     });
 

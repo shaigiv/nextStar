@@ -206,6 +206,8 @@ function getCompetitorsList() {
 }
 
 function setCompetitorsList(data){
+    //set the compArray
+    setCompArray(data);
     $(data).each(function(index) {
         console.log(this.name);
       //  console.log(this["image-url"]);
