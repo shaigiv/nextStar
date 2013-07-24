@@ -1,73 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
-    <head>
-
-        <meta charset="utf-8" />
-        <title>The Next Star</title>
-
-        <link href="css/style.css" rel="Stylesheet" type="text/css" />
-
-        <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/navigate.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/homepage.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/uploadImgs.js"></script>
-        <script type="text/javascript" charset="utf-8" src="js/showPage.js"></script>
-
-
-        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  <script src="http://jqueryui.com/resources/demos/datepicker/jquery.ui.datepicker-he.js"></script>
-    </head>
-    <!--<body onload="switchHash()">-->
-    <body>
-      <div class="bg-wrap">
-           <header>
-              <div class="main-header">
-                <div class="logo-wrap">
-                    <div class="logo"></div>
-                    <div class="title">מערכת הצבעות</div>
-                </div>
-                <div class="menu">
-                    <a href="/index.html#users-list" id="users">ניהול משתתפים</a> |
-                    <a href="" id="voting-screen">מוניטור</a> |
-                    <a href="/index.html#settings-list" id="settings">הגדרות</a>
-                </div>
-               </div>
-            </header>
-        <div class="main-wrap">
-           
-            <!--<div><button id="go-back">חזור</button></div>-->
-            <section id="main-page">
-                <div id="main-page-container">
-                    <div id="programs-list-wrap" class="container-right">
-                        <span class="title">רשימת התוכניות</span> <button class="plus-btn" id="addShow" type="button">תוכנית חדשה</button>
-                        <div class="add-program-wrap">
-                            <div class="prog-name">
-                                <div><span class="">שם התוכנית: </span></div>
-                                <div><input id="add-prog-name" type="text" /></div>
-                            </div>
-                            <div class="prog-date-picker">
-                                <div><span>זמן שידור התוכנית</span></div>
-                                <div><input id="datepicker" type="text" /></div>
-                                <div><img width="30px" height="30px" id="datepicker-icon" src="img/calendar.png" /></div>
-                            </div>
-                            <div class="buttons">
-                                 <span style="float: left; margin-left: 5px;"><button class="add" id="addProg" type="button">הוסף</button>
-                                 <button class="cancel" id="addShowCancel" type="button">בטל</button></span>
-                            </div>
-                        </div>
-                        
-                        <div class="programs-list">
-                            <div class="list-titles">
-                                <div class="program-number">מס'</div>
-                                <div class="program-name">שם התוכנית</div>
-                                <div class="program-status">סטאטוס</div>
-                                <div class="program-options">אפשרויות</div>
-                            </div>
-                            <ul id="programs-list-ul">
-                              <!--  <li class="">
+<head>
+<meta charset="utf-8" />
+<title>The Next Star</title>
+<link href="css/style.css" rel="Stylesheet" type="text/css" />
+<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/navigate.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/homepage.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/uploadImgs.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="http://jqueryui.com/resources/demos/datepicker/jquery.ui.datepicker-he.js"></script>
+</head>
+<!--<body onload="switchHash()">-->
+<body>
+<div class="bg-wrap">
+	<header>
+		<div class="main-header">
+			<div class="logo-wrap">
+				<div class="logo"></div>
+				<div class="title">מערכת הצבעות</div>
+			</div>
+			<div class="menu"> <a href="/index.html#users-list" id="users">ניהול משתתפים</a> | <a href="" id="voting-screen">מוניטור</a> | <a href="/index.html#settings-list" id="settings">הגדרות</a> </div>
+		</div>
+	</header>
+	<div class="main-wrap"> 
+		
+		<!--<div><button id="go-back">חזור</button></div>-->
+		<section id="main-page">
+			<div id="main-page-container">
+				<div id="programs-list-wrap" class="container-right"> <span class="title">רשימת התוכניות</span>
+					<button class="plus-btn" id="addShow" type="button">תוכנית חדשה</button>
+					<div class="add-program-wrap">
+						<div class="prog-name">
+							<div><span class="">שם התוכנית: </span></div>
+							<div>
+								<input id="add-prog-name" type="text" />
+							</div>
+						</div>
+						<div class="prog-date-picker">
+							<div><span>זמן שידור התוכנית</span></div>
+							<div>
+								<input id="datepicker" type="text" />
+							</div>
+							<div><img width="30px" height="30px" id="datepicker-icon" src="img/calendar.png" /></div>
+						</div>
+						<div class="buttons"> <span style="float: left; margin-left: 5px;">
+							<button class="add" id="addProg" type="button">הוסף</button>
+							<button class="cancel" id="addShowCancel" type="button">בטל</button>
+							</span> </div>
+					</div>
+					<div class="programs-list">
+						<div class="list-titles">
+							<div class="program-number">מס'</div>
+							<div class="program-name">שם התוכנית</div>
+							<div class="program-status">סטאטוס</div>
+							<div class="program-options">אפשרויות</div>
+						</div>
+						<ul id="programs-list-ul">
+							<!--  <li class="">
                                     <div class="program-number">1</div>
                                     <div class="program-name">11.07.13</div>
                                     <div class="program-status">ממתין... .... ..</div>
@@ -106,73 +99,69 @@
                                     <span class="open-prog">פתח</span>
                                 </td>
                             </tr>
-                        </table>-->
-                    </div>
-
-                    <div id="contestants-list-wrap" class="container-left wrap-editing">
-                        <div class="add-title"><span class="title">מתמודדים</span>
-                            <button id="open-new-comp" class="plus-btn" type="button">מועמד חדש</button></div>
-                        <div id="contestants-list">
-                            <div id="add-contestant">
-                                <div class="add-comp-name">
-                                    <label for="songs-name">שם המתמודד:</label>
-                                    <input type="text" id="add-competitor-name">
-                                </div>
-                                <div>
-                                    <form class="add-comp-img-wrap" action="http://makosrv1.egoline.co.il/nextStar/upload" method="post" enctype="multipart/form-data" target="addIframeResult">
-                                        <div class="add-comp-img">
-                                            <div>
-                                                <label for="file">תמונה קטנה:</label>
-                                                 <input type="file" name="smallImg" class="smallImg">
-                                            </div>
-                                            <div>
-                                                <label for="file">תמונה גדולה:</label>
-                                                 <input type="file" name="largeImg" class="largeImg">
-                                            </div>
-                                            <input id="add-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
-                                            <img id="add-competitor-imgFile" src="" />
-                                        </div>
-                                        
-                                        <div class="buttons">
-                                            <span style="float: left; margin-left: 5px;"><button class="add" id="addComp" type="button">הוסף</button>
-                                            <button class="cancel" type="button">בטל</button></span>
-                                        </div>
-                                        <input class="uploadSub" type="submit" style="display: none" id="add-submit" name="submit1" value="Submit">
-                                    </form>
-                                    <iframe style="display: none" id="addIframeResultId" name="addIframeResult" onload="addImageUploaded()"></iframe>
-                                </div>
-                            </div>
-                            <ul id="conestant-container">
-                              <li id="edit-contestant"><div>
-                                <div class="add-comp-name">
-                                    <label for="songs-name">שם המתמודד:</label>
-                                    <input type="text" id="edit-competitor-name">
-                                </div>
-                                <div>
-                                   <form class="edit-comp-img-wrap" action="http://makosrv1.egoline.co.il/nextStar/upload" method="post" enctype="multipart/form-data" target="editIframeResult">
-                                        <div class="add-comp-img">
-                                            <div>
-                                                <label for="file">תמונה קטנה:</label>
-                                                 <input type="file" name="smallImg" class="smallImg">
-                                            </div>
-                                            <div>
-                                                <label for="file">תמונה גדולה:</label>
-                                                 <input type="file" name="largeImg" class="largeImg">
-                                            </div>
-                                            <input id="edit-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
-                                            <img id="edit-competitor-imgFile" src="" />
-                                        </div>
-                                        
-                                        <div class="buttons">
-                                            <span style="float: left; margin-left: 5px;"><button class="add" id="editComp" type="button">ערוך</button>
-                                            <button class="cancel" type="button">בטל</button></span>
-                                        </div>
-                                        <input class="uploadSub" type="submit" style="display: none" id="edit-submit" name="submit2" value="Submit">
-                                    </form>
-                                    <iframe style="display: none" id="editIframeResultId" name="editIframeResult" onload="editImageUploaded()"></iframe>
-                                </div>
-                            </div></li>
-                               <!-- <li>
+                        </table>--> 
+				</div>
+				<div id="contestants-list-wrap" class="container-left wrap-editing">
+					<div class="add-title"><span class="title">מתמודדים</span>
+						<button id="open-new-comp" class="plus-btn" type="button">מועמד חדש</button>
+					</div>
+					<div id="contestants-list">
+						<div id="add-contestant">
+							<div class="add-comp-name">
+								<label for="songs-name">שם המתמודד:</label>
+								<input type="text" id="add-competitor-name">
+							</div>
+							<div>
+								<form class="add-comp-img-wrap" action="http://makosrv1.egoline.co.il/nextStar/upload" method="post" enctype="multipart/form-data" target="addIframeResult">
+									<div class="add-comp-img">
+										<div>
+											<label for="file">תמונה קטנה:</label>
+											<input type="file" name="smallImg" class="smallImg">
+										</div>
+										<div>
+											<label for="file">תמונה גדולה:</label>
+											<input class="" type="file" name="largeImg" class="largeImg">
+										</div>
+										<input id="add-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
+										<img id="add-competitor-imgFile" src="" /> </div>
+									<div class="buttons"> <span style="float: left; margin-left: 5px;">
+										<button class="add" id="addComp" type="button">הוסף</button>
+										<button class="cancel" type="button">בטל</button>
+										</span> </div>
+									<input class="uploadSub" type="submit" style="display: none" id="add-submit" name="submit1" value="Submit">
+								</form>
+								<iframe style="display: none" id="addIframeResultId" name="addIframeResult" onload="addImageUploaded()"></iframe>
+							</div>
+						</div>
+						<ul id="conestant-container">
+							<li id="edit-contestant">
+								<div>
+									<div class="add-comp-name">
+										<label for="songs-name">שם המתמודד:</label>
+										<input type="text" id="edit-competitor-name">
+									</div>
+									<div>
+										<form class="edit-comp-img-wrap" action="upload_file.php" method="post" enctype="multipart/form-data">
+											<div class="add-comp-img">
+												<div>
+													<label for="file">תמונה קטנה:</label>
+													<input type="file" name="smallImg" class="smallImg">
+												</div>
+												<div>
+													<label for="file">תמונה גדולה:</label>
+													<input class="" type="file" name="largeImg" class="largeImg">
+												</div>
+												<input class="upload" type="submit" name="submit" value="העלה תמונה">
+												<img id="edit-competitor-imgFile" src="" /> </div>
+											<div class="buttons"> <span style="float: left; margin-left: 5px;">
+												<button class="add" id="editComp" type="button">ערוך</button>
+												<button class="cancel" type="button">בטל</button>
+												</span> </div>
+										</form>
+									</div>
+								</div>
+							</li>
+							<!-- <li>
                                     <div class="container-right">
                                         <div>
                                             <span class="title">1. </span><span>שירי מיימון</span>
@@ -205,115 +194,86 @@
                                         <img src="img/shiri.jpg" alt="shiri">
                                     </div>
                                 </li>-->
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="settings-list">
-                <h2>הגדרות כלליות</h2>
-
-                <div class="wrap-editing">
-                    <div id="" class="editing-window">
-
-                        <div class="vote-res">
-
-                            <label for="threshold-default">אחוז עובר- ברירת מחדל</label>
-                            <input type="number" value="50" name="threshold-default" min="0" max="100">
-                        </div>
-
-            
-
-
-                        <div class="control-buttons">
-                            <button type="button">אשר</button>
-                            <button type="button">בטל</button>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </section>
-
-            <section id="users-list">
-                <h2>רשימת משתמשים</h2>
-            </section>
-
-            <section id="voting-screens" style="font-size: 20px; margin-bottom: 20px;">
-                <div style="clear: both;overflow: hidden;">
-                    <div style="display: inline-block; margin-right: 100px; "><br><br>
-                                 משתתפים:<span>0</span>
-                    </div>
-                    <div style="display: inline-block; float: left;">
-                        <table border="1">
-                            <tr>
-                                <td>נינט טייב</td>
-                                <td><input type="text" value="0"></td>
-                            </tr>
-                            <tr>
-                                <td>שירי מיימון</td>
-                                <td><input type="text" value="0"></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <ul class="horizonal-list">
-                    <li><a href="">ממתין</a></li>
-                    <li><a href="/css/">פתיחת הרשמה</a>
-                        <div></div></li>
-                    <li><a href="/js/">פתיחת הצבעה</a></li>
-                    <li><a href="/jquery/">סגירת הצבעה</a></li>
-                    <li><a href="/jquery/">פרסם תוצאות</a></li>
-                </ul>
-
-                <div id="announcements">
-                    <input type="text" value="ממתין לפתיחת הצבעה" id="wait-open" onclick="checkOpen()">
-                    <input type="checkbox" disabled="disabled" checked="checked" id="wait-open-check">
-                    <input type="text" value="ממתין לסגירת הצבעה" id="wait-close" onclick="checkClose()">
-                    <input type="checkbox" disabled="disabled" checked="checked" id="wait-close-check">
-                    <input type="text" value="ממתין לשקלול תוצאות" id="wait-count" onclick="checkCount()">
-                    <input type="checkbox" disabled="disabled" checked="checked" id="wait-count-check">
-                    <input type="text" value="ממתין להמשך השידור" id="wait-continue" onclick="checkContinue()">
-                    <input type="checkbox" disabled="disabled" checked="checked" id="wait-continue-check">
-                </div>
-
-                <div id="current-contestants">
-                    <div class="container-right">
-                        <img src="img/ninet.jpg" alt="shiri" class="contestant-img">
-                        <div style="display: inline-block">
-                            <div class="voting-name">נינט טייב</div>
-                            <div class="voting-precent green-text">58.3%</div>
-                        </div>
-                    </div>
-                    <div class="container-left">
-                        <img src="img/shiri.jpg" alt="shiri" class="contestant-img">
-                        <div style="display: inline-block">
-                            <div class="voting-name">שירי מיימון</div>
-                            <div class="voting-precent red-text">42.3%</div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-
-            </section>
-
-           <section id="prog-page">
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="settings-list">
+			<h2>הגדרות כלליות</h2>
+			<div class="wrap-editing">
+				<div id="" class="editing-window">
+					<div class="vote-res">
+						<label for="threshold-default">אחוז עובר- ברירת מחדל</label>
+						<input type="number" value="50" name="threshold-default" min="0" max="100">
+					</div>
+					<div class="control-buttons">
+						<button type="button" class="button_show">אשר</button>
+						<button type="button" class="button_cancel">בטל</button>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="users-list">
+			<h2>רשימת משתמשים</h2>
+		</section>
+		<section id="voting-screens" style="font-size: 20px; margin-bottom: 20px;">
+			<div style="clear: both;overflow: hidden;">
+				<div class="usersAll">
+					משתתפים:<span>0</span> 
+				</div>
+				<div class="usersVote">
+							<label for="user1">נינט טייב : </label>
+							<input type="text" value="0" name="user1" class="userV">
+							<label for="user2">שירי מיימון : </label>
+							<input type="text" value="0" name="user2" class="userV">
+				</div>
+			</div>
+			<ul class="horizonal-list blueH">
+				<li><a href="">ממתין</a></li>
+				<li><a href="/css/">פתיחת הרשמה</a>
+					<div></div>
+				</li>
+				<li><a href="/js/">פתיחת הצבעה</a></li>
+				<li><a href="/jquery/">סגירת הצבעה</a></li>
+				<li><a href="/jquery/">פרסם תוצאות</a></li>
+			</ul>
+			<div id="announcements">
+				<input type="text" value="ממתין לפתיחת הצבעה" id="wait-open" onclick="checkOpen()">
+				<input type="checkbox" disabled="disabled" checked="checked" id="wait-open-check">
+				<input type="text" value="ממתין לסגירת הצבעה" id="wait-close" onclick="checkClose()">
+				<input type="checkbox" disabled="disabled" checked="checked" id="wait-close-check">
+				<input type="text" value="ממתין לשקלול תוצאות" id="wait-count" onclick="checkCount()">
+				<input type="checkbox" disabled="disabled" checked="checked" id="wait-count-check">
+				<input type="text" value="ממתין להמשך השידור" id="wait-continue" onclick="checkContinue()">
+				<input type="checkbox" disabled="disabled" checked="checked" id="wait-continue-check">
+			</div>
+			<div id="current-contestants">
+				<div class="container-right"> <img src="img/ninet.jpg" alt="shiri" class="contestant-img">
+					<div class="result">
+						<div class="voting-name">נינט טייב</div>
+						<div class="voting-precent green-text">58.3%</div>
+					</div>
+				</div>
+				<div class="container-left"> <img src="img/shiri.jpg" alt="shiri" class="contestant-img">
+					<div class="result">
+						<div class="voting-name">שירי מיימון</div>
+						<div class="voting-precent red-text">42.3%</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="prog-page">
 			<!--<h2>עריכת תוכנית</h2>-->
 			<div id="" class="prog-page">
 				<h3> <span class="prog_title">תוכנית 1 - 10/9/2013 </span> <span id="edit-prog-name">ערוך שם <span>
 					<input type="text">
-					<button type="button" style="left: 45px;">אשר</button>
-					<button type="button">בטל</button>
+					<button type="button" style="left: 55px;" class="button_show">!!!!אשר</button>
+					<button type="button" class="button_cancel">בטל</button>
 					</span> </span> </h3>
 				<div class="lineup">
-					<table border="1" id="voteAndWaitList">
+					<table border="1">
 						<tr>
 							<th class="blueH">מס</th>
 							<th class="blueL">מתמודד</th>
@@ -426,18 +386,15 @@
 							<input type="text" id="screen-name" value="הזן שם מסך">
 						</div>
 						<div class="control-buttons">
-							<button type="button">הצג</button>
-							<button type="button">הוסף</button>
-							<button type="button">בטל</button>
+							<button type="button" class="button_show">הצג</button>
+							<button type="button" class="button_add">הוסף</button>
+							<button type="button" class="button_cancel">בטל</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-
-
-
-        </div>
-       </div>
-    </body>
+	</div>
+</div>
+</body>
 </html>

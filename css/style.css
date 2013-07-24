@@ -321,6 +321,7 @@ table tr td:first-child {
 }
 
 
+
 table tr:last-child {
     border-bottom: none;
 }
@@ -599,11 +600,6 @@ padding-top: 5px;
 
 .row-options {
 
-
-
-
-
-
 }
 .row-options span {
     border-left: 1px dotted;
@@ -812,6 +808,7 @@ margin-top: 2px;
    height: 109px;
 padding: 4px;
 position: relative;
+
 }
 .edit-comp-img-wrap{
    height: 109px;
