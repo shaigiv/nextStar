@@ -11,6 +11,8 @@
         <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/navigate.js"></script>
         <script type="text/javascript" charset="utf-8" src="js/homepage.js"></script>
+        <script type="text/javascript" charset="utf-8" src="js/uploadImgs.js"></script>
+
 
         <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -116,17 +118,17 @@
                                     <input type="text" id="add-competitor-name">
                                 </div>
                                 <div>
-                                    <form class="add-comp-img-wrap" action="upload_file.php" method="post" enctype="multipart/form-data">
+                                    <form class="add-comp-img-wrap" action="http://makosrv1.egoline.co.il/nextStar/upload" method="post" enctype="multipart/form-data" target="addIframeResult">
                                         <div class="add-comp-img">
                                             <div>
                                                 <label for="file">תמונה קטנה:</label>
-                                                 <input class="" type="file" name="smallImg" id="">
+                                                 <input type="file" name="smallImg" class="smallImg">
                                             </div>
                                             <div>
                                                 <label for="file">תמונה גדולה:</label>
-                                                 <input class="" type="file" name="largeImg" id="">
+                                                 <input class="" type="file" name="largeImg" class="largeImg">
                                             </div>
-                                            <input class="upload" type="submit" name="submit" value="העלה תמונה">
+                                            <input id="add-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
                                             <img id="add-competitor-imgFile" src="" />
                                         </div>
                                         
@@ -134,8 +136,9 @@
                                             <span style="float: left; margin-left: 5px;"><button class="add" id="addComp" type="button">הוסף</button>
                                             <button class="cancel" type="button">בטל</button></span>
                                         </div>
-                                        
+                                        <input class="uploadSub" type="submit" style="display: none" id="add-submit" name="submit1" value="Submit">
                                     </form>
+                                    <iframe style="display: none" id="addIframeResultId" name="addIframeResult" onload="addImageUploaded()"></iframe>
                                 </div>
                             </div>
                             <ul id="conestant-container">
@@ -149,11 +152,11 @@
                                         <div class="add-comp-img">
                                             <div>
                                                 <label for="file">תמונה קטנה:</label>
-                                                 <input class="" type="file" name="smallImg" id="">
+                                                 <input type="file" name="smallImg" class="smallImg">
                                             </div>
                                             <div>
                                                 <label for="file">תמונה גדולה:</label>
-                                                 <input class="" type="file" name="largeImg" id="">
+                                                 <input class="" type="file" name="largeImg" class="largeImg">
                                             </div>
                                             <input class="upload" type="submit" name="submit" value="העלה תמונה">
                                             <img id="edit-competitor-imgFile" src="" />

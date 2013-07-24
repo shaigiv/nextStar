@@ -1,6 +1,8 @@
 $(document).ready(function() {
     getHomePageData();
     homePageInitEvents();
+    initInputFile();
+
     $("#add-vote-title").click(function() {
         if($(".toggle-edit").hasClass('minimize')) {
             $("#add-vote").slideToggle();

@@ -4,6 +4,9 @@ var editCompId = "";
 var editCompHtml = "";
 var deleteCompHtml = "";
 var deletedShowHtml="";
+var imgUrlSmall ="";
+var imgUrlLarge ="";
+
 function  homePageInitEvents(){
     $(".programs-list").delegate(".delete","click",function(){
         deleteShow($(this));
@@ -88,28 +91,34 @@ function setShowList(data){
 
 
 function deleteShow(show){
-    var showId = show.parents("li").data("showId");
-    deletedShowHtml =show.parents("li");
-    if(showId == undefined){
-        showId = 7;
-    }
+     var showId = show.parents("li").data("showId");
+    var name =show.parents("li").children(".program-name").text();
+     var r=confirm("האם אתה בטוח שברצונל למחוק את "+ name);
+    if (r==true)
+      {
+            deletedShowHtml =show.parents("li");
 
-     $.ajax({
-        type:"POST",
-        url: domain + "type=deleteShow",
-        success: function(data) {
-            console.log("success getShowsList: " + data);
-            setShowDeleted(data);
-        },
-        error: function(data) {
-            console.log("error getShowsList: " + data);
-        }
-    });
+             $.ajax({
+                type:"POST",
+                url: domain + "type=deleteShow",
+                data:{"id":showId},
+                success: function(data) {
+                    console.log("success getShowsList: " + data);
+                    setShowDeleted(data);
+                },
+                error: function(data) {
+                    console.log("error getShowsList: " + data);
+                }
+            });
+      }
+  
+   
 }
 
 
 function setShowDeleted(data){
-    
+    deletedShowHtml.fadeOut();
+   // deletedShowHtml.remove();
 }
 function openShow(show){
     // window.location.href = window.location.origin + "/index.html#prog-page10092013";
@@ -144,7 +153,7 @@ function setShowAdded(data){
       var showName = $("#add-prog-name").val("");
       $( "#datepicker" ).val("");
      //insert the line to the html
-     var number =$("#programs-list-ul li").length;
+     var number =$("#programs-list-ul li").length+1;
      var name =data.name;
      var id = data.id;
      var status = "הצבעות ("+data.CompetitorCount + ")" +"   מתמודדים ("+data.votesCount + ")";
@@ -177,10 +186,11 @@ function getCompetitorsList() {
 function setCompetitorsList(data){
     $(data).each(function(index) {
         console.log(this.name);
-        console.log(this["image-url"]);
+      //  console.log(this["image-url"]);
         var name = this.name;
-        var img = this["image-url"];
+        var img = this["imageUrlA"];
         var id = this.id;
+        var jsonData= this;
         var number =index*1+1*1;
         $("#conestant-container").append("<li>" +
                                    " <div class=\"container-right\">" +
@@ -198,17 +208,16 @@ function setCompetitorsList(data){
                                        " <img src=\"" + img + "\" alt=\"ninet\">" +
                                     "</div>" +
                                 "</li>");
-        $("#conestant-container").children("li:last").data("compId", id);
+        $("#conestant-container").children("li:last").data("compData", jsonData);
     });
 }
 function addCompetitor(){
      var name= $("#add-competitor-name").val();
-     var imgUrla = "imgUrla.png";
-     var imgUrlb = "imgUrlb.png"
+     
      $.ajax({
          type: "POST",
          url: domain + "type=addCompetitor",
-         data: { "name": name, "imgUrlA": imgUrla, "imgUrlB": imgUrlb },
+         data: { "name": name, "imgUrlA": imgUrlSmall, "imgUrlB": imgUrlLarge },
          success: function(data) {
              console.log("success addCompetitor: " + data);
              setAddCompetitor(data);
@@ -225,9 +234,12 @@ function addCompetitor(){
 function setAddCompetitor(data){
      console.log(data);
      $("#add-competitor-name").val("");
+     imgUrlSmall ="";
+     imgUrlLarge ="";
      var name = data.name;
-     var img = data["image-url"];
+     var img = data["imageUrlA"];
      var id = data.id;
+     var jsonData =data;
      $("#conestant-container").append("<li>"+
                                    " <div class=\"container-right\">"+
                                        " <div>"+
@@ -245,7 +257,7 @@ function setAddCompetitor(data){
                                     "</div>"+
                                 "</li>");
      
-     $("#conestant-container").children("li:last").data("compId",id);
+     $("#conestant-container").children("li:last").data("compData",jsonData);
 
      
 }
@@ -266,8 +278,10 @@ function editcompetitor(editItem){
     //open the add competitor box and set the details
     $("#edit-contestant").show();
     editCompHtml.after( $("#edit-contestant")); 
-    var name = comp.children(".container-right").children("div:first").children("span:last").text();
-    var imgUrl = comp.children(".container-left").children("img").attr("src");
+    //var name = comp.children(".container-right").children("div:first").children("span:last").text();
+    var name = comp.data("compData").name;
+    //var imgUrl = comp.children(".container-left").children("img").attr("src");
+    var imgUrl = comp.data("compData").imageUrlA;
 
     $("#edit-competitor-name").val(name);
     $("#edit-competitor-imgFile").attr("src", imgUrl);
@@ -312,7 +326,7 @@ function setEditCompetitor(data){
 
 function deleteCompetitor(deleteItem){
    var comp = $(deleteItem).parents("li");
-   var compId = comp.data("compId");
+   var compId = $(deleteItem).parent("li").parents("li").data("compData").id;
    var name = comp.children(".container-right").children("div:first").children("span:last").text();
    var imgUrl = comp.children(".container-left").children("img").attr("src");
   
@@ -329,7 +343,7 @@ function deleteCompetitorSend(deleteItem) {
      var comp = $(deleteItem).parent("li").parents("li");
      //save the html for delete from dom after delete from the server
      deleteCompHtml = comp;
-     var compId = comp.data("compId");
+     var compId = comp.data("compData").id;
      $.ajax({
          type: "POST",
          url: domain + "type=updateComptitorStatus",
@@ -350,8 +364,9 @@ function datepickerInit(){
      $( "#datepicker" ).datepicker( {
           onSelect: function(date) {
             //alert(date);
-        },
+        }, 
        showButtonPanel: true,
+        minDate: 0,
     },$.datepicker.regional[ "he" ] );
 
     $("#datepicker-icon").click(
@@ -360,3 +375,7 @@ function datepickerInit(){
         });
 	
 }
+
+/**************************upload images***************************/
+
+    
