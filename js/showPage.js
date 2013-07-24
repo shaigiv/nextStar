@@ -66,31 +66,29 @@ function setStatusText(data,numOfComp){
     var text = '';
     var statusNum =data.status;
     switch (statusNum){
+     
         case 0:
-            text ="";
-            break;
-            case 0:
             text ="ממתין";
             break;
-            case -1:
+        case -1:
             text ="נמחק";
             break;
-            case 11:
+        case 11:
             text ="חי";
             break;
-            case 21:
+        case 21:
             text ="חי";
             break;
-            case 22:
+        case 22:
             text ="חי";
             break;
-            case 23:
+        case 23:
             text ="חי";
             break;
-            case 24:
+        case 24:
             text ="חי";
             break;
-            case 25:
+        case 25:
             text ="חי";
             break;
         case 100:
