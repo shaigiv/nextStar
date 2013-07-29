@@ -31,7 +31,7 @@
 		</div>
 	</header>
 	<div class="main-wrap"> 
-		<div class="back">חזור</div>
+		
 		<!--<div><button id="go-back">חזור</button></div>-->
 		<section id="main-page">
 			<div id="main-page-container">
@@ -126,8 +126,10 @@
 											<label for="file">תמונה גדולה:</label>
 											<input class="" type="file" name="largeImg" class="largeImg">
 										</div>
-										<input id="add-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
-										<img id="add-competitor-imgFile" src="img/default.jpg" /> </div>
+										<div class="approve-add-img">
+											<input id="add-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
+											<img id="add-competitor-imgFile" src="" /> </div>
+										</div>
 									<div class="buttons"> <span style="float: left; margin-left: 5px;">
 										<button class="add" id="addComp" type="button">הוסף</button>
 										<button class="cancel" type="button">בטל</button>
@@ -155,7 +157,7 @@
 													<label for="file">תמונה גדולה:</label>
 													<input class="" type="file" name="largeImg" class="largeImg">
 												</div>
-												<img id="edit-competitor-imgFile" src="img/default.jpg" /> </div>
+												<img id="edit-competitor-imgFile" src="" /> </div>
 												<input class="upload" type="submit" name="submit" value="העלה תמונה">
 											<div class="buttons"> <span style="float: left; margin-left: 5px;">
 												<button class="add" id="editComp" type="button">ערוך</button>
@@ -347,7 +349,7 @@
 					<div id="add-vote" class="editing-window">
 						<p>בחר את שם המתמודד והזן את שם השיר, במקרה של דואט יש לבחור שני מתמודדים</p>
 						<div class="contestant-details">
-						 	<img id="firstImg" src="img/default.jpg" alt="" class="contestant-img">
+						 	<img id="firstImg" src="" alt="" class="contestant-img">
 							<select class="contestants-names"  id="firstCompAddVote">
                                 <option value="0">לא נבחר מתמודד</option>
 								<!--<option value="null">:בחר מתמודד</option>
@@ -362,7 +364,7 @@
 							</div>
 						</div>
 						<div class="contestant-details"> 
-							<img id="secondImg" src="img/default.jpg" alt="" class="contestant-img">
+							<img id="secondImg" src="" alt="" class="contestant-img">
 							<select class="contestants-names" id="secondCompAddVote">
                                  <option value="0">לא נבחר מתמודד</option>
 								<!--<option value="null">:בחר מתמודד</option>
@@ -425,7 +427,7 @@
 											<input class="largeImg" type="file" name="largeImg">
 										</div>
 										<input id="page-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
-										<img id="add-page-imgFile"  src="img/default.jpg"  /> </div>
+										<img id="add-page-imgFile" src="" /> </div>
 									
 									<input class="uploadSub" type="submit" style="display: none" id="page-submit" name="submit1" value="Submit">
 								</form>
