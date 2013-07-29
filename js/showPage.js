@@ -13,6 +13,7 @@ SCREENNAME = "הזן שם מסך";
 var editStaticPage =false;
 var editStaticPageData = "";
 var editPageData="";
+var editPageHtml="";
 var editVotePage = false;
 function showEvents(){
     //init the add static page text fields
@@ -26,6 +27,7 @@ function showEvents(){
     $("#voteAndWaitList").delegate(".edit", "click", function() {
         editPageData = $(this).parents("tr").data("pageData");
         editVotePage = true;
+        editPageHtml = $(this).parents("tr");
         $("#addVoteBtn").text("ערוך");
         pageEdit($(this).parents("tr"));
     });
@@ -324,8 +326,8 @@ function addVote(){
                $.ajax({
                 type: "POST",
                 url: domain + "type=addVotePage",
-                data: { "showId": currentShowId,"competitor_id1": firstId,"SongName1":firstSongName,"competitor_id2":secondId,
-                         "SongName2":secondSongName,"threshold":threshold,
+                data: { "showId": currentShowId,"competitor_id1": firstId,"songName1":firstSongName,"competitor_id2":secondId,
+                         "songName2":secondSongName,"threshold":threshold,
                          "textWaitRegister":"","textWaitVote":"","textWaitCalc":"","textWaitContinue":""},
                 success: function(data) {
                     console.log("success addVotePage" + data);
@@ -354,12 +356,12 @@ function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
             $.ajax({
             type: "POST",
             url: domain + "type=updateVotePage",
-            data: { "pid": pid,"vote_id1":voteId1,"competitor_id1": firstId,"SongName1":firstSongName,
+            data: { "pid": pid,"vote_id1":voteId1,"competitor_id1": firstId,"songName1":firstSongName,
                         "threshold":threshold,
                         "textWaitRegister":"","textWaitVote":"","textWaitCalc":"","textWaitContinue":""},
             success: function(data) {
                 console.log("success addVotePage" + data);
-                    setAddVote(data);
+                    setEditVote(data);
             },
             error: function(data) {
                 console.log("error addVotePage " + data);
@@ -373,12 +375,12 @@ function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
             $.ajax({
             type: "POST",
             url: domain + "type=updateVotePage",
-            data: { "pid": pid,"vote_id1":voteId1,"competitor_id1": firstId,"SongName1":firstSongName,
-                        "threshold":threshold,"vote_id2":voteId2,"competitor_id2": secondId,"SongName2":secondSongName
+            data: { "pid": pid,"vote_id1":voteId1,"competitor_id1": firstId,"songName1":firstSongName,
+                        "threshold":threshold,"vote_id2":voteId2,"competitor_id2": secondId,"songName2":secondSongName
                 },
             success: function(data) {
                 console.log("success addVotePage" + data);
-                    setAddVote(data);
+                    setEditVote(data);
             },
             error: function(data) {
                 console.log("error addVotePage " + data);
@@ -392,6 +394,37 @@ function setAddVote(data){
     
     addVoteAndAppend(data);
     //clear the add-vote's fields
+     clearAddVoteBox();
+}
+
+function setEditVote(data){
+    $(editPageHtml);
+     if(data.votes.length == 1) {
+            numOfComp = 1;
+        }
+        else if(data.votes.length == 2) {
+            numOfComp = 2;
+        }
+
+        if(numOfComp == 1) {
+            songsHtml = data.votes[0].songName;
+            compsHtml = getCompNameByID(data.votes[0].cid)
+
+        }
+        else if(numOfComp == 2) {
+                    
+            songsHtml = data.votes[0].songName + "</br>" + data.votes[1].songName;
+            compsHtml = getCompNameByID(data.votes[0].cid) + "</br>" + getCompNameByID(data.votes[1].cid);
+        }
+        $($(editPageHtml).children("td")[2]).html(songsHtml);
+        $($(editPageHtml).children("td")[1]).html(compsHtml);
+        $(editPageHtml).data("pageData", data);
+        hideAddVoteBox();
+    clearAddVoteBox();
+    
+}
+
+function clearAddVoteBox(){
         //img
         $("#add-vote .contestant-details img").attr("src"," ");
         //select
@@ -402,11 +435,11 @@ function setAddVote(data){
         //songs name
         $("#first-songs-name").val("");
         $("#second-songs-name").val("");
-        editVotePage = "";
+        editVotePage = false;
         editPageData = "";
+        editPageHtml = "";
         $("#addVoteBtn").text("הוסף")
 }
-
 
 function addVoteAndAppend(voteItem){
         //check if the vote is double
@@ -509,6 +542,11 @@ function initAddStaticPageText(){
      });
      $("#template-select option").removeAttr('selected');
      $("#template-select option:first").attr('selected', 'selected');
+
+     //init the images
+     $(".add-page-img-wrap .smallImg").data("url", "");
+     $(".add-page-img-wrap .largeImg").data("url", "");
+     $("#add-page-imgFile").attr("src", "");
 }
 
 function addPageStatic(){
@@ -539,6 +577,36 @@ function addPageStatic(){
 }
 
 function editPageStatic(){
+//type=updateStaticPage&pid=15&name=hifff&title=titlefff&text=blafff&templateId=2&info=blablafff
+    //editPageHtml
+    //editPageData
+
+    var pid =editPageData.id;
+    var name =$("#screen-name").val();
+    var title =$("#screen-title").val();
+    var content =$("#screen-content").val();
+     var info =$("#screen-info").val();
+    var templateID =$("#template-select option:selected").attr("value");
+    var tamplateImage1 = $(".add-page-img-wrap .smallImg").data("url");
+    var tamplateImage2 = $(".add-page-img-wrap .largeImg").data("url");;
+    $.ajax({
+            type: "POST",
+            url: domain + "type=updateStaticPage",
+            data: { "pid": pid,"name":name ,"title":title,"text":content,
+                        "templateId":templateID,"info":info,
+                        "tamplateImage1":tamplateImage1,"tamplateImage2":tamplateImage2},
+            success: function(data) {
+                console.log("success updateStaticPage" + data);
+                    setEditPage(data);
+            },
+            error: function(data) {
+                console.log("error updateStaticPage " + data);
+            }
+     });
+
+}
+
+function setEditPage(data){
     
 }
 
@@ -583,7 +651,10 @@ function  setEditAddPage(pageItemData){
     $("#screen-name").val(pageItemData.name);
     //set the info
     $("#screen-info").val(pageItemData.info);
-
+    //set the images
+    $(".add-page-img-wrap .smallImg").data("url", pageItemData.tamplateImage1);
+    $(".add-page-img-wrap .largeImg").data("url", pageItemData.tamplateImage2);
+    $("#add-page-imgFile").attr("src", pageItemData.tamplateImage1);
     //change the add btn to edit
     $("#add-page-btn").text("ערוך");
     editStaticPage = true;
@@ -608,8 +679,8 @@ function addCopyVote(pageData){
     $.ajax({
             type: "POST",
             url: domain + "type=addVotePage",
-            data: { "showId": currentShowId,"competitor_id1": firstId,"SongName1":firstSongName,"competitor_id2":secondId,
-                        "SongName2":secondSongName,"threshold":threshold,
+            data: { "showId": currentShowId,"competitor_id1": firstId,"songName1":firstSongName,"competitor_id2":secondId,
+                        "songName2":secondSongName,"threshold":threshold,
                         "textWaitRegister":"","textWaitVote":"","textWaitCalc":"","textWaitContinue":""},
             success: function(data) {
                 console.log("success addVotePage" + data);
