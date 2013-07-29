@@ -778,7 +778,7 @@ padding-top: 5px;
     width: 96%;
 }
 #add-page .control-buttons{
-    
+    margin-top:30px;
 }
 #add-page .line{
     margin: auto;
@@ -827,18 +827,19 @@ padding-top: 5px;
 .upload{
     background-image: url(../img/button2.png);
     width: 76px;
-height: 21px;
+	height: 21px;
     background-size: 100% 100%;
-    left: -9px;
     background-color: transparent;
-border: none;
-color: white;
-
+	border: none;
+	color: white;
     margin-right: 200px;
-
     position: relative;
     float: left;
     margin-top: 2px;
+}
+
+.add-comp-img .upload{
+	left: 8px;
 }
 #edit-contestant{
     display: none;
@@ -911,7 +912,6 @@ border: none;
     position: relative;
     top: -20px;
     right: 375px;
-    
 }
 
 /*-----------------------voting-screens----------------------*/
@@ -1052,16 +1052,16 @@ opacity: 0.15;}
 #voting-screens .horizonal-list li.current{
     font-size: 24px;
 }
+
+
+.add-page-img .upload{
+	left: -9px;
+}
+
 #add-page-imgFile{
     height: 40px;
-width: 40px;
-
+	width: 40px;
     float: left;
-
-
-
-
-
     margin-left: 6px;
     position: relative;
     left: -15px;
@@ -1071,10 +1071,10 @@ width: 40px;
 
 .add-page-img{
     width: 296px;
-position: relative;
+	position: relative;
 
     margin-right: 19px;
-margin-top:10px;
+	margin-top:10px;
 }
 
 [name="smallImg"] [name="largeImg"]{
@@ -1083,16 +1083,20 @@ margin-top:10px;
 }
 
 [name="smallImg"], [name="largeImg"]{
-    width:180px;
+    width:85px;  
 }
-
+.approve-add-img{
+	float:left;
+}
 #edit-prog-date-name{
     width: 593px;
 margin-right: 121px;
 margin-top: 30px;
 height: 50px;
 }
-.prog-name-edit-date{display: none;}
+.prog-name-edit-date{
+display: none;
+}
 .prog-name-edit-date.show{display: inline-block;
 padding-right: 37px;}
 #edit-prog-date-name .buttons{
