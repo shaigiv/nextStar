@@ -1,11 +1,25 @@
 function initInputFile(){
 
     $("#add-upload").click(function() {
-        $("#add-submit").click();
+        
+
+         if(smallImgAdded && largeImgAdded){
+           $("#add-submit").click();
+        }
+        else{
+            alert("עליך לבחור 2 תמונות לפני העלאתן")
+        }
     });
     
     $("#page-upload").click(function() {
-        $("#page-submit").click();
+            
+             if(smallImgAdded && largeImgAdded){
+          $("#page-submit").click();
+        }
+        else{
+            alert("עליך לבחור 2 תמונות לפני העלאתן")
+        }
+       
     });
 
     $(".add-comp-img-wrap .smallImg").change(function(e) {
@@ -156,6 +170,9 @@ function addImageUploaded(){
     $(".add-comp-img-wrap .smallImg").data("url", imgUrlSmall);
     $(".add-comp-img-wrap .largeImg").data("url", imgUrlLarge);
     alert("התמונות עלו");
+    //init the inicators for images chosen
+    smallImgAdded = false;
+    largeImgAdded = false;
 }
 //imagges uploaded by edit competitor
 function editImageUploaded(){

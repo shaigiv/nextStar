@@ -8,8 +8,8 @@ var imgUrlSmall ="";
 var imgUrlLarge ="";
 var smallImgAdded=false;
 var largeImgAdded=false;
-var smallImgUploadedByAdd=false;
-var largeImgUploadedByAdd=false;
+//var smallImgUploadedByAdd=false;
+//var largeImgUploadedByAdd=false;
 var smallImgUploadedByEdit=false;
 var largeImgUploadedByEdit=false;
 var smallImgEdited =false;
@@ -236,13 +236,17 @@ function setCompetitorsList(data){
     });
 }
 function addCompetitor(){
-    if(!smallImgAdded || !largeImgAdded){
+    var smallImageComp =$(".add-comp-img-wrap .smallImg").data("url");
+    var largeImageComp = $(".add-comp-img-wrap .largeImg").data("url");
+     
+   
+    if(!smallImageComp || !largeImageComp){
         alert("עליך להעלות 2 תמונות");
     }
-    //check if the user upload the img to the server
-    if(smallImgUploadedByAdd == false || largeImgUploadedByAdd == false){
-        alert("עליך להעלות את התמונות לפני הוספת מתמודד");
-    }
+    ////check if the user upload the img to the server
+    //if(smallImgUploadedByAdd == false || largeImgUploadedByAdd == false){
+    //    alert("עליך להעלות את התמונות לפני הוספת מתמודד");
+    //}
     else{
           var name= $("#add-competitor-name").val();
          var imgUrlSmall = $(".add-comp-img-wrap .smallImg").data("url");
@@ -272,8 +276,8 @@ function setAddCompetitor(data){
      $("#add-competitor-name").val("");
      $(".add-comp-img-wrap .smallImg").data("url", "");
      $(".add-comp-img-wrap .largeImg").data("url", "");
-     smallImgUploadedByAdd = false;
-     largeImgUploadedByAdd = false;
+     //smallImgUploadedByAdd = false;
+     //largeImgUploadedByAdd = false;
      var name = data.name;
      var img = data["imageUrlA"];
      var id = data.id;
