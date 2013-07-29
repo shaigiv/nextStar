@@ -600,6 +600,9 @@ padding-top: 5px;
     height: 30px;
 border-bottom: 1px solid gray;
 }
+.programs-list ul li.live{
+    color: red;
+}
 .programs-list ul li .program-options{
     width: 113px;
     border-left: none;
@@ -1001,7 +1004,8 @@ color: black;
     font-size: 45px;
     text-align: center;
 }
-
+.disable td{color: gray}
+.live td{color: red}
 #voting-screens table {
     width: 140px;
     margin-left: 4px;

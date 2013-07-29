@@ -61,6 +61,9 @@ function  homePageInitEvents(){
         $(".add-program-wrap").fadeOut();
     });
 
+    $("#cancle-add-comp").click(function(){
+        $("#add-contestant").fadeOut();
+    });
 
     $("#open-new-comp").click(function(){
         if($("#add-contestant").is(':visible')){
@@ -96,31 +99,42 @@ function getShowsList() {
 }
 
 function setShowList(data){
+   
     $(data).each(function(index){
         console.log("in setShowList: "+this.name);
          console.log("in setShowList: "+this.status);
         var name = this.name;
         var number = index*1+1*1;
         var id = this.id;
+        var data =this;
         var status = "הצבעות ("+this.CompetitorCount + ")" +"   מתמודדים ("+this.votesCount + ")";
-        
-        $("#programs-list-ul").append(' <li class="">'+
+        var statusClass ="";
+         if (data.live == true){
+             statusClass ="live"
+         }
+      $("#programs-list-ul").append(' <li class="'+statusClass+'">'+
                 '<div class="program-number">'+number+'</div>'+
                 '<div class="program-name">'+name+'</div>'+
                 '<div class="program-status">'+status+'</div>'+
                 '<div class="program-options"><span class="delete">מחק</span><span> |</span> <span class="open">פתח</span></div>'+
             ' </li>');
 
-            $("#programs-list-ul").children("li:last").data("showId", id);
+            $("#programs-list-ul").children("li:last").data("showData", data);
     });
     
 }
 
 
 function deleteShow(show){
-     var showId = show.parents("li").data("showId");
+    var data =show.parents("li").data("showData")
+     var showId = data.id;
     var name =show.parents("li").children(".program-name").text();
-     var r=confirm("האם אתה בטוח שברצונך למחוק את "+ name);
+    //if the show is alive  - dont let delete
+    if(data.live ==true){
+        alert('אין אפשרות למחוק תוכנית חיה');
+    }
+    else{
+        var r=confirm("האם אתה בטוח שברצונך למחוק את "+ name);
     if (r==true)
       {
             deletedShowHtml =show.parents("li");
@@ -138,6 +152,8 @@ function deleteShow(show){
                 }
             });
       }
+    }
+     
   
    
 }
@@ -179,14 +195,18 @@ function setShowAdded(data){
      var name =data.name;
      var id = data.id;
      var status = "הצבעות ("+data.CompetitorCount + ")" +"   מתמודדים ("+data.votesCount + ")";
-      $("#programs-list-ul").append(' <li class="">'+
+     var statusClass ="";
+     if (data.live == true){
+         statusClass ="live"
+     }
+      $("#programs-list-ul").append(' <li class="'+statusClass+'">'+
                 '<div class="program-number">'+number+'</div>'+
                 '<div class="program-name">'+name+'</div>'+
                 '<div class="program-status">'+status+'</div>'+
                 '<div class="program-options"><span class="delete">מחק</span><span> |</span> <span class="open">פתח</span></div>'+
             ' </li>');
     
-    $("#programs-list-ul").children("li:last").data("showId", id);
+    $("#programs-list-ul").children("li:last").data("showData", data);
 }
 
 

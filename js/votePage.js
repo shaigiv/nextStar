@@ -419,5 +419,7 @@ function publishPage(publishPage){
 }
 
 function setPublishPage(data){
-    console.log("successs setPublishPage")
+    console.log("successs setPublishPage");
+    //refresh the status from db - get al list
+    getShowData();
 }

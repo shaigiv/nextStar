@@ -127,6 +127,9 @@ function showEvents(){
     $("#voteAndWaitList").delegate(".nav-arrow.up", "click", function() {
         switchUp($(this));
     });
+    $("#voteAndWaitList").delegate(".nav-arrow.down", "click", function() {
+        switchDown($(this));
+    });
 
     $("#edit-prog-name").click(function(){
         showEditProgBox();
@@ -148,7 +151,7 @@ function showEvents(){
 function openShow(show){
     // window.location.href = window.location.origin + "/index.html#prog-page10092013";
         //switchHash();
-        var showId = show.parents("li").data("showId");
+        var showId = show.parents("li").data("showData").id;
         currentShowId = showId;
         getShowData();
         setCompSelectList();
@@ -212,7 +215,7 @@ function pageDelete(pageItem){
         url: domain + "type=deletePage",
         data: { "pageId": id },
         success: function(data) {
-            console.log("success updatePageStatus-delete: " + data);
+            console.log("success deletePage-delete: " + data);
             if(data.result == "success."){
                 setPageDelete(data);
             }
@@ -220,7 +223,7 @@ function pageDelete(pageItem){
 
         },
         error: function(data) {
-            console.log("error updatePageStatus-delete:: " + data);
+            console.log("error deletePage-delete:: " + data);
         }
     });
 
@@ -269,9 +272,14 @@ function setStatusText(data,numOfComp){
             text ="חי";
             break;
         case 100:
-            var percents = data.votes[numOfComp-1].finalPercent;
+        if(data.type == "vote"){
+             var percents = data.votes[numOfComp-1].finalPercent;
             var Judges = data.votes[numOfComp-1].numOfJudges;
             text = percents + "%" + " (" + percents + ")";
+        }
+        else{
+            text ="פורסם";        }
+           
             break;
     }
     
@@ -526,7 +534,16 @@ function addVoteAndAppend(voteItem){
         if(isPublishedPage(voteItem)){
             isDisableClassPublish = "disable";
         }
-        $("#voteAndWaitList").append('<tr class="itemPage">' +
+        var statusClass="";
+        //if the item was published
+          if(voteItem.status == 100 ) {
+              statusClass = "disable";
+          }
+          //if the item is live
+           else if(pageItem.status > 0 &&  pageItem.status < 100) {
+              statusClass = "live";
+          }
+        $("#voteAndWaitList").append('<tr class="'+statusClass+' itemPage">' +
 					'<td>' +
 						'<img src="./img/Up Arrow.png" alt="arrow" class="nav-arrow up">'+
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
@@ -555,6 +572,9 @@ function pageEdit(pageItem){
         openAddPageBox();
         setEditAddPage(pageItemData);
     }
+
+    //put the boxes on focus by scroll to
+    $(body).prop({ scrollTop: $("body").prop("scrollHeight") });
 }
 function  setEditAddVote(pageItemData){
     var firstId = pageItemData.votes[0].cid;
@@ -715,20 +735,34 @@ function setEditPage(data){
 function addPageAndAppend(pageItem){
      var number = $("#voteAndWaitList tr").length;
      var name =pageItem.name;
+      var status = setStatusText(pageItem);
+      var action ="פרסם";
+      var statusClass="";
+      var editClass = "";
+      if(pageItem.status == 100 ) {
+          action = "-";
+          statusClass = "disable";
+          editClass = "disable";
+      }
+       if(pageItem.status == 11 ) {
+          action = "-";
+          statusClass = "live";
+          editClass = "disable";
+      }
      initAddStaticPageText();
      //close the add page box 
     
-        $("#voteAndWaitList").append('<tr class="itemPage bottom">'+
+        $("#voteAndWaitList").append('<tr class="'+ statusClass+' itemPage bottom">'+
 				'<td> '+
 					'<img src="./img/Up Arrow.png" alt="arrow" class="nav-arrow up">'+
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
 					'<span class="namber">'+number+'</span>'+
 				'</td>'+
 				'<td colspan="2">'+name+'</td>'+
-				'<td>ממתין</td>'+
-				'<td class="row-options"><span class=\"edit\">ערוך</span> <span class=\"delete\">מחק</span> <span class=\"copy\">שכפל</span></td>'+
+				'<td>'+status+'</td>'+
+				'<td class="row-options"><span class=\"edit '+editClass+'\">ערוך</span> <span class=\"delete\">מחק</span> <span class=\"copy\">שכפל</span></td>'+
 				'<td>פריוויו</td>'+
-				'<td class="publish">פרסם</td>'+
+				'<td class="publish">'+action+'</td>'+
 			'</tr>');
         $("#voteAndWaitList").children().children("tr:last").data("pageData", pageItem);
         addAttention($("#voteAndWaitList").children().children("tr:last"));
@@ -870,6 +904,30 @@ function setSwitchPage(){
     $(switchOrderSecondItem).data("pageData",switchOrderSecondItemData);
 
 
+}
+
+function switchDown(pageItem){
+    var pageData2 =$(pageItem).parents("tr").data("pageData");
+    id2 = pageData2.id;
+    switchOrderSecondItem = $(pageItem).parents("tr");
+    switchOrderSecondItemData = pageData2;
+    var pageData1 =$(pageItem).parents("tr").prev().data("pageData");
+     id1 = pageData1.id;
+     switchOrderFirstItem = $(pageItem).parents("tr").prev();
+     switchOrderFirstItemData = pageData1;
+     //type=swapPageOrder&pageId1=1&pageId2=4
+     $.ajax({
+        type: "POST",
+        url: domain + "type=swapPageOrder",
+        data: { "pageId1": id1,"pageId2":id2 },
+        success: function(data) {
+            console.log("success swapPageOrder: " + data);
+             setSwitchPage(data);
+        },
+        error: function(data) {
+            console.log("error swapPageOrder: " + data);
+        }
+    });
 }
 
 function showEditProgBox(){
