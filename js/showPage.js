@@ -274,7 +274,7 @@ function setImgOnAddVote(selectItem){
     var selectedItem = $(selectItem).children("option:selected");
     //if is a null comp -do nothing
     if($(selectedItem).val() == "0"){
-         $(selectItem).parent(".contestant-details").children(".contestant-img").attr("src","");
+         $(selectItem).parent(".contestant-details").children(".contestant-img").attr("src","img/default.jpg");
     }
     else{
          var selectedItemData = selectedItem.data("compData");
@@ -429,7 +429,7 @@ function setEditVote(data){
 
 function clearAddVoteBox(){
         //img
-        $("#add-vote .contestant-details img").attr("src"," ");
+        $("#add-vote .contestant-details img").attr("src","img/default.jpg");
         //select
         $("#add-vote #firstCompAddVote option").removeAttr('selected');
         $("#add-vote #firstCompAddVote option:first").attr('selected', 'selected');
@@ -549,7 +549,7 @@ function initAddStaticPageText(){
      //init the images
      $(".add-page-img-wrap .smallImg").data("url", "");
      $(".add-page-img-wrap .largeImg").data("url", "");
-     $("#add-page-imgFile").attr("src", "");
+     $("#add-page-imgFile").attr("src", "img/default.jpg");
 }
 
 function addPageStatic(){
@@ -560,9 +560,17 @@ function addPageStatic(){
     var name = $("#screen-name").val();
     var tamplateImage1 =$(".add-page-img-wrap .smallImg").data("url");
     var tamplateImage2 =$(".add-page-img-wrap .largeImg").data("url");
-
-
-    $.ajax({
+    var validate = true;
+    //if its a template with image- validate that the user upload 2 images
+    if(templateId ==1 || templateId ==3){
+        if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
+            alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
+            validate = false;
+        }
+       
+    }
+    if(validate == true){
+         $.ajax({
         type: "POST",
         url: domain + "type=addStaticPage",
         data: { "showId": currentShowId,"page-type": "page","name":name,"title":title,
@@ -577,6 +585,8 @@ function addPageStatic(){
         }
     });
 
+    }
+   
 }
 
 function editPageStatic(){
@@ -591,22 +601,33 @@ function editPageStatic(){
      var info =$("#screen-info").val();
     var templateID =$("#template-select option:selected").attr("value");
     var tamplateImage1 = $(".add-page-img-wrap .smallImg").data("url");
-    var tamplateImage2 = $(".add-page-img-wrap .largeImg").data("url");;
-    $.ajax({
+    var tamplateImage2 = $(".add-page-img-wrap .largeImg").data("url");
+    var validate = true;
+    //if its a template with image- validate that the user upload 2 images
+    if(templateID ==1 || templateID ==3){
+        if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
+            alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
+            validate = false;
+        }
+       
+    }
+    if(validate == true) {
+        $.ajax({
             type: "POST",
             url: domain + "type=updateStaticPage",
-            data: { "pid": pid,"name":name ,"title":title,"text":content,
-                        "templateId":templateID,"info":info,
-                        "tamplateImage1":tamplateImage1,"tamplateImage2":tamplateImage2},
+            data: { "pid": pid, "name": name, "title": title, "text": content,
+                "templateId": templateID, "info": info,
+                "tamplateImage1": tamplateImage1, "tamplateImage2": tamplateImage2
+            },
             success: function(data) {
                 console.log("success updateStaticPage" + data);
-                    setEditPage(data);
+                setEditPage(data);
             },
             error: function(data) {
                 console.log("error updateStaticPage " + data);
             }
-     });
-
+        });
+    }
 }
 
 function setEditPage(data){
@@ -803,3 +824,4 @@ function setImageUploadBox(){
         $(".add-page-img-wrap").hide();
     }
 }
+

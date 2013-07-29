@@ -33,14 +33,16 @@ $(document).ready(function() {
         }
         else {
             showAddVoteBox();
+            clearAddVoteBox();
         }
     });
-     $("#add-page-title").click(function() {
+    $("#add-page-title").click(function() {
         if($("#add-page").is(":visible")) {
             hideAddPageBox();
         }
         else {
             showAddPageBox();
+            initAddStaticPageText();
         }
     });
     $("#edit-prog-name").click(function() {

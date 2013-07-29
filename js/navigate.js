@@ -34,6 +34,8 @@ $(document).ready(function() {
 
     
 });
+pagePosition = "";
+pageBackPosition = "";
 
 function switchHash() { //navigates according to hash tag
     var x;
@@ -43,8 +45,7 @@ function switchHash() { //navigates according to hash tag
             $("#main-page").show();
             break;
         case "#contestants-list":
-            $("#main-page").hide();
-            $("#contestants-list").show();
+            showMainPage();
             break;
         case "#programs-list":
             $("#main-page").hide();
@@ -84,12 +85,30 @@ function switchHash() { //navigates according to hash tag
             break;
     }
 }
+function navigate(to){
+    switch( to ){
+        case "main":
+            showMainPage();
+            break;
+            case "show":
+            showShowPage();
+            break;
+            case "vote":
+            openVotingPage();
+            break;
+            case "settings":
+            showSettingsPage();
+            break;
+        
+    }
+}
+function showMainPage(){
+    
+}
 
 function showShowPage(){
     $("section").hide();
     $("#prog-page").show();
-   
-
 }
 
 function showProgPage(progLine){
@@ -105,4 +124,8 @@ function showSettingsPage(){
 function openVotingPage(){
       $("section").hide();
     $("#voting-screens").show();
+}
+
+function back(){
+    
 }

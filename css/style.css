@@ -140,7 +140,15 @@ position: relative;
 background-size: 100% 100%;
 min-height: 1000px;
 }
-
+.back{
+    background-image: url('../img/button2.png');
+    background-repeat: no-repeat;
+    width: 93px;
+    height: 29px;
+    margin-top: 11px;
+    text-align: center;
+padding-top: 5px;
+}
 .main-wrap {
     width: 800px;
     margin: auto;
@@ -903,13 +911,13 @@ border: none;
     height: 34px;
     float: right;
     clear: both;
-    margin: 35px 180px 0 0;
+    margin: 35px 21px 0 0;
 }
 
 .control-buttons {
     width: 150px;
     position: relative;
-    top: -20px;
+    top: -33px;
     right: 375px;
     
 }
