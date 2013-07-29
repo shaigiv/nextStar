@@ -3,6 +3,10 @@ function initInputFile(){
     $("#add-upload").click(function() {
         $("#add-submit").click();
     });
+    
+    $("#page-upload").click(function() {
+        $("#page-submit").click();
+    });
 
     $(".add-comp-img-wrap .smallImg").change(function(e) {
 
@@ -91,6 +95,49 @@ function initInputFile(){
             alert("noValidFile");
         }
     });
+
+        $(".add-page-img-wrap .smallImg").change(function(e) {
+
+        var fileName = $(this).val();
+        if((/\.(gif|jpg|jpeg|png)$/i).test(fileName)) {
+
+            if(this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    console.log(e.target.result);
+                    $("#add-page-imgFile").attr("src", e.target.result);
+                    smallImgAdded = true;
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        }
+        else {
+            alert("noValidFile");
+        }
+    });
+
+    $(".add-page-img-wrap .largeImg").change(function(e) {
+
+        var fileName = $(this).val();
+        if((/\.(gif|jpg|jpeg|png)$/i).test(fileName)) {
+
+            if(this.files && this.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    console.log(e.target.result);
+                    largeImgAdded = true;
+                };
+
+                reader.readAsDataURL(this.files[0]);
+            }
+        }
+        else {
+            alert("noValidFile");
+        }
+    });
 }
 
 //image upload by add competitor
@@ -125,5 +172,23 @@ function editImageUploaded(){
     }
     $(".edit-comp-img-wrap .smallImg").data("url", imgUrlSmall);
     $(".editcomp-img-wrap .largeImg").data("url", imgUrlLarge);
+    alert("התמונות עלו");
+}
+
+/*add page function*/
+function pageImageUploaded(){
+    var iframeName = $("#pageIframeResultId").attr("name");
+   // console.log("load iframe:" + $(window[iframeName].document.getElementsByTagName("body")[0]).text());
+    var imagesUrlJson = $.parseJSON($(window[iframeName].document.getElementsByTagName("body")[0]).text());
+    imgUrlSmall = imagesUrlJson.smallImg;
+    imgUrlLarge = imagesUrlJson.largeImg;
+    if( imgUrlSmall != undefined){
+        smallImgUploadedByEdit = true;
+    }
+    if( imgUrlLarge != undefined){
+        largeImgUploadedByEdit = true;
+    }
+    $(".add-page-img-wrap .smallImg").data("url", imgUrlSmall);
+    $(".add-page-img-wrap .largeImg").data("url", imgUrlLarge);
     alert("התמונות עלו");
 }

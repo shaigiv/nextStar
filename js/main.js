@@ -3,29 +3,46 @@ $(document).ready(function() {
     homePageInitEvents();
     initInputFile();
     showEvents();
+    votePageAttachEvents();
 
-    $("#add-vote-title").on('click', $("#add-vote-title"), function() {
-        if($(".toggle-edit").hasClass('minimize')) {
-            $("#add-vote").slideToggle();
-            if($("#add-page-title").hasClass('maximize')) {
-                $("#add-page").slideUp();
-                $("#add-page-title").removeClass('maximize').addClass('minimize');
-            }
-            $("#add-vote-title").toggleClass('minimize maximize');
+
+    //$("#add-vote-title").on('click', $("#add-vote-title"), function() {
+    //    if($(".toggle-edit").hasClass('minimize')) {
+    //        $("#add-vote").slideToggle();
+    //        if($("#add-page-title").hasClass('maximize')) {
+    //            $("#add-page").slideUp();
+    //            $("#add-page-title").removeClass('maximize').addClass('minimize');
+    //        }
+    //        $("#add-vote-title").toggleClass('minimize maximize');
+    //    }
+    //});
+
+    //$("#add-page-title").on('click', $("#add-page-title"), function() {
+    //    if($(".toggle-edit").hasClass('minimize')) {
+    //        $("#add-page").slideToggle();
+    //        if($("#add-vote-title").hasClass('maximize')) {
+    //            $("#add-vote").slideUp();
+    //            $('#add-vote-title').removeClass('maximize').addClass('minimize');
+    //        }
+    //        $("#add-page-title").toggleClass('minimize maximize');
+    //    }
+    //});
+    $("#add-vote-title").click(function() {
+        if($("#add-vote").is(":visible")) {
+            hideAddVoteBox();
+        }
+        else {
+            showAddVoteBox();
         }
     });
-
-    $("#add-page-title").on('click', $("#add-page-title"), function() {
-        if($(".toggle-edit").hasClass('minimize')) {
-            $("#add-page").slideToggle();
-            if($("#add-vote-title").hasClass('maximize')) {
-                $("#add-vote").slideUp();
-                $('#add-vote-title').removeClass('maximize').addClass('minimize');
-            }
-            $("#add-page-title").toggleClass('minimize maximize');
+     $("#add-page-title").click(function() {
+        if($("#add-page").is(":visible")) {
+            hideAddPageBox();
+        }
+        else {
+            showAddPageBox();
         }
     });
-
     $("#edit-prog-name").click(function() {
         $("#edit-prog-name span").show();
     });
@@ -34,22 +51,27 @@ $(document).ready(function() {
 });
 
 
-function checkOpen() {
-    document.getElementById("wait-open-check").disabled = false;
-    document.getElementById("wait-open-check").checked = false;
+function showAddVoteBox(){
+     $("#add-vote").fadeIn();
+     $("#add-page").fadeOut();
+}
+function hideAddVoteBox(){
+     $("#add-vote").fadeOut();
+    
 }
 
-function checkClose() {
-    document.getElementById("wait-close-check").disabled = false;
-    document.getElementById("wait-close-check").checked = false;
+function showAddPageBox(){
+     $("#add-page").fadeIn();
+     $("#add-vote").fadeOut();
 }
-function checkCount() {
-    document.getElementById("wait-count-check").disabled = false;
-    document.getElementById("wait-count-check").checked = false;
-}
-function checkContinue() {
-    document.getElementById("wait-continue-check").disabled = false;
-    document.getElementById("wait-continue-check").checked = false;
+function hideAddPageBox(){
+     $("#add-page").fadeOut();
 }
 
-
+//add class for attention
+function addAttention(item){
+   //$(item).addClass("attention");
+   //setTimeout(function(){
+   //    $(".attention").removeClass("attention");
+   //},300);
+}

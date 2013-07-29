@@ -449,6 +449,8 @@ function datepickerInit(){
         function(){
             $( "#datepicker" ).focus();
         });
+
+
 	
 }
 

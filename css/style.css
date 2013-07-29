@@ -130,12 +130,13 @@ html, body {
 	color:#fff;
 }
 .bg-wrap{
-    width: 1200px;
-height: 1000px;
-    margin: auto;
-    background-image: url('../img/bg.png');
-    background-repeat: no-repeat;
-    position: relative;
+   width: 1200px;
+margin: auto;
+background-image: url('../img/bg.png');
+background-repeat: no-repeat;
+position: relative;
+background-size: 100% 100%;
+min-height: 1000px;
 }
 
 .main-wrap {
@@ -721,8 +722,9 @@ padding-top: 5px;
 
 .editing-window .line {
     padding-top: 5px;
-    width: 487px;
+    width: 504px;
     clear: both;
+    
 }
 
 .editing-window .line div {
@@ -750,8 +752,14 @@ padding-top: 5px;
 #add-page {
     height: 250px;
     display: none;
+    width: 96%;
 }
-
+#add-page .control-buttons{
+    left: 37px
+}
+#add-page .line{
+    margin: auto;
+}
 .contestant-details {
     width: 48%;
     height: 67%;
@@ -780,7 +788,7 @@ padding-top: 5px;
 
 .template-wrap {
     float: left;
-    margin-right: 86px;
+    margin-right: 119px;
 }
 
 .songs-name {
@@ -917,12 +925,17 @@ border: none;
 
 #announcements {
     margin-top: 17px;
+    padding-right: 89px;
 }
 
 #announcements input[type=text] {
-    width: 138px;
+    width: 122px;
 }
-
+#announcements input[disabled=disabled]
+{
+    background-color: gray;
+color: black;
+}
 #current-contestants {
     margin-top: 30px;
     margin-right: 18px;
@@ -993,4 +1006,61 @@ border: none;
 #announcements input {
 	background-color: transparent;
 	color: #fff;
+}
+
+.attention{
+    border: 2px solid red;
+}
+
+.date {
+    font-size: 10px;
+}
+#voting-screens .horizonal-list li.disable{color: black;
+opacity: 0.15;}
+#voting-screens .horizonal-list li.next{color: black;}
+#voting-screens .horizonal-list li.current{
+    font-size: 24px;
+}
+#add-page-imgFile{
+    height: 40px;
+width: 40px;
+float: left;
+margin-left: 6px;
+top: 6px;
+position: absolute;
+left: 32px;
+
+}
+
+.add-page-img{
+    width: 277px;
+position: relative;
+margin-right: 29px;
+}
+
+.editProgName{
+    display: none
+}
+
+#edit-prog-date-name{
+    width: 593px;
+margin-right: 121px;
+margin-top: 30px;
+height: 50px;
+}
+.prog-name-edit-date{display: none;}
+.prog-name-edit-date.show{display: inline-block;
+padding-right: 37px;}
+#edit-prog-date-name .buttons{
+    display: none;
+width: 128px;
+float: left;
+margin-top: 10px;
+}
+#edit-prog-date-name .prog-name-edit-wrap{
+    width: 300px;
+    float: right;
+}
+#edit-prog-date-name .editProgName.show{
+     display: inline-block;
 }
