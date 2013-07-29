@@ -65,7 +65,8 @@ function setVotePageData(data){
     setWaitingPage(data);
     setRealPercent(data);
     //show the page
-    openVotingPage();
+    navigate("vote")
+   // openVotingPage();
 }
 
 
@@ -237,6 +238,7 @@ function setHeaderStatus(status) {
     $(".statusItem").addClass("disable");
     $(".statusItem").removeClass("current");
     $(".statusItem").removeClass("next");
+    $(".announcements input[type=text]").removeAttr("disabled");
     switch(status) {
         case 0:
             $("#waitStat").removeClass("disable");
@@ -384,13 +386,24 @@ function setWaitingPage(data){
 
 function setRealPercent(data){
     var perc1 =data.votes[0].finalPercent;
-    var perc2 =data.votes[1].finalPercent;
+    var perc2=0;
+    if (doubleVotes ==true){
+        perc2 =data.votes[1].finalPercent;
+    }
+    
 
     setPerc(perc1,perc2);
 }
 function setPerc(perc1,perc2){
     $("#vote1RealPerc").text(perc1+"%");
     $("#vote2RealPerc").text(perc2+"%");
+    //if is not a double vote- hide the second user
+    if(doubleVotes != true){
+        $("#voting-screens .container-left").hide();
+    }
+    else{
+        $("#voting-screens .container-left").show();
+    }
 }
 
 /********* publish page*****/

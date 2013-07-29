@@ -30,6 +30,7 @@ $(document).ready(function() {
     $("#add-vote-title").click(function() {
         if($("#add-vote").is(":visible")) {
             hideAddVoteBox();
+            editVotePage = false;
         }
         else {
             showAddVoteBox();
@@ -39,6 +40,7 @@ $(document).ready(function() {
     $("#add-page-title").click(function() {
         if($("#add-page").is(":visible")) {
             hideAddPageBox();
+            editStaticPage = false;
         }
         else {
             showAddPageBox();

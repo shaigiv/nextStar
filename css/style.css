@@ -148,6 +148,7 @@ min-height: 1000px;
     margin-top: 11px;
     text-align: center;
 padding-top: 5px;
+display: none;
 }
 .main-wrap {
     width: 800px;
@@ -637,7 +638,16 @@ padding-top: 5px;
 .row-options span:hover{
 	color:#00aeef;
 }
-
+.row-options .disable {
+    color: gray;
+    opacity: 0.8;
+    cursor: auto;
+}
+.row-options .disable:hover{
+     color: gray;
+    opacity: 0.8;
+    cursor: auto;
+}
 .row-options span:last-of-type {
     border-left: none;
 }
@@ -920,6 +930,7 @@ border: none;
     position: relative;
     top: -33px;
     right: 375px;
+    height: 30px;
 }
 
 /*-----------------------voting-screens----------------------*/

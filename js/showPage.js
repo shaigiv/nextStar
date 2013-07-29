@@ -21,15 +21,30 @@ function showEvents(){
 
 
     $("#voteAndWaitList").delegate(".delete", "click", function() {
-        pageDelete(this);
+        if(isLivePage($(this).parents("tr").data("pageData"))){
+            alert("לא ניתן למחוק עמוד כאשר הוא חי")
+        }
+        else{
+             pageDelete(this);
+        }
+       
     });
 
     $("#voteAndWaitList").delegate(".edit", "click", function() {
-        editPageData = $(this).parents("tr").data("pageData");
-        editVotePage = true;
-        editPageHtml = $(this).parents("tr");
-        $("#addVoteBtn").text("ערוך");
-        pageEdit($(this).parents("tr"));
+       if(isPublishedPage($(this).parents("tr").data("pageData")) ){
+           alert("לא ניתן לערוך דף שכבר פורסם")
+       }
+       else if(isLivePage($(this).parents("tr").data("pageData"))){
+           alert("לא ניתן לערוך דף שכרגע חי")
+       }
+       else{
+           editPageData = $(this).parents("tr").data("pageData");
+            editVotePage = true;
+            editPageHtml = $(this).parents("tr");
+            $("#addVoteBtn").text("ערוך");
+            pageEdit($(this).parents("tr"));
+       }
+        
     });
     $("#voteAndWaitList").delegate(".copy", "click", function() {
         pageCopy($(this).parents("tr"));
@@ -157,7 +172,7 @@ function getShowData(){
 }
 
 function setGetShow(data){
-
+    $("#voteAndWaitList tr.itemPage").remove();
     $(data).each(function() {
         var numOfComp = 0;
         var firstComp;
@@ -181,7 +196,8 @@ function setGetShow(data){
 
 
     //show show page
-    showShowPage();
+    //showShowPage();
+    navigate("show");
 }
 var pageHtml;
 
@@ -208,6 +224,12 @@ function pageDelete(pageItem){
         }
     });
 
+
+    //close all boxes and init them
+     hideAddVoteBox();
+     editVotePage = false;
+     hideAddPageBox();
+     editStaticPage = false;
 }
 
 
@@ -258,6 +280,10 @@ function setStatusText(data,numOfComp){
 
 //set the competitors list of select box
 function setCompSelectList(){
+    $("#firstCompAddVote").html("");
+    $("#secondCompAddVote").html("");
+    $("#firstCompAddVote").append('<option value="0">לא נבחר מתמודד</option>');
+    $("#secondCompAddVote").append('<option value="0">לא נבחר מתמודד</option>');
     $(compArray).each(function(){
         var name = this.name;
         var id= this.id;
@@ -351,10 +377,34 @@ function addVote(){
 }
 
 function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
-
+    var validate = true;
      var voteId1 =editPageData.votes[0].id;
         var pid =editPageData.id;
-        if(numOfComp ==1){
+        //check if the user insert second competitor or song
+        if($("#secondCompAddVote option:selected").val() == "0"){
+            if ($("#second-songs-name").val() == "")
+            {
+                numOfComp = 1;
+            }
+            //if the user insert song but didnt insert comp
+            else{
+                alert("עליך להכניס שם שיר ומתמודד");
+                validate = false;
+            }
+        }
+        //if the user insert comp, but didnt insert song
+        if ($("#second-songs-name").val() == ""){
+            if ($("#secondCompAddVote option:selected").val() != "0"){
+                alert("עליך להכניס שם שיר ומתמודד");
+                validate = false;
+            }
+            else{
+                numOfComp = 1;  
+            }
+        }
+        if(validate){
+            
+                if(numOfComp ==1){
             //type=updateVotePage&pid=1&vote_id1=1&competitor_id1=1&SongName1=ים%20של%20דמעות&vote_id2=1&competitor_id2=2&SongName2=המגפים&threshold=2
             $.ajax({
             type: "POST",
@@ -369,7 +419,7 @@ function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
             error: function(data) {
                 console.log("error addVotePage " + data);
             }
-    });
+         });
         }
         else if(numOfComp ==2){
             var voteId2 =editPageData.votes[1].id;
@@ -390,6 +440,8 @@ function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
             }
     });
              }
+        }
+    
 }
 
 
@@ -432,9 +484,9 @@ function clearAddVoteBox(){
         $("#add-vote .contestant-details img").attr("src","img/default.jpg");
         //select
         $("#add-vote #firstCompAddVote option").removeAttr('selected');
-        $("#add-vote #firstCompAddVote option:first").attr('selected', 'selected');
+        $("#add-vote #firstCompAddVote option:first").prop('selected', 'selected');
         $("#add-vote #secondCompAddVote option").removeAttr('selected');
-        $("#add-vote #secondCompAddVote option:first").attr('selected', 'selected');
+        $("#add-vote #secondCompAddVote option:first").prop('selected', 'selected');
         //songs name
         $("#first-songs-name").val("");
         $("#second-songs-name").val("");
@@ -466,7 +518,15 @@ function addVoteAndAppend(voteItem){
 
         var status = setStatusText(voteItem, numOfComp);
         var number =$("#voteAndWaitList tr").length;
-        $("#voteAndWaitList").append('<tr>' +
+        var isDisableClassLive = "";
+        var isDisableClassPublish = "";
+        if(isLivePage(voteItem)){
+            isDisableClassLive = "disable";
+        }
+        if(isPublishedPage(voteItem)){
+            isDisableClassPublish = "disable";
+        }
+        $("#voteAndWaitList").append('<tr class="itemPage">' +
 					'<td>' +
 						'<img src="./img/Up Arrow.png" alt="arrow" class="nav-arrow up">'+
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
@@ -475,7 +535,7 @@ function addVoteAndAppend(voteItem){
 					'<td>'+ compsHtml+'</td>' +
 					'<td>'+songsHtml+'</td>' +
 					'<td>' + status + '</td>' +
-					'<td class="row-options"><span class="edit">ערוך</span> <span class="delete">מחק</span> <span class="copy">שכפל</span></td>' +
+					'<td class="row-options"><span class="edit '+isDisableClassLive +' ' +isDisableClassPublish+'">ערוך</span> <span class="delete '+isDisableClassLive+'">מחק</span> <span class="copy">שכפל</span></td>' +
 					'<td>פריוויו</td>' +
 					'<td class="open-voting">פתח</td>' +
 				'</tr>');
@@ -498,23 +558,32 @@ function pageEdit(pageItem){
 }
 function  setEditAddVote(pageItemData){
     var firstId = pageItemData.votes[0].cid;
-    var secondId = pageItemData.votes[1].cid;
     //set images
     $("#add-vote #firstImg").attr("src", getCompImgByID(firstId));
-    $("#add-vote #secondImg").attr("src", getCompImgByID(secondId));
-    
-    //set selected competitor
+    $("#secondImg").attr("src", "img/default.jpg");
+      //set selected competitor
     $("#add-vote #firstCompAddVote option").removeAttr('selected');
-    $("#add-vote #secondCompAddVote option").removeAttr('selected');
-    $('#firstCompAddVote option[value="' + firstId + '"]').attr("selected", "selected");
-    $('#secondCompAddVote option[value="' + secondId + '"]').attr("selected", "selected");
-    
+    $('#firstCompAddVote option[value="' + firstId + '"]').prop("selected", "selected");
+
     //set the songs name
     var firstSong = pageItemData.votes[0].songName;
-    var secondSong = pageItemData.votes[1].songName;
     $("#first-songs-name").val(firstSong);
-    $("#second-songs-name").val(secondSong);
 
+    var secondId = "";
+   
+    if(pageItemData.votes.length ==2){
+         secondId = pageItemData.votes[1].cid;
+         //set images
+         $("#add-vote #secondImg").attr("src", getCompImgByID(secondId));
+          //set selected competitor
+        $("#add-vote #secondCompAddVote option").removeAttr('selected');
+        $('#secondCompAddVote option[value="' + secondId + '"]').prop("selected", "selected");
+        //set the songs name
+        var secondSong = pageItemData.votes[1].songName;
+        $("#second-songs-name").val(secondSong);
+    
+    }
+  
     //set the threshold
      var threshold = pageItemData.votes[0].threshold;
      $("#threshold-add-vote").val(threshold);
@@ -544,7 +613,7 @@ function initAddStaticPageText(){
          $(this).attr("value", index*1+1);
      });
      $("#template-select option").removeAttr('selected');
-     $("#template-select option:first").attr('selected', 'selected');
+     $("#template-select option:first").prop('selected', 'selected');
 
      //init the images
      $(".add-page-img-wrap .smallImg").data("url", "");
@@ -568,6 +637,10 @@ function addPageStatic(){
             validate = false;
         }
        
+    }
+    else if(templateId ==2 || templateId ==4){
+        tamplateImage1 ="";
+        tamplateImage2 ="";
     }
     if(validate == true){
          $.ajax({
@@ -611,6 +684,10 @@ function editPageStatic(){
         }
        
     }
+     else if(templateID ==2 || templateID ==4){
+        tamplateImage1 ="";
+        tamplateImage2 ="";
+    }
     if(validate == true) {
         $.ajax({
             type: "POST",
@@ -641,7 +718,7 @@ function addPageAndAppend(pageItem){
      initAddStaticPageText();
      //close the add page box 
     
-        $("#voteAndWaitList").append('<tr class="bottom">'+
+        $("#voteAndWaitList").append('<tr class="itemPage bottom">'+
 				'<td> '+
 					'<img src="./img/Up Arrow.png" alt="arrow" class="nav-arrow up">'+
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
@@ -698,8 +775,13 @@ function pageCopy(pageItem){
 function addCopyVote(pageData){
     firstId = pageData.votes[0].cid;
     firstSongName=pageData.votes[0].songName;
-    secondId=pageData.votes[1].cid;
-    secondSongName =pageData.votes[1].songName;
+    secondId = 0;
+    secondSongName = "";
+    if(pageData.votes.length ==2){
+        secondId=pageData.votes[1].cid;
+        secondSongName =pageData.votes[1].songName;
+    }
+    
     threshold = pageData.votes[0].threshold;
     $.ajax({
             type: "POST",
@@ -825,3 +907,24 @@ function setImageUploadBox(){
     }
 }
 
+
+
+/************prevent actions******************/
+function isLivePage(data){
+    var status = data.status;// $(item).parents("tr").data("pageData").status;
+    if(status > 0  && status < 100) {
+        return true;
+    }
+    else { 
+        return false;
+     }
+}
+function isPublishedPage(data){
+    var status = data.status; //$(item).parents("tr").data("pageData").status;
+    if(status == 100) {
+        return true;
+    }
+    else { 
+        return false;
+     }
+}

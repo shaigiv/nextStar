@@ -1,14 +1,12 @@
 $(document).ready(function() {
-
-    $("#go-back").click(function() {
-        window.location.href = window.location.origin + "/index.html";
-        $("section").hide();
-        $("#main-page").show();
+    $(".back").click(function() {
+        back();
     });
 
+   
     $(".open-voting").click(function() {
         window.location.href = window.location.origin + "/index.html#voting-screens";
-       //switchHash();
+        //switchHash();
     });
 
     $("#contestants").click(function() {
@@ -24,7 +22,8 @@ $(document).ready(function() {
     $("#settings").click(function() {
         // window.location.href = window.location.origin + "/index.html#settings-list";
         // switchHash();
-        showSettingsPage();
+        navigate("settings");
+        //showSettingsPage();
     });
 
     $("#users").click(function() {
@@ -32,10 +31,84 @@ $(document).ready(function() {
         // switchHash();
     });
 
-    
+
 });
-pagePosition = "";
-pageBackPosition = "";
+pagePosition = "main";
+pageBackPosition = "main";
+navigationArray = new Array();
+navigationArray[0] ="main"
+navigationArrayIndex = 0;
+
+function navigate(to,from){
+   pageBackPosition = pagePosition;
+   pagePosition = to;
+    
+    
+   if(from == "back") {
+            --navigationArrayIndex;
+        }
+        else{
+            navigationArrayIndex++;
+        }
+    navigationArray[navigationArrayIndex] = pagePosition;
+    switch( to ){
+        case "main":
+            showMainPage();
+            break;
+        case "show":
+            pageBackPosition = pagePosition;
+            showShowPage(from);
+            break;
+        case "vote":
+            pageBackPosition = pagePosition;
+            openVotingPage();
+            break;
+        case "settings":
+            pageBackPosition = pagePosition;
+             showSettingsPage();
+            break;
+        
+    }
+}
+function showMainPage(){
+    $("section").hide();
+    $("#main-page").show();
+    $(".back").hide()
+}
+
+function showShowPage(from){
+    if (from =="back"){
+        //take the update data from server
+        getShowData();
+    }
+    console.log("showShowPage");
+    $("section").hide();
+    $("#prog-page").show();
+    $(".back").show()
+}
+
+function showProgPage(progLine){
+    $("section").hide();
+    $("#prog-page").show();
+    $(".back").show()
+}
+
+function showSettingsPage(){
+       $("section").hide();
+    $("#settings-list").show();
+    $(".back").show()
+}
+
+function openVotingPage(){
+      $("section").hide();
+    $("#voting-screens").show();
+    $(".back").show()
+}
+
+function back(){
+    navigate(navigationArray[navigationArrayIndex - 1],"back");
+}
+
 
 function switchHash() { //navigates according to hash tag
     var x;
@@ -84,48 +157,4 @@ function switchHash() { //navigates according to hash tag
             $("#prog-page20092013").show();
             break;
     }
-}
-function navigate(to){
-    switch( to ){
-        case "main":
-            showMainPage();
-            break;
-            case "show":
-            showShowPage();
-            break;
-            case "vote":
-            openVotingPage();
-            break;
-            case "settings":
-            showSettingsPage();
-            break;
-        
-    }
-}
-function showMainPage(){
-    
-}
-
-function showShowPage(){
-    $("section").hide();
-    $("#prog-page").show();
-}
-
-function showProgPage(progLine){
-    $("section").hide();
-    $("#prog-page").show();
-}
-
-function showSettingsPage(){
-       $("section").hide();
-    $("#settings-list").show();
-}
-
-function openVotingPage(){
-      $("section").hide();
-    $("#voting-screens").show();
-}
-
-function back(){
-    
 }
