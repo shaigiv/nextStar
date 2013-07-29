@@ -62,6 +62,9 @@ function showEvents(){
      $("#secondCompAddVote").change(function(){
         setImgOnAddVote(this);
     });
+      $("#template-select").change(function(){
+         setImageUploadBox(this);
+    });
 
     $("#addVoteBtn").click(function(){
       
@@ -607,7 +610,8 @@ function editPageStatic(){
 }
 
 function setEditPage(data){
-    
+    $($(editPageHtml).children("td")[1]).html(data.name);
+    hideAddPageBox();
 }
 
 function addPageAndAppend(pageItem){
@@ -786,4 +790,16 @@ function showEditProgBox(){
        
    }
     
+}
+
+function setImageUploadBox(){
+    var templateId =$("#template-select option:selected").val();
+    //if its a template wi th img - show the upload images box
+    if(templateId =="1" ||templateId =="3"  ){
+        $(".add-page-img-wrap").show();
+    }
+    //else- hide it
+    else{
+        $(".add-page-img-wrap").hide();
+    }
 }
