@@ -540,7 +540,7 @@ function addVoteAndAppend(voteItem){
               statusClass = "disable";
           }
           //if the item is live
-           else if(pageItem.status > 0 &&  pageItem.status < 100) {
+           else if(voteItem.status > 0 &&  voteItem.status < 100) {
               statusClass = "live";
           }
         $("#voteAndWaitList").append('<tr class="'+statusClass+' itemPage">' +
@@ -729,7 +729,9 @@ function editPageStatic(){
 
 function setEditPage(data){
     $($(editPageHtml).children("td")[1]).html(data.name);
+    $(editPageHtml).data("pageData", data);
     hideAddPageBox();
+    initAddStaticPageText();
 }
 
 function addPageAndAppend(pageItem){
@@ -776,8 +778,9 @@ function setAddPage(data){
 
 function  setEditAddPage(pageItemData){
     //set the template select
-    //$("#template-select option").reoveAttr("selected");
-    //$("# value=["+templateId+);
+    $("#template-select option").removeAttr("selected");
+    var templateId =pageItemData.templateId;
+    $('#template-select option[value="' + templateId + '"]').prop("selected", "selected");
     editStaticPageData = pageItemData;
     ///set the title
     $("#screen-title").val(pageItemData.title);
@@ -790,7 +793,11 @@ function  setEditAddPage(pageItemData){
     //set the images
     $(".add-page-img-wrap .smallImg").data("url", pageItemData.tamplateImage1);
     $(".add-page-img-wrap .largeImg").data("url", pageItemData.tamplateImage2);
-    $("#add-page-imgFile").attr("src", pageItemData.tamplateImage1);
+    var displayImg =pageItemData.tamplateImage1;
+    if(displayImg == ""){
+        displayImg = "img/default.jpg";
+    }
+    $("#add-page-imgFile").attr("src", displayImg);
     //change the add btn to edit
     $("#add-page-btn").text("ערוך");
     editStaticPage = true;

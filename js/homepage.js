@@ -61,6 +61,10 @@ function  homePageInitEvents(){
         $(".add-program-wrap").fadeOut();
     });
 
+    $("#edit-cancel-comp").click(function(){
+        $("#edit-contestant").fadeOut();
+    });
+
     $("#cancle-add-comp").click(function(){
         $("#add-contestant").fadeOut();
     });
@@ -258,17 +262,20 @@ function setCompetitorsList(data){
 function addCompetitor(){
     var smallImageComp =$(".add-comp-img-wrap .smallImg").data("url");
     var largeImageComp = $(".add-comp-img-wrap .largeImg").data("url");
-     
+      var name= $("#add-competitor-name").val();
    
     if(!smallImageComp || !largeImageComp){
         alert("עליך להעלות 2 תמונות");
+    }
+    else if(name==""){
+        alert("עליך להזין שם מתמודד");
     }
     ////check if the user upload the img to the server
     //if(smallImgUploadedByAdd == false || largeImgUploadedByAdd == false){
     //    alert("עליך להעלות את התמונות לפני הוספת מתמודד");
     //}
     else{
-          var name= $("#add-competitor-name").val();
+          
          var imgUrlSmall = $(".add-comp-img-wrap .smallImg").data("url");
          var imgUrlLarge = $(".add-comp-img-wrap .largeImg").data("url");
          $.ajax({

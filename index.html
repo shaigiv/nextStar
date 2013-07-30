@@ -124,10 +124,10 @@
 										</div>
 										<div>
 											<label for="file">תמונה גדולה:</label>
-											<input class="" type="file" name="largeImg" class="largeImg">
+											<input class="largeImg" type="file" name="largeImg">
 										</div>
 										<div class="approve-add-img">
-											<input id="add-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
+											<input id="add-upload" class="upload" type="button" name="submit" value="העלה תמונה">
 											<img id="add-competitor-imgFile" src="img/default.jpg" /> </div>
 										</div>
 									<div class="buttons"> <span style="float: left; margin-left: 5px;">
@@ -147,7 +147,7 @@
 										<input type="text" id="edit-competitor-name">
 									</div>
 									<div>
-										<form class="edit-comp-img-wrap" action="upload_file.php" method="post" enctype="multipart/form-data">
+										<form class="edit-comp-img-wrap" action="http://makosrv1.egoline.co.il/nextStar/upload" method="post" enctype="multipart/form-data" target="editIframeResult">
 											<div class="add-comp-img">
 												<div>
 													<label for="file">תמונה קטנה:</label>
@@ -155,15 +155,17 @@
 												</div>
 												<div>
 													<label for="file">תמונה גדולה:</label>
-													<input class="" type="file" name="largeImg" class="largeImg">
+													<input class="largeImg" type="file" name="largeImg">
 												</div>
 												<img id="edit-competitor-imgFile" src="" /> </div>
-												<input class="upload" type="submit" name="submit" value="העלה תמונה">
+												<input id="edit-upload" class="upload" type="button" name="" value="העלה תמונה">
+                                                <input id="submit-edit" class="" style="display: none" type="submit" name="submit" >
 											<div class="buttons"> <span style="float: left; margin-left: 5px;">
 												<button class="add" id="editComp" type="button">ערוך</button>
-												<button class="cancel" type="button">בטל</button>
+												<button id="edit-cancel-comp" class="cancel" type="button">בטל</button>
 												</span> </div>
 										</form>
+                                        <iframe style="display: none" id="editIframeResultId" name="editIframeResult" onload="editImageUploaded()"></iframe>
 									</div>
 								</div>
 							</li>
@@ -426,7 +428,7 @@
 											<label for="file">תמונה גדולה:</label>
 											<input class="largeImg" type="file" name="largeImg">
 										</div>
-										<input id="page-upload" class="upload" type="submit" name="submit" value="העלה תמונה">
+										<input id="page-upload" class="upload" type="button" name="submit" value="העלה תמונה">
 										<img id="add-page-imgFile" src="" /> </div>
 									
 									<input class="uploadSub" type="submit" style="display: none" id="page-submit" name="submit1" value="Submit">

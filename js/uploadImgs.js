@@ -1,25 +1,39 @@
 function initInputFile(){
 
+    //UPLOAD BTN CLICK - upload to server
     $("#add-upload").click(function() {
         
 
          if(smallImgAdded && largeImgAdded){
+             //if there are 2 images - upload to server
            $("#add-submit").click();
         }
         else{
             alert("עליך לבחור 2 תמונות לפני העלאתן")
         }
     });
-    
-    $("#page-upload").click(function() {
-            
-             if(smallImgAdded && largeImgAdded){
-          $("#page-submit").click();
+    //$("#edit-upload").click(function() {
+        
+        //upload only if the user choose at least 1 img
+         //if(smallImgEdited || largeImgEdited){
+             //if there are 2 images - upload to server
+    //       $("#submit-edit").click();
+      //  }
+      //  else{
+       //     alert("עליך לבחור תמונות לפני העלאתן")
+       // }
+  //  });
+
+    $("#edit-upload").click(function() {
+       // alert("click");
+        //upload only if the user choose at least 1 img
+         if(smallImgEdited || largeImgEdited){
+            // if there are 2 images - upload to server
+           $("#submit-edit").click();
         }
         else{
-            alert("עליך לבחור 2 תמונות לפני העלאתן")
+            alert("עליך לבחור תמונות לפני העלאתן")
         }
-       
     });
 
     $(".add-comp-img-wrap .smallImg").change(function(e) {
@@ -110,7 +124,18 @@ function initInputFile(){
         }
     });
 
-        $(".add-page-img-wrap .smallImg").change(function(e) {
+     $("#page-upload").click(function() {
+            
+             if(smallImgAdded && largeImgAdded){
+          $("#page-submit").click();
+        }
+        else{
+            alert("עליך לבחור 2 תמונות לפני העלאתן")
+        }
+       
+    });
+
+    $(".add-page-img-wrap .smallImg").change(function(e) {
 
         var fileName = $(this).val();
         if((/\.(gif|jpg|jpeg|png)$/i).test(fileName)) {
@@ -174,22 +199,35 @@ function addImageUploaded(){
     smallImgAdded = false;
     largeImgAdded = false;
 }
+
 //imagges uploaded by edit competitor
 function editImageUploaded(){
     var iframeName = $("#editIframeResultId").attr("name");
    // console.log("load iframe:" + $(window[iframeName].document.getElementsByTagName("body")[0]).text());
     var imagesUrlJson = $.parseJSON($(window[iframeName].document.getElementsByTagName("body")[0]).text());
-    imgUrlSmall = imagesUrlJson.smallImg;
-    imgUrlLarge = imagesUrlJson.largeImg;
+   
+    //if user upload only small image 
+    if(smallImgEdited ==true){
+         $(".edit-comp-img-wrap .smallImg").data("url", imagesUrlJson.smallImg);
+         $(".edit-comp-img-wrap .smallImg").data("url", imagesUrlJson.smallImg);
+    }
+    //if 2 images edited
+     if(largeImgEdited ==true && smallImgEdited ==true){
+         $(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.largeImg);
+         $(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.largeImg);
+    }
+    //if only large mage upload -the serevr return the value S "smallImg"
+    else if (smallImgEdited == false && largeImgEdited ==true){
+        $(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.smallImg);
+        $(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.smallImg);
+    }
     if( imgUrlSmall != undefined){
         smallImgUploadedByEdit = true;
     }
     if( imgUrlLarge != undefined){
         largeImgUploadedByEdit = true;
     }
-    $(".edit-comp-img-wrap .smallImg").data("url", imgUrlSmall);
-    $(".editcomp-img-wrap .largeImg").data("url", imgUrlLarge);
-    alert("התמונות עלו");
+     alert("התמונות עלו");
 }
 
 /*add page function*/
