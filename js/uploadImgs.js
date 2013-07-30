@@ -195,6 +195,8 @@ function addImageUploaded(){
     $(".add-comp-img-wrap .smallImg").data("url", imgUrlSmall);
     $(".add-comp-img-wrap .largeImg").data("url", imgUrlLarge);
     alert("התמונות עלו");
+    //show the dispaly img btns
+    $(".add-comp-img-wrap .displayImgBtn").show();
     //init the inicators for images chosen
     smallImgAdded = false;
     largeImgAdded = false;
@@ -228,6 +230,8 @@ function editImageUploaded(){
         largeImgUploadedByEdit = true;
     }
      alert("התמונות עלו");
+     //show the dispaly img btns
+    $(".edit-comp-img-wrap .displayImgBtn").show();
 }
 
 /*add page function*/
@@ -246,4 +250,6 @@ function pageImageUploaded(){
     $(".add-page-img-wrap .smallImg").data("url", imgUrlSmall);
     $(".add-page-img-wrap .largeImg").data("url", imgUrlLarge);
     alert("התמונות עלו");
+    //show the dispaly img btns
+    $(".add-page-img-wrap .displayImgBtn").show();
 }

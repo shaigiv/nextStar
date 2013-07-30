@@ -79,3 +79,10 @@ function addAttention(item){
    //    $(".attention").removeClass("attention");
    //},300);
 }
+
+//display img as a big - in new tab
+function displayImg(itemClicked){
+   var url =$(itemClicked).parent("div").children("input").data("url");
+   $("#displayImgLink").attr("href", url);
+   $("#displayImgLink")[0].click();
+}

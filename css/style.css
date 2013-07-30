@@ -1106,7 +1106,7 @@ opacity: 0.15;}
 }
 
 [name="smallImg"], [name="largeImg"]{
-    width:85px;  
+    width:62px;  
 }
 .approve-add-img{
 	float:left;
@@ -1138,4 +1138,29 @@ margin-top: 10px;
 
 #edit-prog-date-name .editProgName {
      display: none;
+}
+
+#vote-going-to-close{
+    width: 131px;
+font-size: 14px;
+background-image: url('../img/button2.png');
+background-repeat: no-repeat;
+background-size: 100% 100%;
+height: 22px;
+position: absolute;
+top: 255px;
+right: 391px;
+color: black;
+}
+#vote-going-to-close .diable{
+    
+opacity: 0.6;
+}
+
+.displayImgBtn{
+    font-size: 11px;
+    display: none;
+}
+#displayImgLink{
+    display: none;
 }

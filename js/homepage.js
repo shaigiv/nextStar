@@ -79,6 +79,11 @@ function  homePageInitEvents(){
        
     });
 
+    //display img event
+    $(".displayImgBtn").click(function(){
+        displayImg($(this));
+    });
+
     datepickerInit();
 }
 
