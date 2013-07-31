@@ -161,9 +161,11 @@
 													<input class="largeImg" type="file" name="largeImg">
                                                     <span class="large displayImgBtn">צפה בתמונה</span>
 												</div>
-												<img id="edit-competitor-imgFile" src="" /> </div>
+												<img id="edit-competitor-imgFile" src="" /> 
+                                            
 												<input id="edit-upload" class="upload" type="button" name="" value="העלה תמונה">
                                                 <input id="submit-edit" class="" style="display: none" type="submit" name="submit" >
+                                            </div>
 											<div class="buttons"> <span style="float: left; margin-left: 5px;">
 												<button class="add" id="editComp" type="button">ערוך</button>
 												<button id="edit-cancel-comp" class="cancel" type="button">בטל</button>
@@ -242,15 +244,21 @@
 							<input type="text" value="0" name="user2" id="vote2Perc"  class="userV">
 				</div>
 			</div>
-            <div id="vote-going-to-close" class="">הרשמה עומדת להסתיים</div>
+            <div id="register-going-to-close" class="disable">הרשמה עומדת להסתיים</div>
 			<ul class="horizonal-list blueH">
 				<li id="waitStat" class="statusItem"><span>ממתין</span></li>
-				<li id="openRegister" class="statusItem"><span>פתיחת הרשמה</span><br/><span class="date"></span>
+				<li id="openRegister" class="statusItem"><span>פתיחת הרשמה</span><br/>
 				</li>
-				<li id="openVote" class="statusItem"><span>פתיחת הצבעה</span><br/><span class="date"></span></li>
-				<li id="closeVote" class="statusItem"><span>סגירת הצבעה</span><br/><span class="date"></span></li>
-				<li id="publishResults" class="statusItem"><span>פרסם תוצאות</span><br/><span class="date"></span></li>
+				<li id="openVote" class="statusItem"><span>פתיחת הצבעה</span><br/></li>
+				<li id="closeVote" class="statusItem"><span>סגירת הצבעה</span><br/></li>
+				<li id="publishResults" class="statusItem"><span>פרסם תוצאות</span><br/></li>
 			</ul>
+            <ul id="vote-dates">
+                <li><span id="open-register-date" class="date"></span></li>
+                <li><span id="open-vote-date" class="date"></span></li>
+                <li><span id="close-vote-date" class="date"></span></li>
+                <li><span id="publish-results-date" class="date"></span></li>
+            </ul>
 			<div id="announcements">
 				<input type="text" value="ממתין לפתיחת הצבעה" id="wait-open" onclick="checkOpen()">
 				<input type="checkbox" disabled="disabled" checked="checked" id="wait-open-check">
@@ -262,13 +270,13 @@
 				<input type="checkbox" disabled="disabled" checked="checked" id="wait-continue-check">
 			</div>
 			<div id="current-contestants">
-				<div class="container-right"> <img src="img/ninet.jpg" alt="shiri" class="contestant-img">
+				<div class="container-right"> <img id="vote-first-img" src="img/ninet.jpg" alt="shiri" class="contestant-img">
 					<div class="result">
 						<div class="voting-name">נינט טייב</div>
 						<div id="vote1RealPerc" class="voting-precent green-text">58.3%</div>
 					</div>
 				</div>
-				<div class="container-left"> <img src="img/shiri.jpg" alt="shiri" class="contestant-img">
+				<div class="container-left"> <img id="vote-second-img" src="img/shiri.jpg" alt="shiri" class="contestant-img">
 					<div class="result">
 						<div class="voting-name">שירי מיימון</div>
 						<div id="vote2RealPerc" class="voting-precent red-text">42.3%</div>

@@ -1140,7 +1140,7 @@ margin-top: 10px;
      display: none;
 }
 
-#vote-going-to-close{
+#register-going-to-close{
     width: 131px;
 font-size: 14px;
 background-image: url('../img/button2.png');
@@ -1152,9 +1152,13 @@ top: 255px;
 right: 391px;
 color: black;
 }
-#vote-going-to-close .diable{
+#register-going-to-close.disable{
     
-opacity: 0.6;
+opacity: 0.4;
+}
+#register-going-to-close.active{
+    color: red;
+opacity: 1;
 }
 
 .displayImgBtn{
@@ -1163,4 +1167,14 @@ opacity: 0.6;
 }
 #displayImgLink{
     display: none;
+}
+
+#vote-dates{
+    height: 12px;
+margin-right: 75px;
+}
+#vote-dates li{
+   width: 159px;
+float: right;
+text-align: center;
 }

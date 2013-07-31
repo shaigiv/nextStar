@@ -4,6 +4,11 @@ SCREENCONTENT = "יצאנו לפרסומות";
 SCREENINFO = "מייד נמשיך בשידור";
 SCREENTITLE = "הערב בכוכב נולד";
 SCREENNAME = "הזן שם מסך";
+TEXTWAITREGISTER = "פתיחת הרשמה";
+TEXTWAITVOTE = "פתיחת הצבעה";
+TEXTWAITCALC = "סגירת הצבעה";
+PUBLISHRESULTS = "פרסם תוצאות";
+
 //templates dictionary - also for the application
 //המתנה עם תמונה -1
 //המתנה בלי תמונה -2
@@ -271,6 +276,9 @@ function setStatusText(data,numOfComp){
         case 25:
             text ="חי";
             break;
+            case 26:
+            text ="חי";
+            break;
         case 100:
         if(data.type == "vote"){
              var percents = data.votes[numOfComp-1].finalPercent;
@@ -358,6 +366,7 @@ function addVote(){
              if(editVotePage == true){
                  editVote(firstId,firstSongName,threshold,secondId,secondSongName);
              }
+            
              //if is a new vote additional
              else{
                $.ajax({
@@ -365,7 +374,7 @@ function addVote(){
                 url: domain + "type=addVotePage",
                 data: { "showId": currentShowId,"competitor_id1": firstId,"songName1":firstSongName,"competitor_id2":secondId,
                          "songName2":secondSongName,"threshold":threshold,
-                         "textWaitRegister":"","textWaitVote":"","textWaitCalc":"","textWaitContinue":""},
+                         "textWaitRegister":TEXTWAITREGISTER,"textWaitVote":TEXTWAITVOTE,"textWaitCalc":TEXTWAITCALC,"textWaitContinue":PUBLISHRESULTS},
                 success: function(data) {
                     console.log("success addVotePage" + data);
                         setAddVote(data);
@@ -411,7 +420,7 @@ function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
             }
         }
         if(validate){
-            
+         
                 if(numOfComp ==1){
             //type=updateVotePage&pid=1&vote_id1=1&competitor_id1=1&SongName1=ים%20של%20דמעות&vote_id2=1&competitor_id2=2&SongName2=המגפים&threshold=2
             $.ajax({
@@ -419,7 +428,7 @@ function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
             url: domain + "type=updateVotePage",
             data: { "pid": pid,"vote_id1":voteId1,"competitor_id1": firstId,"songName1":firstSongName,
                         "threshold":threshold,
-                        "textWaitRegister":"","textWaitVote":"","textWaitCalc":"","textWaitContinue":""},
+                        "textWaitRegister":TEXTWAITREGISTER,"textWaitVote":TEXTWAITVOTE,"textWaitCalc":TEXTWAITCALC,"textWaitContinue":PUBLISHRESULTS},
             success: function(data) {
                 console.log("success addVotePage" + data);
                     setEditVote(data);
@@ -822,14 +831,14 @@ function addCopyVote(pageData){
         secondId=pageData.votes[1].cid;
         secondSongName =pageData.votes[1].songName;
     }
-    
+        
     threshold = pageData.votes[0].threshold;
     $.ajax({
             type: "POST",
             url: domain + "type=addVotePage",
             data: { "showId": currentShowId,"competitor_id1": firstId,"songName1":firstSongName,"competitor_id2":secondId,
                         "songName2":secondSongName,"threshold":threshold,
-                        "textWaitRegister":"","textWaitVote":"","textWaitCalc":"","textWaitContinue":""},
+                        "textWaitRegister":TEXTWAITREGISTER,"textWaitVote":TEXTWAITVOTE,"textWaitCalc":TEXTWAITCALC,"textWaitContinue":PUBLISHRESULTS},
             success: function(data) {
                 console.log("success addVotePage" + data);
                     setAddVote(data);

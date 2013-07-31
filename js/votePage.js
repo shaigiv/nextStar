@@ -19,10 +19,16 @@ function votePageAttachEvents(){
     });
 
     $("#announcements input[type=checkbox]").click(function(){
-        updateWaitingText($(this));
+        //if the user check 
+        if($(this).is(':checked')){
+             updateWaitingText($(this));
+        }
+       
     });
-     
 
+    $("#register-going-to-close").click(function(){
+        registerGoingToClose($(this));
+    });
 }
 
 function getVoteData(voteItem){
@@ -63,6 +69,10 @@ function setVotePageData(data){
     setHeaderStatus(data.status);
     //set the waiting text
     setWaitingPage(data);
+    //set the comps' images
+    setCompImagesVote(data);
+    //set the dates
+    setVoteStatusesDate(data);
     setRealPercent(data);
     //show the page
     navigate("vote")
@@ -85,7 +95,7 @@ function openRegister(){
 function openVote(){
      //if the btn is a next step - do it
     if($("#openVote").hasClass("next")){
-        updateVoteStatus(22,setVoteOpen);
+        updateVoteStatus(23,setVoteOpen);
     }
     //do nothing
     else{
@@ -96,7 +106,7 @@ function openVote(){
 function closeVote(){
     //if the btn is a next step - do it
     if($("#closeVote").hasClass("next")){
-       updateVoteStatus(24,setVoteClose);
+       updateVoteStatus(25,setVoteClose);
     }
     //do nothing
     else{
@@ -144,7 +154,7 @@ function publishResult(){
      } 
          
      
-        updateVoteStatus(25,setPublishResult);
+        updateVoteStatus(26,setPublishResult);
     }
     //do nothing
     else{
@@ -162,7 +172,7 @@ function setVotePercent(data){
         //if 2 requests returned - send the publish status
         else if(requestReturned == 1){
             requestReturned =2;
-            updateVoteStatus(25,setPublishResult);
+            updateVoteStatus(26,setPublishResult);
         }
     }
 }
@@ -189,8 +199,6 @@ function updateVoteStatus(statusNum, funcCB){
 
 function setOpenRegister(data){
     console.log(data.status);
-    //update the date
-    $("#openRegister .date").text("12/05/2013 10:05:03");
     
     //set the header status
     setHeaderStatus(data.status);
@@ -198,8 +206,6 @@ function setOpenRegister(data){
 
 function setVoteOpen(data){
      console.log(data.status);
-    //update the date
-    $("#openVote .date").text("15/05/2014 10:05:03");
     
     //set the header status
     setHeaderStatus(data.status);
@@ -208,9 +214,6 @@ function setVoteOpen(data){
 function setVoteClose(data){
     console.log(data.status);
 
-    //update the date
-    $("#closeVote .date").text("15/06/2013 11:15:13");
-    
     //set the textbox percents
     var tempPerc =$("#vote1RealPerc").text().substring(0,$("#vote1RealPerc").text().length-1)
     var perc1 =Math.round(parseInt(tempPerc));
@@ -227,9 +230,6 @@ function setVoteClose(data){
 function setPublishResult(data){
     console.log(data.status);
 
-    //update the date
-    $("#publishResults .date").text("11/04/2010 11:15:13");
-    
     //set the header status
     setHeaderStatus(data.status);
 }
@@ -238,24 +238,38 @@ function setHeaderStatus(status) {
     $(".statusItem").addClass("disable");
     $(".statusItem").removeClass("current");
     $(".statusItem").removeClass("next");
-    $(".announcements input[type=text]").removeAttr("disabled");
+    $("#announcements input[type=text]").removeAttr("disabled");
     switch(status) {
         case 0:
             $("#waitStat").removeClass("disable");
             $("#waitStat").addClass("current");
             $("#openRegister").addClass("next");
             $("#openRegister").removeClass("disable");
+             //register going to close disable
+            $("#register-going-to-close").addClass("disable");
             break;
         case 21:
             $("#openRegister").removeClass("disable");
             $("#openRegister").addClass("current");
             $("#openVote").removeClass("disable");
             $("#openVote").addClass("next");
-
+            //register going to close able
+            $("#register-going-to-close").removeClass("disable");
             //set the text box wait disable
-           // $("#wait-open").attr("disabled", "disabled");
+            // $("#wait-open").attr("disabled", "disabled");
             break;
         case 22:
+            $("#openRegister").removeClass("disable");
+            $("#openRegister").addClass("current");
+            $("#openVote").removeClass("disable");
+            $("#openVote").addClass("next");
+            //register going to close able
+            $("#register-going-to-close").removeClass("disable");
+            $("#register-going-to-close").add("active");
+            //set the text box wait disable
+            // $("#wait-open").attr("disabled", "disabled");
+            break;
+        case 23:
             $("#openVote").removeClass("disable");
             $("#openVote").addClass("current");
             $("#closeVote").removeClass("disable");
@@ -263,10 +277,12 @@ function setHeaderStatus(status) {
 
             //set the text box wait disable
             $("#wait-open").attr("disabled", "disabled");
-            //$("#wait-close").attr("disabled", "disabled");
-
+            
+            //register going to close disable
+            $("#register-going-to-close").addClass("disable");
+            $("#register-going-to-close").removeClass("active");
             break;
-        case 24:
+        case 25:
             $("#closeVote").removeClass("disable");
             $("#closeVote").addClass("current");
             $("#publishResults").removeClass("disable");
@@ -275,10 +291,11 @@ function setHeaderStatus(status) {
             //set the text box wait disable
             $("#wait-open").attr("disabled", "disabled");
             $("#wait-close").attr("disabled", "disabled");
-           // $("#wait-count").attr("disabled", "disabled");
-
+           
+            //register going to close disable
+            $("#register-going-to-close").addClass("disable");
             break;
-        case 25:
+        case 26:
             $("#publishResults").removeClass("disable");
             $("#publishResults").addClass("current");
 
@@ -286,14 +303,17 @@ function setHeaderStatus(status) {
             $("#wait-open").attr("disabled", "disabled");
             $("#wait-close").attr("disabled", "disabled");
             $("#wait-count").attr("disabled", "disabled");
-           // $("#wait-continue").attr("disabled", "disabled");
+          
+            //register going to close disable
+            $("#register-going-to-close").addClass("disable");
             break;
             case 100:
                 $("#wait-open").attr("disabled", "disabled");
                 $("#wait-close").attr("disabled", "disabled");
                 $("#wait-count").attr("disabled", "disabled");
                 $("#wait-continue").attr("disabled", "disabled");
-
+            //register going to close disable
+            $("#register-going-to-close").addClass("disable");
     }
 }
  
@@ -353,16 +373,13 @@ function updateWaitingText(checkboxItem){
 }
 
 function sendUpdateText(field,value){
-    //type=updatePageFiled&pageId=1&filed=text&value=aaa
     $.ajax({
         type: "POST",
         url: domain + "type=updatePageFiled",
         data: {"pageId":currentPageId, "filed": field,"value":value },
         success: function(data) {
             console.log("success updatePageFiled: " + data);
-            // updatePageField(data);
-            //showShowPage();
-        },
+         },
         error: function(data) {
             console.log("error updatePageFiled: " + data);
         }
@@ -382,6 +399,53 @@ function setWaitingPage(data){
       if(data.textWaitContinue !=""){
          $("#wait-continue").val(data.textWaitContinue);
     }
+}
+
+function setCompImagesVote(data){
+    $("#vote-first-img").attr("src",data.votes[0].imageUrlA);
+    $("#vote-second-img").attr("src",data.votes[1].imageUrlA);
+}
+
+function setVoteStatusesDate(data){
+  
+    var tempDate;
+    if(data.statusTime[0]){
+        var tempLong =data.statusTime[0].time;
+        tempDate =new Date(tempLong);
+        tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+        $("#open-register-date").text(tempDate);
+   
+    }
+    if(data.statusTime[2]){
+        tempLong =data.statusTime[2].time;
+        tempDate =new Date(tempLong);
+        tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+        $("#open-vote-date").text(tempDate);
+ 
+    }
+
+    if(data.statusTime[3]){
+            tempLong =data.statusTime[3].time;
+    tempDate =new Date(tempLong);
+    tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+    $("#close-vote-date").text(tempDate);
+ 
+    }
+    if(data.statusTime[4]){
+        tempLong =data.statusTime[4].time;
+        tempDate =new Date(tempLong);
+        tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+        $("#publish-results-date").text(tempDate);
+ 
+    }
+    if(data.statusTime[5]){
+        tempLong =data.statusTime[5].time;
+        tempDate =new Date(tempLong);
+        tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+        $("#publish-results-date").text(tempDate);
+ 
+    }
+    
 }
 
 function setRealPercent(data){
@@ -422,4 +486,22 @@ function setPublishPage(data){
     console.log("successs setPublishPage");
     //refresh the status from db - get al list
     getShowData();
+}
+
+function registerGoingToClose(btn){
+    //if registergoing to close is disable-
+    //alert
+    if(btn.hasClass("disable")){
+        alert("לא ניתן לציין שהרשמה עומדת להסתיים כאשר הסטאטוס הפעיל  אינו 'הרשמה'");
+    }
+    //else - update the server
+    else{
+        updateVoteStatus(22,setRegisterGoingToClose);
+    }
+
+}
+
+function setRegisterGoingToClose(data){
+
+    $("#register-going-to-close").addClass("active");
 }
