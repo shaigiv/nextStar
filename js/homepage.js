@@ -1,5 +1,5 @@
-//var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
-var domain = "http://192.168.2.108:8080/nextStarQA/json?";
+var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
+//var domain = "http://192.168.2.108:8080/nextStarQA/json?";
 
 var editCompId = "";
 var editCompHtml = "";
@@ -310,6 +310,7 @@ function setAddCompetitor(data){
      $(".add-comp-img-wrap .smallImg").data("url", "");
      $(".add-comp-img-wrap .largeImg").data("url", "");
      $("#add-competitor-imgFile").attr("src","img/default.jpg");
+     $(".displayImgBtn").hide();
         //hack for init file data
      //$(".add-comp-img-wrap .smallImg").setAttribute('type', 'text');
      //$(".add-comp-img-wrap .smallImg").setAttribute('type', 'file');

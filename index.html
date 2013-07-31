@@ -238,10 +238,15 @@
 					משתתפים:<span>0</span> 
 				</div>
 				<div class="usersVote">
-							<label for="user1">נינט טייב : </label>
-							<input type="text" value="0" name="user1" id="vote1Perc" class="userV">
-							<label for="user2">שירי מיימון : </label>
-							<input type="text" value="0" name="user2" id="vote2Perc"  class="userV">
+                            <div id="vote1FinalPercName">
+                                <label for="user1"></label>
+							    <input type="text" value="0" name="user1" id="vote1Perc" class="userV">
+							 </div>
+							<div id="vote2FinalPercName">
+                                 <label for="user2"></label>
+							    <input type="text" value="0" name="user2" id="vote2Perc"  class="userV">
+                            </div>
+                           
 				</div>
 			</div>
             <div id="register-going-to-close" class="disable">הרשמה עומדת להסתיים</div>
@@ -272,13 +277,13 @@
 			<div id="current-contestants">
 				<div class="container-right"> <img id="vote-first-img" src="img/ninet.jpg" alt="shiri" class="contestant-img">
 					<div class="result">
-						<div class="voting-name">נינט טייב</div>
+						<div id="vote1CompName" class="voting-name">נינט טייב</div>
 						<div id="vote1RealPerc" class="voting-precent green-text">58.3%</div>
 					</div>
 				</div>
 				<div class="container-left"> <img id="vote-second-img" src="img/shiri.jpg" alt="shiri" class="contestant-img">
 					<div class="result">
-						<div class="voting-name">שירי מיימון</div>
+						<div id="vote2CompName" class="voting-name">שירי מיימון</div>
 						<div id="vote2RealPerc" class="voting-precent red-text">42.3%</div>
 					</div>
 				</div>

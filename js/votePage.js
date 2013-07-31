@@ -69,8 +69,8 @@ function setVotePageData(data){
     setHeaderStatus(data.status);
     //set the waiting text
     setWaitingPage(data);
-    //set the comps' images
-    setCompImagesVote(data);
+    //set the comps' images and names
+    setCompImagesAndNamesVote(data);
     //set the dates
     setVoteStatusesDate(data);
     setRealPercent(data);
@@ -182,16 +182,21 @@ function updateVoteStatus(statusNum, funcCB){
         type: "POST",
         url: domain + "type=updatePageStatus",
         data: { "pageId": currentPageId, "newStatus": statusNum },
-        success: function(data) {
+        success: function (data) {
             console.log("success updatePageStatus: " + data);
             //set the vote status
-            if(data.status){
+            if (data.status) {
                 voteStatus = data.status;
+                funcCB.call(undefined, data);
             }
-            
-            funcCB.call(undefined,data);
+            //if there is another open vote
+            if (data.error.indexOf('other vote Page is in middle') > -1) {
+                alert("הצבעה אחרת פתוחה! פרסם את תוצאותיה בטרם תוכל לפתוח הצבעה או דף אחרים");
+            }
+
+
         },
-        error: function(data) {
+        error: function (data) {
             console.log("error updatePageStatus. num: " + statusNum + " data: " + data);
         }
     });
@@ -202,6 +207,8 @@ function setOpenRegister(data){
     
     //set the header status
     setHeaderStatus(data.status);
+    //set date
+    setVoteStatusesDate(data);
 }
 
 function setVoteOpen(data){
@@ -209,6 +216,8 @@ function setVoteOpen(data){
     
     //set the header status
     setHeaderStatus(data.status);
+    //set date
+    setVoteStatusesDate(data)
 }
 
 function setVoteClose(data){
@@ -223,6 +232,8 @@ function setVoteClose(data){
     $("#vote2Perc").val(perc2);
     //set the header status
     setHeaderStatus(data.status);
+    //set date
+    setVoteStatusesDate(data)
 }
 
 
@@ -232,6 +243,8 @@ function setPublishResult(data){
 
     //set the header status
     setHeaderStatus(data.status);
+    //set date
+    setVoteStatusesDate(data)
 }
 
 function setHeaderStatus(status) {
@@ -401,9 +414,20 @@ function setWaitingPage(data){
     }
 }
 
-function setCompImagesVote(data){
-    $("#vote-first-img").attr("src",data.votes[0].imageUrlA);
-    $("#vote-second-img").attr("src",data.votes[1].imageUrlA);
+function setCompImagesAndNamesVote(data){
+
+     $("#vote-first-img").attr("src",getCompImgByID(data.votes[0].cid));
+     $("#vote1CompName").text(getCompNameByID(data.votes[0].cid));
+     $("#vote1FinalPercName label").text(getCompNameByID(data.votes[0].cid));
+     $("#vote1FinalPercName input").val(data.votes[0].finalPercent);
+    if(data.votes.length ==2){
+        
+    $("#vote-second-img").attr("src",getCompImgByID(data.votes[1].cid));
+    $("#vote2CompName").text(getCompNameByID(data.votes[1].cid));
+    $("#vote2FinalPercName label").text(getCompNameByID(data.votes[1].cid));
+    $("#vote2FinalPercName input").val(data.votes[1].finalPercent);
+    }
+   
 }
 
 function setVoteStatusesDate(data){
@@ -464,9 +488,11 @@ function setPerc(perc1,perc2){
     //if is not a double vote- hide the second user
     if(doubleVotes != true){
         $("#voting-screens .container-left").hide();
+        $("#vote2FinalPercName").hide();
     }
     else{
         $("#voting-screens .container-left").show();
+        $("#vote2FinalPercName").show();
     }
 }
 
