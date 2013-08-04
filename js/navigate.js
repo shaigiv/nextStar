@@ -1,23 +1,23 @@
 $(document).ready(function() {
     $(".back").click(function() {
-        back();
+        back(pagePosition);
     });
 
    
-    $(".open-voting").click(function() {
-        window.location.href = window.location.origin + "/index.html#voting-screens";
-        //switchHash();
-    });
+    //$(".open-voting").click(function() {
+    //    window.location.href = window.location.origin + "/index.html#voting-screens";
+    //    //switchHash();
+    //});
 
-    $("#contestants").click(function() {
-        window.location.href = window.location.origin + "/index.html#contestants-list";
-        // switchHash();
-    });
+    //$("#contestants").click(function() {
+    //    window.location.href = window.location.origin + "/index.html#contestants-list";
+    //    // switchHash();
+    //});
 
-    $("#programs").click(function() {
-        window.location.href = window.location.origin + "/index.html#programs-list";
-        //switchHash();
-    });
+    //$("#programs").click(function() {
+    //    window.location.href = window.location.origin + "/index.html#programs-list";
+    //    //switchHash();
+    //});
 
     $("#settings").click(function() {
         // window.location.href = window.location.origin + "/index.html#settings-list";
@@ -26,10 +26,10 @@ $(document).ready(function() {
         //showSettingsPage();
     });
 
-    $("#users").click(function() {
-        window.location.href = window.location.origin + "/index.html#users-list";
-        // switchHash();
-    });
+    //$("#users").click(function() {
+    //    window.location.href = window.location.origin + "/index.html#users-list";
+    //    // switchHash();
+    //});
 
 
 });
@@ -39,32 +39,33 @@ navigationArray = new Array();
 navigationArray[0] ="main"
 navigationArrayIndex = 0;
 
+
+
+
 function navigate(to,from){
-   pageBackPosition = pagePosition;
-   pagePosition = to;
-    
-    
-   if(from == "back") {
-            --navigationArrayIndex;
-        }
-        else{
-            navigationArrayIndex++;
-        }
-    navigationArray[navigationArrayIndex] = pagePosition;
+  
+    if(from == "back") {
+        --this.navigationArrayIndex;
+    }
+
+    if(from != "back") {
+        ++this.navigationArrayIndex;
+        this.navigationArray[this.navigationArrayIndex] = to;
+    }
     switch( to ){
         case "main":
             showMainPage();
             break;
         case "show":
-            pageBackPosition = pagePosition;
+            
             showShowPage(from);
             break;
         case "vote":
-            pageBackPosition = pagePosition;
+          
             openVotingPage();
             break;
         case "settings":
-            pageBackPosition = pagePosition;
+            
              showSettingsPage();
             break;
         
@@ -73,7 +74,10 @@ function navigate(to,from){
 function showMainPage(){
     $("section").hide();
     $("#main-page").show();
-    $(".back").hide()
+    $(".back").hide();
+    getShowsList();
+     pageBackPosition = pagePosition;
+     pagePosition = "main";
 }
 
 function showShowPage(from){
@@ -84,28 +88,31 @@ function showShowPage(from){
     console.log("showShowPage");
     $("section").hide();
     $("#prog-page").show();
-    $(".back").show()
-}
+    $(".back").show();
 
-function showProgPage(progLine){
-    $("section").hide();
-    $("#prog-page").show();
-    $(".back").show()
+     pageBackPosition = pagePosition;
+     pagePosition = "show";
 }
 
 function showSettingsPage(){
        $("section").hide();
     $("#settings-list").show();
     $(".back").show()
+
+    pageBackPosition = pagePosition;
+     pagePosition = "settings";
 }
 
 function openVotingPage(){
       $("section").hide();
     $("#voting-screens").show();
     $(".back").show()
+
+    pageBackPosition = pagePosition;
+     pagePosition = "vote";
 }
 
-function back(){
+function back(from){
     navigate(navigationArray[navigationArrayIndex - 1],"back");
 }
 

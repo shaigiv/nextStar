@@ -1,6 +1,6 @@
-//var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
-var domain = "http://makosrv1.egoline.co.il/nextStarTestA/json?";
-var domain = "http://makosrv1.egoline.co.il/nextStarTestB/json?";
+var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
+//var domain = "http://makosrv1.egoline.co.il/nextStarTestA/json?";
+//var domain = "http://makosrv1.egoline.co.il/nextStarTestB/json?";
 //var domain = "http://192.168.2.108:8080/nextStarQA/json?";
 
 var editCompId = "";
@@ -70,6 +70,7 @@ function  homePageInitEvents(){
 
     $("#cancle-add-comp").click(function(){
         $("#add-contestant").fadeOut();
+        addCompInitFields();
     });
 
     $("#open-new-comp").click(function(){
@@ -111,7 +112,7 @@ function getShowsList() {
 }
 
 function setShowList(data){
-   
+    $("#programs-list-ul").html("");
     $(data).each(function(index){
         console.log("in setShowList: "+this.name);
          console.log("in setShowList: "+this.status);
@@ -119,7 +120,7 @@ function setShowList(data){
         var number = index*1+1*1;
         var id = this.id;
         var data =this;
-        var status = "הצבעות ("+this.CompetitorCount + ")" +"   מתמודדים ("+this.votesCount + ")";
+        var status = "הצבעות ("+this.votesCount + ")" +"   מתמודדים ("+this.CompetitorCount + ")";
         var statusClass ="";
          if (data.live == true){
              statusClass ="live"
@@ -182,19 +183,22 @@ function addShow(){
     var showName = $("#add-prog-name").val();
     var dateTemp =$( "#datepicker" ).datepicker( "getDate" );
     var date =dateTemp.getTime();
-
-     $.ajax({
-        type:"POST",
-        url: domain + "type=addShow",
-        data:{"name":showName,"date":date},
-        success: function(data) {
-            console.log("success addShow: " + data);
-            setShowAdded(data);
-        },
-        error: function(data) {
-            console.log("error addShow: " + data);
-        }
-    });
+    if(showName ==""){alert("עליך להוסיף שם תוכנית")}
+    else{
+         $.ajax({
+            type:"POST",
+            url: domain + "type=addShow",
+            data:{"name":showName,"date":date},
+            success: function(data) {
+                console.log("success addShow: " + data);
+                setShowAdded(data);
+            },
+            error: function(data) {
+                console.log("error addShow: " + data);
+            }
+        });
+    }
+    
 }
 
 
@@ -310,11 +314,7 @@ function addCompetitor(){
 function setAddCompetitor(data){
      console.log(data);
      //init the add upload 
-     $("#add-competitor-name").val("");
-     $(".add-comp-img-wrap .smallImg").data("url", "");
-     $(".add-comp-img-wrap .largeImg").data("url", "");
-     $("#add-competitor-imgFile").attr("src","img/default.jpg");
-     $(".displayImgBtn").hide();
+    addCompInitFields();
         //hack for init file data
      //$(".add-comp-img-wrap .smallImg").setAttribute('type', 'text');
      //$(".add-comp-img-wrap .smallImg").setAttribute('type', 'file');
@@ -346,6 +346,14 @@ function setAddCompetitor(data){
      $("#conestant-container").children("li:last").data("compData",jsonData);
 
      
+}
+
+function addCompInitFields(){
+     $("#add-competitor-name").val("");
+     $(".add-comp-img-wrap .smallImg").data("url", "");
+     $(".add-comp-img-wrap .largeImg").data("url", "");
+     $("#add-competitor-imgFile").attr("src","img/default.jpg");
+     $(".displayImgBtn").hide();
 }
 
 function updateCompetitor(){

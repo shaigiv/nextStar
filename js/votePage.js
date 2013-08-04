@@ -74,6 +74,7 @@ function setVotePageData(data){
     //set the dates
     setVoteStatusesDate(data);
     setRealPercent(data);
+    setTextboxPercent(data);
     //show the page
     navigate("vote")
    // openVotingPage();
@@ -190,7 +191,7 @@ function updateVoteStatus(statusNum, funcCB){
                 funcCB.call(undefined, data);
             }
             //if there is another open vote
-            if (data.error.indexOf('other vote Page is in middle') > -1) {
+            else if (data.error.indexOf('other vote Page is in middle') > -1) {
                 alert("הצבעה אחרת פתוחה! פרסם את תוצאותיה בטרם תוכל לפתוח הצבעה או דף אחרים");
             }
 
@@ -209,6 +210,7 @@ function setOpenRegister(data){
     setHeaderStatus(data.status);
     //set date
     setVoteStatusesDate(data);
+
 }
 
 function setVoteOpen(data){
@@ -339,21 +341,21 @@ function checkOpen() {
     document.getElementById("wait-open-check").checked = false;
 
     //clear the text
-    $("#wait-open").val("");
+    //$("#wait-open").val("");
 }
 
 function checkClose() {
     document.getElementById("wait-close-check").disabled = false;
     document.getElementById("wait-close-check").checked = false;
     //clear the text
-    $("#wait-close").val("");
+    //$("#wait-close").val("");
 }
 function checkCount() {
     document.getElementById("wait-count-check").disabled = false;
     document.getElementById("wait-count-check").checked = false;
 
      //clear the text
-    $("#wait-count").val("");
+    //$("#wait-count").val("");
 }
 function checkContinue() {
     document.getElementById("wait-continue-check").disabled = false;
@@ -422,10 +424,15 @@ function setCompImagesAndNamesVote(data){
      $("#vote1FinalPercName input").val(data.votes[0].finalPercent);
     if(data.votes.length ==2){
         
-    $("#vote-second-img").attr("src",getCompImgByID(data.votes[1].cid));
-    $("#vote2CompName").text(getCompNameByID(data.votes[1].cid));
-    $("#vote2FinalPercName label").text(getCompNameByID(data.votes[1].cid));
-    $("#vote2FinalPercName input").val(data.votes[1].finalPercent);
+        $("#vote-second-img").attr("src",getCompImgByID(data.votes[1].cid));
+        $("#vote2CompName").text(getCompNameByID(data.votes[1].cid));
+        $("#vote2FinalPercName label").text(getCompNameByID(data.votes[1].cid));
+        $("#vote2FinalPercName input").val(data.votes[1].finalPercent);
+    }
+    //if this is a single vote- hide the second comp
+    else{
+         $("#voting-screens .container-left").hide();
+         $("#vote2FinalPercName").hide();
     }
    
 }
@@ -433,68 +440,99 @@ function setCompImagesAndNamesVote(data){
 function setVoteStatusesDate(data){
   
     var tempDate;
+    //hide all dates - and show if its exist
+    $(".date").hide();
     if(data.statusTime[0]){
         var tempLong =data.statusTime[0].time;
         tempDate =new Date(tempLong);
         tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
         $("#open-register-date").text(tempDate);
+        $("#open-register-date").show();
    
     }
-    if(data.statusTime[2]){
-        tempLong =data.statusTime[2].time;
+    if(data.statusTime[1]){
+        tempLong =data.statusTime[1].time;
         tempDate =new Date(tempLong);
         tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
         $("#open-vote-date").text(tempDate);
+        $("#open-vote-date").show();
  
     }
 
-    if(data.statusTime[3]){
-            tempLong =data.statusTime[3].time;
+    if(data.statusTime[2]){
+            tempLong =data.statusTime[2].time;
     tempDate =new Date(tempLong);
     tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
     $("#close-vote-date").text(tempDate);
+    $("#close-vote-date").show();
  
     }
-    if(data.statusTime[4]){
-        tempLong =data.statusTime[4].time;
+    if(data.statusTime[3]){
+        tempLong =data.statusTime[3].time;
         tempDate =new Date(tempLong);
         tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
         $("#publish-results-date").text(tempDate);
+         $("#publish-results-date").show();
  
     }
-    if(data.statusTime[5]){
-        tempLong =data.statusTime[5].time;
-        tempDate =new Date(tempLong);
-        tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
-        $("#publish-results-date").text(tempDate);
+    //if(data.statusTime[4]){
+    //    tempLong =data.statusTime[4].time;
+    //    tempDate =new Date(tempLong);
+    //    tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+    //    $("#publish-results-date").text(tempDate); 
+    //    $("#publish-results-date").show();
  
+ //   //}
+    //
+}
+
+function setRealPercent(data){ 
+    var perc1="";
+    var perc2="";
+    //if the vote was published or vote in publish results - show the real percent
+    if(data.status ==100 || data.status == 26)
+    {
+         perc1 =data.votes[0].finalPercent;
+         perc2=0;
+          //if is not a double vote- hide the second user
+        if(doubleVotes != true){
+            //$("#voting-screens .container-left").hide();
+            $("#vote2FinalPercName").hide();
+            $("#vote1RealPerc").show();
+        }
+        else{
+             perc2 =data.votes[1].finalPercent;
+            $("#voting-screens .container-left").show();
+            $("#vote2FinalPercName").show();
+            $("#vote1RealPerc").show();
+            $("#vote2RealPerc").show();
+
+        }
+         $("#vote1RealPerc").text(perc1+"%");
+         $("#vote2RealPerc").text(perc2+"%");
+    }
+    //else -hide the real percent
+    else
+    {
+        $("#vote1RealPerc").hide();
+        $("#vote2RealPerc").hide();
+    }
+   
+    
+   
+}
+
+function setTextboxPercent(data){
+    var perc1 = data.votes[0].finalPercent;
+    $("#vote1Perc").val(perc1);
+    if(data.votes.length == 2){
+        var perc2 = data.votes[1].finalPercent; 
+        $("#vote2Perc").val(perc2);
     }
     
 }
 
-function setRealPercent(data){
-    var perc1 =data.votes[0].finalPercent;
-    var perc2=0;
-    if (doubleVotes ==true){
-        perc2 =data.votes[1].finalPercent;
-    }
-    
 
-    setPerc(perc1,perc2);
-}
-function setPerc(perc1,perc2){
-    $("#vote1RealPerc").text(perc1+"%");
-    $("#vote2RealPerc").text(perc2+"%");
-    //if is not a double vote- hide the second user
-    if(doubleVotes != true){
-        $("#voting-screens .container-left").hide();
-        $("#vote2FinalPercName").hide();
-    }
-    else{
-        $("#voting-screens .container-left").show();
-        $("#vote2FinalPercName").show();
-    }
-}
 
 /********* publish page*****/
 
