@@ -14,7 +14,7 @@ DEFAULTTHRESHOLD ="50"
 //המתנה בלי תמונה -2
 //סטטי עם תמונה -3
 //סטטי בלי תמונה -4
-
+//5- מסך סיום
 var editStaticPage =false;
 var editStaticPageData = "";
 var editPageData="";
@@ -672,7 +672,7 @@ function addPageStatic(){
         }
        
     }
-    else if(templateId ==2 || templateId ==4){
+    else if(templateId ==2 || templateId ==4  || templateId ==5){
         tamplateImage1 ="";
         tamplateImage2 ="";
     }
@@ -718,7 +718,7 @@ function editPageStatic(){
         }
        
     }
-     else if(templateID ==2 || templateID ==4){
+     else if(templateID ==2 || templateID ==4 || templateId ==5){
         tamplateImage1 ="";
         tamplateImage2 ="";
     }
