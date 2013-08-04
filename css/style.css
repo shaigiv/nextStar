@@ -303,7 +303,7 @@ ul.horizonal-list li {
 table {
     /*width: 86%;*/
     margin: auto;
-    margin-top: 30px;
+    margin-top: 0px;
     text-align: center;
     font-size: 17px;
     line-height: 30px;
@@ -1115,7 +1115,7 @@ opacity: 0.15;}
     width: 593px;
 margin-right: 121px;
 margin-top: 30px;
-height: 50px;
+height: 65px;
 }
 .prog-name-edit-date{
 display: none;

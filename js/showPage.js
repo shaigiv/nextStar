@@ -8,7 +8,7 @@ TEXTWAITREGISTER = "פתיחת הרשמה";
 TEXTWAITVOTE = "פתיחת הצבעה";
 TEXTWAITCALC = "סגירת הצבעה";
 PUBLISHRESULTS = "פרסם תוצאות";
-
+DEFAULTTHRESHOLD ="50"
 //templates dictionary - also for the application
 //המתנה עם תמונה -1
 //המתנה בלי תמונה -2
@@ -139,27 +139,31 @@ function showEvents(){
     $("#edit-prog-name").click(function(){
         showEditProgBox();
     });
+    editDatePickerInit();
 
-    ///**datepicker**/
-    // $("#datepicker-icon").click( 
-    //    function(){
-    //        $( "#datepicker" ).focus();
-    //    });
-
-    //$( "#datepicker-edit" ).datepicker( {
-    //onSelect: function(date) {
-    ////alert(date);
-    //}
-
+    $("#edit-show-btn").click(function(){
+        editShow();
+    });
+     $("#cancel-edit-show-btn").click(function(){
+        hideEditProgBox();
+    });
 }
    
 function openShow(show){
     // window.location.href = window.location.origin + "/index.html#prog-page10092013";
         //switchHash();
         var showId = show.parents("li").data("showData").id;
+        var name = show.parents("li").data("showData").name;
+        $("#prog-title").text(name);
         currentShowId = showId;
         getShowData();
         setCompSelectList();
+
+        //set the EDIT BOX prog name and text 
+        
+        $(".editProgName").val(name);
+        var date = show.parents("li").data("showData").date;
+        $("#datepicker-edit").datepicker( "setDate",new Date(date));
 
 }
 
@@ -510,7 +514,8 @@ function clearAddVoteBox(){
         editVotePage = false;
         editPageData = "";
         editPageHtml = "";
-        $("#addVoteBtn").text("הוסף")
+        $("#addVoteBtn").text("הוסף");
+       $("#threshold-add-vote").val(DEFAULTTHRESHOLD);
 }
 
 function addVoteAndAppend(voteItem){
@@ -583,7 +588,7 @@ function pageEdit(pageItem){
     }
 
     //put the boxes on focus by scroll to
-    $(body).prop({ scrollTop: $("body").prop("scrollHeight") });
+    //$(body).prop({ scrollTop: $("body").prop("scrollHeight") });
 }
 function  setEditAddVote(pageItemData){
     var firstId = pageItemData.votes[0].cid;
@@ -950,13 +955,9 @@ function showEditProgBox(){
    if( $("#edit-prog-date-name .prog_title").is(":visible")){
        $("#edit-prog-date-name .prog_title").hide();
 
-    $("#edit-prog-date-name .editProgName").show();
-    $("#edit-prog-date-name .prog-name-edit-date").addClass("show");
-    $("#edit-prog-date-name .buttons").show();
-    //set the prog name in the textbox
-    var name =$(".prog_title").text();
-    $(".editProgName").val(name);
-       
+        $("#edit-prog-date-name .editProgName").show();
+        $("#edit-prog-date-name .prog-name-edit-date").addClass("show");
+        $("#edit-prog-date-name .buttons").show();
    }
    else{
        $("#edit-prog-date-name .prog_title").show();
@@ -967,6 +968,14 @@ function showEditProgBox(){
        
    }
     
+}
+
+function hideEditProgBox(){
+     $("#edit-prog-date-name .prog_title").show();
+
+    $("#edit-prog-date-name .editProgName").hide();
+    $("#edit-prog-date-name .prog-name-edit-date").removeClass("show");
+    $("#edit-prog-date-name .buttons").hide();
 }
 
 function setImageUploadBox(){
@@ -1001,4 +1010,59 @@ function isPublishedPage(data){
     else { 
         return false;
      }
+}
+
+
+
+/******* edit date picker*******/
+function editDatePickerInit(){
+     $( "#datepicker-edit" ).datepicker( {
+          onSelect: function(date) {
+            //alert(date);
+        }, 
+       showButtonPanel: true,
+        minDate: 0,
+    },$.datepicker.regional[ "he" ] );
+
+    //$("#datepicker-icon").click(
+    //    function(){
+    //        $( "#datepicker" ).focus();
+    //    });
+
+
+	
+}
+
+function editShow(){
+   // type=updateShow&id=5&name=hihi&date=1373403600000
+
+    var id =currentShowId;
+    var showName = $("#editProgName").val();
+    var dateTemp =$( "#datepicker-edit" ).datepicker( "getDate" );
+    var date =dateTemp.getTime();
+
+     $.ajax({
+        type:"POST",
+        url: domain + "type=updateShow",
+        data:{"id":id,"name":showName,"date":date},
+        success: function(data) {
+            console.log("success addShow: " + data);
+            //setShowAdded(data);
+            setShowEdited(data);
+        },
+        error: function(data) {
+            console.log("error addShow: " + data);
+        }
+    });
+}
+
+function setShowEdited(data){
+    $("#prog-title").text(data.name);
+    //set the EDIT BOX prog name and text 
+        
+    $(".editProgName").val(data.name);
+    var date = data.date;
+    $("#datepicker-edit").datepicker( "setDate",new Date(date));
+
+    hideEditProgBox();
 }

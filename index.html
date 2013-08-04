@@ -47,7 +47,7 @@
 						<div class="prog-date-picker">
 							<div><span>זמן שידור התוכנית</span></div>
 							<div>
-								<input id="datepicker" type="text" />
+								<input id="datepicker" disabled="disabled" type="text" />
 							</div>
 							<div><img width="30px" height="30px" id="datepicker-icon" src="img/calendar.png" /></div>
 						</div>
@@ -294,7 +294,7 @@
 			<div id="" class="prog-page">
                 <div id="edit-prog-date-name">
                   <div class="prog-name-edit-wrap">
-                       <span class="prog_title">תוכנית 1 - 10/9/2013 </span><input class="editProgName" type="text"> 
+                       <span class="prog_title" id="prog-title"></span><input id="editProgName" class="editProgName" type="text"> 
                        <span id="edit-prog-name">ערוך שם </span>
                   </div>
 					<div class="prog-name-edit-date">
@@ -302,8 +302,8 @@
 					    <input type="text" id="datepicker-edit"><div><!--<img width="30px" height="30px" id="datepicker-icon-edit" src="img/calendar.png" />--></div>
                     </div>
                     <div class="buttons">
-                        <button type="button" style="left: 55px;" class="button_show">אשר</button>
-					    <button type="button" class="button_cancel">בטל</button>
+                        <button id="edit-show-btn" type="button" style="left: 55px;" class="button_show">אשר</button>
+					    <button id="cancel-edit-show-btn" type="button" class="button_cancel">בטל</button>
                     </div>
 					
 					</span> </span> 

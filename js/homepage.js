@@ -195,6 +195,8 @@ function addShow(){
     });
 }
 
+
+
 function setShowAdded(data){
     //init the fields
      $(".add-program-wrap").fadeOut();
@@ -204,7 +206,7 @@ function setShowAdded(data){
      var number =$("#programs-list-ul li").length+1;
      var name =data.name;
      var id = data.id;
-     var status = "הצבעות ("+data.CompetitorCount + ")" +"   מתמודדים ("+data.votesCount + ")";
+     var status = "הצבעות ("+data.votesCount + ")" +"   מתמודדים ("+data.CompetitorCount + ")";
      var statusClass ="";
      if (data.live == true){
          statusClass ="live"
