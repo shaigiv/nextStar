@@ -1,6 +1,6 @@
-var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
+//var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
 //var domain = "http://makosrv1.egoline.co.il/nextStarTestA/json?";
-//var domain = "http://makosrv1.egoline.co.il/nextStarTestB/json?";
+var domain = "http://makosrv1.egoline.co.il/nextStarTestB/json?";
 //var domain = "http://192.168.2.108:8080/nextStarQA/json?";
 
 var editCompId = "";
@@ -179,12 +179,17 @@ function setShowDeleted(data){
 
 
 function addShow(){
-    
+    if($("#datepicker").val() ==""){
+        alert("עליך להזין תאריך לתוכנית")
+    }
     var showName = $("#add-prog-name").val();
-    var dateTemp =$( "#datepicker" ).datepicker( "getDate" );
+     if(showName ==""){
+        alert("עליך להוסיף שם תוכנית")}
+   else{
+        var dateTemp =$( "#datepicker" ).datepicker( "getDate" );
     var date =dateTemp.getTime();
-    if(showName ==""){alert("עליך להוסיף שם תוכנית")}
-    else{
+   
+    
          $.ajax({
             type:"POST",
             url: domain + "type=addShow",
@@ -197,7 +202,9 @@ function addShow(){
                 console.log("error addShow: " + data);
             }
         });
-    }
+   }
+   
+    
     
 }
 
@@ -344,7 +351,7 @@ function setAddCompetitor(data){
                                 "</li>");
      
      $("#conestant-container").children("li:last").data("compData",jsonData);
-
+    // $("#conestant-container").children("li:last").prev().after( $("#conestant-container").children("li:last"));
      
 }
 

@@ -106,31 +106,31 @@ function showEvents(){
         $("#add-page-title").click();
         hideAddPageBox();
     });
-    $("#screen-title").focus(function() {
-        if($(this).val() == SCREENTITLE) {
-            $(this).val("");
-        }
-    });
+    //$("#screen-title").focus(function() {
+    //    if($(this).val() == SCREENTITLE) {
+    //        $(this).val("");
+    //    }
+    //});
     //$("#screen-title").blur(function() {
     //   if($(this).val() == "") {
     //        $(this).val(SCREENTITLE);
     //    }
     //});
-    $("#screen-content").focus(function() {
-        if($(this).val() == SCREENCONTENT) {
-            $(this).val("");
-        }
-    });
-    $("#screen-info").focus(function() {
-        if($(this).val() == SCREENINFO) {
-            $(this).val("");
-        }
-    });
-     $("#screen-name").focus(function() {
-        if($(this).val() == SCREENNAME) {
-            $(this).val("");
-        }
-    });
+    //$("#screen-content").focus(function() {
+    //    if($(this).val() == SCREENCONTENT) {
+    //        $(this).val("");
+    //    }
+    //});
+    //$("#screen-info").focus(function() {
+    //    if($(this).val() == SCREENINFO) {
+    //        $(this).val("");
+    //    }
+    //});
+    // $("#screen-name").focus(function() {
+    //    if($(this).val() == SCREENNAME) {
+    //        $(this).val("");
+    //    }
+    //});
 
    
     $("#voteAndWaitList").delegate(".nav-arrow.up", "click", function() {
@@ -589,7 +589,7 @@ function addVoteAndAppend(voteItem){
 					'<td>'+ compsHtml+'</td>' +
 					'<td>'+songsHtml+'</td>' +
 					'<td>' + status + '</td>' +
-					'<td class="row-options"><span class="edit '+isDisableClassLive +' ' +isDisableClassPublish+'">ערוך</span> <span class="delete '+isDisableClassLive+'">מחק</span> <span class="copy">שכפל</span></td>' +
+					'<td class="row-options"><span class="edit '+isDisableClassLive +' ' +isDisableClassPublish+'">ערוך</span> <span class="delete '+isDisableClassLive +'">מחק</span> <span class="copy">שכפל</span></td>' +
 					'<td>הצג</td>' +
 					'<td class="open-voting">פתח</td>' +
 				'</tr>');
@@ -778,6 +778,7 @@ function addPageAndAppend(pageItem){
       var action ="פרסם";
       var statusClass="";
       var editClass = "";
+      var deleteClass="";
       if(pageItem.status == 100 ) {
           action = "-";
           statusClass = "disable";
@@ -787,6 +788,7 @@ function addPageAndAppend(pageItem){
           action = "-";
           statusClass = "live";
           editClass = "disable";
+          deleteClass ="disable"
       }
      initAddStaticPageText();
      //close the add page box 
@@ -799,7 +801,7 @@ function addPageAndAppend(pageItem){
 				'</td>'+
 				'<td colspan="2">'+name+'</td>'+
 				'<td>'+status+'</td>'+
-				'<td class="row-options"><span class=\"edit '+editClass+'\">ערוך</span> <span class=\"delete\">מחק</span> <span class=\"copy\">שכפל</span></td>'+
+				'<td class="row-options"><span class=\"edit '+editClass+'\">ערוך</span> <span class=\"delete '+deleteClass+'\">מחק</span> <span class=\"copy\">שכפל</span></td>'+
 				'<td>הצג</td>'+
 				'<td class="publish">'+action+'</td>'+
 			'</tr>');
