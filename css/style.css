@@ -365,6 +365,19 @@ table td:last-child {
 #BlueHStatus{
 width: 23%;
 }
+
+#BlueHOptions{
+width: 23%;
+}
+
+#BlueHDisplay{
+width: 11%;
+}
+
+#BlueHActivate{
+width: 11%;
+}
+
 .red-text {
     color: red;
 }
@@ -695,6 +708,18 @@ padding-top: 5px;
 	right: 0px;
 	top: 12px;
 }
+.ellipsisText{
+text-overflow:ellipsis;
+white-space:nowrap;
+overflow:hidden;
+padding-left:8px;
+max-width:100px;
+}
+#ellipsisWidthProgram
+{
+max-width:150px;
+}
+
 .nav-arrow.down{
 	position: relative;
 	right: 0px;
@@ -931,7 +956,7 @@ border: none;
 .control-buttons {
     width: 150px;
     position: relative;
-    top: -33px;
+    top: -20px;
     right: 375px;
     height: 30px;
 }
