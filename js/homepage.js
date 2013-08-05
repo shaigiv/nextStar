@@ -1,6 +1,6 @@
 //var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
 //var domain = "http://makosrv1.egoline.co.il/nextStarTestA/json?";
-var domain = "http://makosrv1.egoline.co.il/nextStarTestB/json?";
+var domain = "http://makosrv1.egoline.co.il/nextStarTestA/json?";
 //var domain = "http://192.168.2.108:8080/nextStarQA/json?";
 
 var editCompId = "";
@@ -322,13 +322,6 @@ function setAddCompetitor(data){
      console.log(data);
      //init the add upload 
     addCompInitFields();
-        //hack for init file data
-     //$(".add-comp-img-wrap .smallImg").setAttribute('type', 'text');
-     //$(".add-comp-img-wrap .smallImg").setAttribute('type', 'file');
-     //$(".add-comp-img-wrap .large").setAttribute('type', 'text');
-     //$(".add-comp-img-wrap .large").setAttribute('type', 'file');
-     //smallImgUploadedByAdd = false;
-     //largeImgUploadedByAdd = false;
      var name = data.name;
      var img = data["imageUrlA"];
      var id = data.id;
@@ -351,8 +344,31 @@ function setAddCompetitor(data){
                                 "</li>");
      
      $("#conestant-container").children("li:last").data("compData",jsonData);
-    // $("#conestant-container").children("li:last").prev().after( $("#conestant-container").children("li:last"));
+     //get the jquery item that in the a b c order is prev
+     var dictioanryItem = getItemBefore(jsonData);
+     $(dictioanryItem).after( $("#conestant-container").children("li:last"));
      
+}
+
+function getItemBefore(jsonData){
+    var contin = true;
+    var index=0;
+    while (contin){
+        var itemData =$("#conestant-container").children("li").eq(index).data("compData");
+        //if the item name is bigger from us- return the prev
+        if($("#conestant-container").children("li").eq(index).attr("id") != "edit-contestant"){
+            if(itemData.name.toLowerCase() > jsonData.name.toLowerCase()){
+            return $("#conestant-container").children("li").eq(index-1)
+            contin  = false;
+            }
+        }
+        
+        //else -continue
+        {
+            index++;
+        }
+    }
+    return $("#conestant-container").children("li:alst")
 }
 
 function addCompInitFields(){
@@ -375,14 +391,14 @@ function editcompetitor(editItem){
     editCompHtml = comp;
     var compId = comp.data("compId");
     editCompId = compId;
-    //$("#edit-form").show();
     //open the add competitor box and set the details
     $("#edit-contestant").show();
     editCompHtml.after( $("#edit-contestant")); 
-    //var name = comp.children(".container-right").children("div:first").children("span:last").text();
     var name = comp.data("compData").name;
-    //var imgUrl = comp.children(".container-left").children("img").attr("src");
     var imgUrl = comp.data("compData").imageUrlA;
+    //set the old url data
+     $(".edit-comp-img-wrap .smallImg").data("url", comp.data("compData").imageUrlA);
+     $(".edit-comp-img-wrap .largeImg").data("url", comp.data("compData").imageUrlB);
 
     $("#edit-competitor-name").val(name);
     $("#edit-competitor-imgFile").attr("src", imgUrl);

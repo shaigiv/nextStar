@@ -63,7 +63,7 @@ function showEvents(){
         getVoteData($(this));
         //openVotingPage(this);
     });
-      $("#voteAndWaitList").delegate(".publish", "click", function() {
+    $("#voteAndWaitList").delegate(".publish", "click", function() {
         publishPage(this);
     });
 
@@ -82,9 +82,16 @@ function showEvents(){
 
     $("#firstCompAddVote").change(function(){
         setImgOnAddVote(this);
+        //check if the left side can be able
+        checkLeftCompAble();
     });
      $("#secondCompAddVote").change(function(){
         setImgOnAddVote(this);
+    });
+
+    $("#first-songs-name").focus(function(){
+        //check if the left side can be able
+        checkLeftCompAble();
     });
       $("#template-select").change(function(){
          setImageUploadBox(this);
@@ -1136,4 +1143,11 @@ function setShowEdited(data){
     $("#datepicker-edit").datepicker( "setDate",new Date(date));
 
     hideEditProgBox();
+}
+
+function checkLeftCompAble(){
+    //check if there is song name 
+    if($("#first-songs-name").val() != ""){
+        
+    }
 }
