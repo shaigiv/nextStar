@@ -211,17 +211,17 @@ function editImageUploaded(){
     //if user upload only small image 
     if(smallImgEdited ==true){
          $(".edit-comp-img-wrap .smallImg").data("url", imagesUrlJson.smallImg);
-         $(".edit-comp-img-wrap .smallImg").data("url", imagesUrlJson.smallImg);
+         //$(".edit-comp-img-wrap .smallImg").data("url", imagesUrlJson.smallImg);
     }
     //if 2 images edited
      if(largeImgEdited ==true && smallImgEdited ==true){
          $(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.largeImg);
-         $(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.largeImg);
+         //$(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.largeImg);
     }
     //if only large mage upload -the serevr return the value S "smallImg"
     else if (smallImgEdited == false && largeImgEdited ==true){
         $(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.smallImg);
-        $(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.smallImg);
+       // $(".edit-comp-img-wrap .largeImg").data("url", imagesUrlJson.smallImg);
     }
     if( imgUrlSmall != undefined){
         smallImgUploadedByEdit = true;

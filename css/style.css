@@ -837,7 +837,9 @@ max-width:150px;
     margin-top: 20px;
     float: right;
 }
-
+.contestant-details.disable{
+    opacity: 0.4;
+}
 .contestant-img {
     margin-top: 30px;
     margin-bottom: 30px;
