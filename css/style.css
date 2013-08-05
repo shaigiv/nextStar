@@ -1085,13 +1085,13 @@ color: black;
 }
 .usersVote{
 	float:left;
-	width: 248px;
+	width: 289px;
 }
 .usersVote label {
 float: right;
 margin-top: 2px;
 color: #00aeef;
-width: 174px;
+width: 227px;
 text-align: left;
 }
 .userV{

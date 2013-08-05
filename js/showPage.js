@@ -47,7 +47,7 @@ function showEvents(){
            alert("לא ניתן לערוך עמוד כאשר הוא בסטאטוס חי")
        }
        else{
-           editPageData = $(this).parents("tr").data("pageData");
+            editPageData = $(this).parents("tr").data("pageData");
             editVotePage = true;
             editPageHtml = $(this).parents("tr");
             $("#addVoteBtn").text("ערוך");
@@ -89,7 +89,7 @@ function showEvents(){
         setImgOnAddVote(this);
     });
 
-    $("#first-songs-name").focus(function(){
+    $("#first-songs-name").bind("keydown",function(){
         //check if the left side can be able
         checkLeftCompAble();
     });
@@ -546,6 +546,8 @@ function clearAddVoteBox(){
         editPageHtml = "";
         $("#addVoteBtn").text("הוסף");
        $("#threshold-add-vote").val(DEFAULTTHRESHOLD);
+        //check if the left comp have to e able or not
+       checkLeftCompAble();
 }
 
 function addVoteAndAppend(voteItem){
@@ -593,8 +595,8 @@ function addVoteAndAppend(voteItem){
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
 						'<span class="namber">'+number+'</span>' +
 					'</td>' +
-					'<td>'+ compsHtml+'</td>' +
-					'<td>'+songsHtml+'</td>' +
+					'<td class="ellipsisText">'+ compsHtml+'</td>' +
+					'<td class="ellipsisText">'+songsHtml+'</td>' +
 					'<td>' + status + '</td>' +
 					'<td class="row-options"><span class="edit '+isDisableClassLive +' ' +isDisableClassPublish+'">ערוך</span> <span class="delete '+isDisableClassLive +'">מחק</span> <span class="copy">שכפל</span></td>' +
 					'<td>הצג</td>' +
@@ -605,6 +607,8 @@ function addVoteAndAppend(voteItem){
 
 
 function pageEdit(pageItem){
+    //scroll to for focus
+    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
     var pageItemData = $(pageItem).data("pageData");
     if(pageItemData.type=="vote"){
         //open the addBox
@@ -651,6 +655,8 @@ function  setEditAddVote(pageItemData){
     //set the threshold
      var threshold = pageItemData.votes[0].threshold;
      $("#threshold-add-vote").val(threshold);
+
+     checkLeftCompAble();
 }
 
 function openAddVoteBox()
@@ -806,7 +812,7 @@ function addPageAndAppend(pageItem){
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
 					'<span class="namber">'+number+'</span>'+
 				'</td>'+
-				'<td colspan="2">'+name+'</td>'+
+				'<td colspan="2"  class="ellipsisText">'+name+'</td>'+
 				'<td>'+status+'</td>'+
 				'<td class="row-options"><span class=\"edit '+editClass+'\">ערוך</span> <span class=\"delete '+deleteClass+'\">מחק</span> <span class=\"copy\">שכפל</span></td>'+
 				'<td>הצג</td>'+
@@ -1148,21 +1154,22 @@ function setShowEdited(data){
 function checkLeftCompAble(){
     //check if there is song name 
     if($("#first-songs-name").val() != ""){
-        if($("#firstCompAddVote")){
-            var value = $("#firstCompAddVote").children("option:selected").val();
+             var value = $("#firstCompAddVote").children("option:selected").val();
             if(value != 0 ){
-                $("#first-songs-name").removeAttr("disabled");
-                $("#firstCompAddVote").removeAttr("disabled");
+                $("#second-songs-name").removeAttr("disabled");
+                $("#secondCompAddVote").removeAttr("disabled");
+                $("#second-comp-wrap").removeClass("disable");
             }
             else{
-                 $("#first-songs-name").attr("disabled","disabled");
-                $("#firstCompAddVote").attr("disabled","disabled");
+                 $("#second-songs-name").attr("disabled","disabled");
+                $("#secondCompAddVote").attr("disabled","disabled");
+                $("#second-comp-wrap").addClass("disable");
             }
-        }
+       }
         else{
-             $("#first-songs-name").attr("disabled","disabled");
-              $("#firstCompAddVote").attr("disabled","disabled");
+             $("#second-songs-name").attr("disabled","disabled");
+              $("#secondCompAddVote").attr("disabled","disabled");
         }
         
-    }
+    
 }
