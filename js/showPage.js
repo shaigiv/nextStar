@@ -47,7 +47,7 @@ function showEvents(){
            alert("לא ניתן לערוך עמוד כאשר הוא בסטאטוס חי")
        }
        else{
-           editPageData = $(this).parents("tr").data("pageData");
+            editPageData = $(this).parents("tr").data("pageData");
             editVotePage = true;
             editPageHtml = $(this).parents("tr");
             $("#addVoteBtn").text("ערוך");
@@ -593,8 +593,8 @@ function addVoteAndAppend(voteItem){
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
 						'<span class="namber">'+number+'</span>' +
 					'</td>' +
-					'<td>'+ compsHtml+'</td>' +
-					'<td>'+songsHtml+'</td>' +
+					'<td class="ellipsisText">'+ compsHtml+'</td>' +
+					'<td class="ellipsisText">'+songsHtml+'</td>' +
 					'<td>' + status + '</td>' +
 					'<td class="row-options"><span class="edit '+isDisableClassLive +' ' +isDisableClassPublish+'">ערוך</span> <span class="delete '+isDisableClassLive +'">מחק</span> <span class="copy">שכפל</span></td>' +
 					'<td>הצג</td>' +
@@ -605,6 +605,8 @@ function addVoteAndAppend(voteItem){
 
 
 function pageEdit(pageItem){
+    //scroll to for focus
+    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
     var pageItemData = $(pageItem).data("pageData");
     if(pageItemData.type=="vote"){
         //open the addBox
@@ -806,7 +808,7 @@ function addPageAndAppend(pageItem){
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
 					'<span class="namber">'+number+'</span>'+
 				'</td>'+
-				'<td colspan="2">'+name+'</td>'+
+				'<td colspan="2"  class="ellipsisText">'+name+'</td>'+
 				'<td>'+status+'</td>'+
 				'<td class="row-options"><span class=\"edit '+editClass+'\">ערוך</span> <span class=\"delete '+deleteClass+'\">מחק</span> <span class=\"copy\">שכפל</span></td>'+
 				'<td>הצג</td>'+
