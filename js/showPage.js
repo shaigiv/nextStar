@@ -47,7 +47,7 @@ function showEvents(){
            alert("לא ניתן לערוך עמוד כאשר הוא בסטאטוס חי")
        }
        else{
-            editPageData = $(this).parents("tr").data("pageData");
+           editPageData = $(this).parents("tr").data("pageData");
             editVotePage = true;
             editPageHtml = $(this).parents("tr");
             $("#addVoteBtn").text("ערוך");
@@ -89,7 +89,7 @@ function showEvents(){
         setImgOnAddVote(this);
     });
 
-    $("#first-songs-name").click(function(){
+    $("#first-songs-name").focus(function(){
         //check if the left side can be able
         checkLeftCompAble();
     });
@@ -593,8 +593,8 @@ function addVoteAndAppend(voteItem){
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
 						'<span class="namber">'+number+'</span>' +
 					'</td>' +
-					'<td class="ellipsisText">'+ compsHtml+'</td>' +
-					'<td class="ellipsisText">'+songsHtml+'</td>' +
+					'<td>'+ compsHtml+'</td>' +
+					'<td>'+songsHtml+'</td>' +
 					'<td>' + status + '</td>' +
 					'<td class="row-options"><span class="edit '+isDisableClassLive +' ' +isDisableClassPublish+'">ערוך</span> <span class="delete '+isDisableClassLive +'">מחק</span> <span class="copy">שכפל</span></td>' +
 					'<td>הצג</td>' +
@@ -605,8 +605,6 @@ function addVoteAndAppend(voteItem){
 
 
 function pageEdit(pageItem){
-    //scroll to for focus
-    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
     var pageItemData = $(pageItem).data("pageData");
     if(pageItemData.type=="vote"){
         //open the addBox
@@ -808,7 +806,7 @@ function addPageAndAppend(pageItem){
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
 					'<span class="namber">'+number+'</span>'+
 				'</td>'+
-				'<td colspan="2"  class="ellipsisText">'+name+'</td>'+
+				'<td colspan="2">'+name+'</td>'+
 				'<td>'+status+'</td>'+
 				'<td class="row-options"><span class=\"edit '+editClass+'\">ערוך</span> <span class=\"delete '+deleteClass+'\">מחק</span> <span class=\"copy\">שכפל</span></td>'+
 				'<td>הצג</td>'+
@@ -1150,22 +1148,21 @@ function setShowEdited(data){
 function checkLeftCompAble(){
     //check if there is song name 
     if($("#first-songs-name").val() != ""){
-             var value = $("#firstCompAddVote").children("option:selected").val();
+        if($("#firstCompAddVote")){
+            var value = $("#firstCompAddVote").children("option:selected").val();
             if(value != 0 ){
-                $("#second-songs-name").removeAttr("disabled");
-                $("#secondCompAddVote").removeAttr("disabled");
-                $("#second-comp-wrap").removeClass("disable");
+                $("#first-songs-name").removeAttr("disabled");
+                $("#firstCompAddVote").removeAttr("disabled");
             }
             else{
-                 $("#second-songs-name").attr("disabled","disabled");
-                $("#secondCompAddVote").attr("disabled","disabled");
-                $("#second-comp-wrap").addClass("disable");
+                 $("#first-songs-name").attr("disabled","disabled");
+                $("#firstCompAddVote").attr("disabled","disabled");
             }
-       }
+        }
         else{
-             $("#second-songs-name").attr("disabled","disabled");
-              $("#secondCompAddVote").attr("disabled","disabled");
+             $("#first-songs-name").attr("disabled","disabled");
+              $("#firstCompAddVote").attr("disabled","disabled");
         }
         
-    
+    }
 }
