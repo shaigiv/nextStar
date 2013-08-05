@@ -89,7 +89,7 @@ function showEvents(){
         setImgOnAddVote(this);
     });
 
-    $("#first-songs-name").focus(function(){
+    $("#first-songs-name").click(function(){
         //check if the left side can be able
         checkLeftCompAble();
     });
@@ -1150,21 +1150,22 @@ function setShowEdited(data){
 function checkLeftCompAble(){
     //check if there is song name 
     if($("#first-songs-name").val() != ""){
-        if($("#firstCompAddVote")){
-            var value = $("#firstCompAddVote").children("option:selected").val();
+             var value = $("#firstCompAddVote").children("option:selected").val();
             if(value != 0 ){
-                $("#first-songs-name").removeAttr("disabled");
-                $("#firstCompAddVote").removeAttr("disabled");
+                $("#second-songs-name").removeAttr("disabled");
+                $("#secondCompAddVote").removeAttr("disabled");
+                $("#second-comp-wrap").removeClass("disable");
             }
             else{
-                 $("#first-songs-name").attr("disabled","disabled");
-                $("#firstCompAddVote").attr("disabled","disabled");
+                 $("#second-songs-name").attr("disabled","disabled");
+                $("#secondCompAddVote").attr("disabled","disabled");
+                $("#second-comp-wrap").addClass("disable");
             }
-        }
+       }
         else{
-             $("#first-songs-name").attr("disabled","disabled");
-              $("#firstCompAddVote").attr("disabled","disabled");
+             $("#second-songs-name").attr("disabled","disabled");
+              $("#secondCompAddVote").attr("disabled","disabled");
         }
         
-    }
+    
 }
