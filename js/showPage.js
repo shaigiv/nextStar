@@ -27,7 +27,7 @@ function showEvents(){
 
     $("#voteAndWaitList").delegate(".delete", "click", function() {
         if(isLivePage($(this).parents("tr").data("pageData"))){
-            alert("לא ניתן למחוק עמוד כאשר הוא חי")
+            alert("לא ניתן למחוק עמוד כאשר הוא בסטאטוס חי")
         }
         else{
           var r=confirm("האם אתה בטוח שברצונך למחוק את העמוד? ");
@@ -44,7 +44,7 @@ function showEvents(){
            alert("לא ניתן לערוך דף שכבר פורסם")
        }
        else if(isLivePage($(this).parents("tr").data("pageData"))){
-           alert("לא ניתן לערוך דף שכרגע חי")
+           alert("לא ניתן לערוך עמוד כאשר הוא בסטאטוס חי")
        }
        else{
            editPageData = $(this).parents("tr").data("pageData");
@@ -1148,6 +1148,21 @@ function setShowEdited(data){
 function checkLeftCompAble(){
     //check if there is song name 
     if($("#first-songs-name").val() != ""){
+        if($("#firstCompAddVote")){
+            var value = $("#firstCompAddVote").children("option:selected").val();
+            if(value != 0 ){
+                $("#first-songs-name").removeAttr("disabled");
+                $("#firstCompAddVote").removeAttr("disabled");
+            }
+            else{
+                 $("#first-songs-name").attr("disabled","disabled");
+                $("#firstCompAddVote").attr("disabled","disabled");
+            }
+        }
+        else{
+             $("#first-songs-name").attr("disabled","disabled");
+              $("#firstCompAddVote").attr("disabled","disabled");
+        }
         
     }
 }

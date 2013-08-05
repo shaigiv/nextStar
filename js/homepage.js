@@ -486,7 +486,7 @@ function deleteCompetitor(deleteItem){
    var imgUrl = comp.children(".container-left").children("img").attr("src");
   
    //check if the user want to delete
-   var r=confirm("האם אתה בטוח שברצונל למחוק את "+ name);
+   var r=confirm("האם אתה בטוח שברצונך למחוק את "+ name+"?");
 if (r==true)
   {
     deleteCompetitorSend(deleteItem);
