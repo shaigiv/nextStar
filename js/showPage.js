@@ -908,15 +908,19 @@ function addCopyPage(pageData){
     var info = pageData.info;
     var name = pageData.name;
     var validate =true;
+    var tamplateImage1 =pageData.tamplateImage1;
+    var tamplateImage2 =pageData.tamplateImage2;
+
     //if its a template with image- validate that the user upload 2 images
-    if(templateId ==1 || templateId ==3){
-        if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
-            alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
-            validate = false;
-        }
-       
-    }
-    else if(templateId ==2 || templateId ==4  || templateId ==5){
+    //if(templateId ==1 || templateId ==3){
+    //    if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
+    //        alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
+    //        validate = false;
+    //    }
+    //   
+    //}
+    //else
+     if(templateId ==2 || templateId ==4  || templateId ==5){
         tamplateImage1 ="";
         tamplateImage2 ="";
     }
