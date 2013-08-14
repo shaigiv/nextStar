@@ -1,6 +1,6 @@
-//var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
+var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
+//var domain = "http://makosrv1.egoline.co.il/nextStarTestB/json?";
 //var domain = "http://makosrv1.egoline.co.il/nextStarTestA/json?";
-var domain = "http://makosrv1.egoline.co.il/nextStarTestB/json?";
 //var domain = "http://192.168.2.108:8080/nextStarQA/json?";
 
 var editCompId = "";

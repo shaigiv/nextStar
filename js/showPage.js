@@ -298,9 +298,20 @@ function setStatusText(data,numOfComp){
             break;
         case 100:
         if(data.type == "vote"){
-             var percents = data.votes[numOfComp-1].finalPercent;
-            var Judges = data.votes[numOfComp-1].numOfJudges;
-            text = percents + "%" + " (" + percents + ")";
+            //if this is a single vote
+            text="";
+            if(numOfComp >= 1){
+                var percents = data.votes[0].finalPercent;
+                var Judges = data.votes[0].numOfJudges;
+                text = percents + "%" + " (" + Judges + ")";
+            }
+            //if this is a double - add text for the second line
+            if(numOfComp == 2){
+                var percents = data.votes[1].finalPercent;
+                var Judges = data.votes[1].numOfJudges;
+                text += "<br/>"+ percents + "%" + " (" + Judges + ")";
+            }
+            
         }
         else{
             text ="פורסם";        }

@@ -226,6 +226,8 @@ function setVoteClose(data){
     console.log(data.status);
 
     //set the textbox percents
+    $("#vote1RealPerc").show();
+    $("#vote2RealPerc").show();
     var tempPerc =$("#vote1RealPerc").text().substring(0,$("#vote1RealPerc").text().length-1)
     var perc1 =Math.round(parseInt(tempPerc));
     tempPerc =$("#vote2RealPerc").text().substring(0,$("#vote2RealPerc").text().length-1)
@@ -490,7 +492,7 @@ function setRealPercent(data){
     var perc1="";
     var perc2="";
     //if the vote was published or vote in publish results - show the real percent
-    if(data.status ==100 || data.status == 26)
+    if(data.status ==100 || data.status == 25 || data.status == 26)
     {
          perc1 =data.votes[0].finalPercent;
          perc2=0;
