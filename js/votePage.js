@@ -226,6 +226,8 @@ function setVoteClose(data){
     console.log(data.status);
 
     //set the textbox percents
+    $("#vote1RealPerc").text(data.votes[0].finalPercent +"%");
+    $("#vote2RealPerc").text(data.votes[1].finalPercent +"%")
     $("#vote1RealPerc").show();
     $("#vote2RealPerc").show();
     var tempPerc =$("#vote1RealPerc").text().substring(0,$("#vote1RealPerc").text().length-1)
@@ -447,7 +449,7 @@ function setVoteStatusesDate(data){
     if(data.statusTime[0]){
         var tempLong =data.statusTime[0].time;
         tempDate =new Date(tempLong);
-        tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+        tempDate = tempDate.getDate()+"/"+(tempDate.getMonth()*1 +1*1)+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
         $("#open-register-date").text(tempDate);
         $("#open-register-date").show();
    
@@ -455,7 +457,7 @@ function setVoteStatusesDate(data){
     if(data.statusTime[1]){
         tempLong =data.statusTime[1].time;
         tempDate =new Date(tempLong);
-        tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+        tempDate = tempDate.getDate()+"/"+(tempDate.getMonth()*1 +1*1)+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
         $("#open-vote-date").text(tempDate);
         $("#open-vote-date").show();
  
@@ -464,7 +466,7 @@ function setVoteStatusesDate(data){
     if(data.statusTime[2]){
             tempLong =data.statusTime[2].time;
     tempDate =new Date(tempLong);
-    tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+    tempDate = tempDate.getDate()+"/"+(tempDate.getMonth()*1 +1*1)+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
     $("#close-vote-date").text(tempDate);
     $("#close-vote-date").show();
  
@@ -472,7 +474,7 @@ function setVoteStatusesDate(data){
     if(data.statusTime[3]){
         tempLong =data.statusTime[3].time;
         tempDate =new Date(tempLong);
-        tempDate = tempDate.getDay()+"/"+tempDate.getMonth()+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
+        tempDate = tempDate.getDate()+"/"+(tempDate.getMonth()*1 +1*1)+"/"+tempDate.getFullYear()+" "+tempDate.getHours()+":"+tempDate.getMinutes()+":"+tempDate.getSeconds()
         $("#publish-results-date").text(tempDate);
          $("#publish-results-date").show();
  
