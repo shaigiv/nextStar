@@ -267,6 +267,7 @@ input[type=text] {
     border: 1px solid gray;
     padding-right: 5px;
     border-radius: 3px;
+    cursor:text;
 }
 .title{
      color: #01ACEA;
@@ -365,6 +366,19 @@ table td:last-child {
 #BlueHStatus{
 width: 23%;
 }
+
+#BlueHOptions{
+width: 23%;
+}
+
+#BlueHDisplay{
+width: 11%;
+}
+
+#BlueHActivate{
+width: 11%;
+}
+
 .red-text {
     color: red;
 }
@@ -496,6 +510,13 @@ padding-right: 10px;
 #conestant-container li {
     position: relative;
 }
+#conestant-container .add-comp-name-text{
+    text-overflow: ellipsis;
+white-space: nowrap;
+display: inline-block;
+width: 176px;
+overflow: hidden;
+}
 #conestant-container li img{
     margin-left: 0px;
 }
@@ -529,6 +550,11 @@ height: 45px;
 
 #conestant-container .container-right{
     margin-top: 10px;
+    width: 206px;
+}
+
+#conestant-container .container-left{
+    width:43px
 }
 #conestant-container a{
     color: gray;
@@ -576,19 +602,24 @@ padding-top: 5px;
     width: 53px;
 }
 .programs-list .program-name{
-    width: 150px;
+   min-width: 137px;
+text-overflow: ellipsis;
+white-space: nowrap;
+overflow: hidden;
+padding-left: 8px;
+max-width: 132px;
 }
 .programs-list .list-titles .program-name {
     margin-right: -2px;
 }
 .programs-list .program-status{
-    width: 185px;
+    width: 222px;
 }
 .programs-list .list-titles .program-status {
     margin-right: -4px;
 }
 .programs-list .program-options{
-    width: 115px;
+    width: 90px;
     border-left: none;
 }
 .programs-list ul {
@@ -604,7 +635,7 @@ border-bottom: 1px solid gray;
     color: red;
 }
 .programs-list ul li .program-options{
-    width: 113px;
+    width: 90px;
     border-left: none;
 }
 .programs-list ul li.last{
@@ -695,6 +726,18 @@ padding-top: 5px;
 	right: 0px;
 	top: 12px;
 }
+.ellipsisText{
+text-overflow:ellipsis;
+white-space:nowrap;
+overflow:hidden;
+padding-left:8px;
+max-width:100px;
+}
+#ellipsisWidthProgram
+{
+max-width:150px;
+}
+
 .nav-arrow.down{
 	position: relative;
 	right: 0px;
@@ -812,7 +855,9 @@ padding-top: 5px;
     margin-top: 20px;
     float: right;
 }
-
+.contestant-details.disable{
+    opacity: 0.4;
+}
 .contestant-img {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -931,7 +976,7 @@ border: none;
 .control-buttons {
     width: 150px;
     position: relative;
-    top: -33px;
+    top: -20px;
     right: 375px;
     height: 30px;
 }
@@ -1003,6 +1048,7 @@ color: black;
 .voting-precent {
     font-size: 45px;
     text-align: center;
+    display: none;
 }
 .disable td{color: gray}
 .live td{color: red}
@@ -1039,12 +1085,14 @@ color: black;
 }
 .usersVote{
 	float:left;
-	width: 180px;
+	width: 289px;
 }
 .usersVote label {
-	float: right;
-	margin-top: 2px;
-	color:#00aeef;
+float: right;
+margin-top: 2px;
+color: #00aeef;
+width: 227px;
+text-align: left;
 }
 .userV{
 	background-color: transparent;
@@ -1148,8 +1196,8 @@ background-repeat: no-repeat;
 background-size: 100% 100%;
 height: 22px;
 position: absolute;
-top: 255px;
-right: 391px;
+top: 232px;
+right: 376px;
 color: black;
 }
 #register-going-to-close.disable{

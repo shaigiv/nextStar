@@ -70,6 +70,7 @@ function  homePageInitEvents(){
 
     $("#cancle-add-comp").click(function(){
         $("#add-contestant").fadeOut();
+        addCompInitFields();
     });
 
     $("#open-new-comp").click(function(){
@@ -111,7 +112,7 @@ function getShowsList() {
 }
 
 function setShowList(data){
-   
+    $("#programs-list-ul").html("");
     $(data).each(function(index){
         console.log("in setShowList: "+this.name);
          console.log("in setShowList: "+this.status);
@@ -119,7 +120,7 @@ function setShowList(data){
         var number = index*1+1*1;
         var id = this.id;
         var data =this;
-        var status = "הצבעות ("+this.CompetitorCount + ")" +"   מתמודדים ("+this.votesCount + ")";
+        var status = "הצבעות ("+this.votesCount + ")" +"   מתמודדים ("+this.CompetitorCount + ")";
         var statusClass ="";
          if (data.live == true){
              statusClass ="live"
@@ -178,23 +179,33 @@ function setShowDeleted(data){
 
 
 function addShow(){
-    
+    if($("#datepicker").val() ==""){
+        alert("עליך להזין תאריך לתוכנית")
+    }
     var showName = $("#add-prog-name").val();
-    var dateTemp =$( "#datepicker" ).datepicker( "getDate" );
+     if(showName ==""){
+        alert("עליך להוסיף שם תוכנית")}
+   else{
+        var dateTemp =$( "#datepicker" ).datepicker( "getDate" );
     var date =dateTemp.getTime();
-
-     $.ajax({
-        type:"POST",
-        url: domain + "type=addShow",
-        data:{"name":showName,"date":date},
-        success: function(data) {
-            console.log("success addShow: " + data);
-            setShowAdded(data);
-        },
-        error: function(data) {
-            console.log("error addShow: " + data);
-        }
-    });
+   
+    
+         $.ajax({
+            type:"POST",
+            url: domain + "type=addShow",
+            data:{"name":showName,"date":date},
+            success: function(data) {
+                console.log("success addShow: " + data);
+                setShowAdded(data);
+            },
+            error: function(data) {
+                console.log("error addShow: " + data);
+            }
+        });
+   }
+   
+    
+    
 }
 
 
@@ -253,7 +264,7 @@ function setCompetitorsList(data){
         $("#conestant-container").append("<li>" +
                                    " <div class=\"container-right\">" +
                                        " <div>" +
-                                            "<span class=\"title\">"+number+". </span><span>" + name + "</span>" +
+                                            "<span class=\"title\">"+number+". </span><span class='add-comp-name-text'>" + name + "</span>" +
                                        " </div>" +
                                        " <div>" +
                                            " <ul class=\"horizonal-list\">" +
@@ -310,18 +321,7 @@ function addCompetitor(){
 function setAddCompetitor(data){
      console.log(data);
      //init the add upload 
-     $("#add-competitor-name").val("");
-     $(".add-comp-img-wrap .smallImg").data("url", "");
-     $(".add-comp-img-wrap .largeImg").data("url", "");
-     $("#add-competitor-imgFile").attr("src","img/default.jpg");
-     $(".displayImgBtn").hide();
-        //hack for init file data
-     //$(".add-comp-img-wrap .smallImg").setAttribute('type', 'text');
-     //$(".add-comp-img-wrap .smallImg").setAttribute('type', 'file');
-     //$(".add-comp-img-wrap .large").setAttribute('type', 'text');
-     //$(".add-comp-img-wrap .large").setAttribute('type', 'file');
-     //smallImgUploadedByAdd = false;
-     //largeImgUploadedByAdd = false;
+    addCompInitFields();
      var name = data.name;
      var img = data["imageUrlA"];
      var id = data.id;
@@ -344,8 +344,39 @@ function setAddCompetitor(data){
                                 "</li>");
      
      $("#conestant-container").children("li:last").data("compData",jsonData);
-
+     //get the jquery item that in the a b c order is prev
+     var dictioanryItem = getItemBefore(jsonData);
+     $(dictioanryItem).after( $("#conestant-container").children("li:last"));
      
+}
+
+function getItemBefore(jsonData){
+    var contin = true;
+    var index=0;
+    while (contin){
+        var itemData =$("#conestant-container").children("li").eq(index).data("compData");
+        //if the item name is bigger from us- return the prev
+        if($("#conestant-container").children("li").eq(index).attr("id") != "edit-contestant"){
+            if(itemData.name.toLowerCase() > jsonData.name.toLowerCase()){
+            return $("#conestant-container").children("li").eq(index-1)
+            contin  = false;
+            }
+        }
+        
+        //else -continue
+        {
+            index++;
+        }
+    }
+    return $("#conestant-container").children("li:alst")
+}
+
+function addCompInitFields(){
+     $("#add-competitor-name").val("");
+     $(".add-comp-img-wrap .smallImg").data("url", "");
+     $(".add-comp-img-wrap .largeImg").data("url", "");
+     $("#add-competitor-imgFile").attr("src","img/default.jpg");
+     $(".displayImgBtn").hide();
 }
 
 function updateCompetitor(){
@@ -360,14 +391,14 @@ function editcompetitor(editItem){
     editCompHtml = comp;
     var compId = comp.data("compId");
     editCompId = compId;
-    //$("#edit-form").show();
     //open the add competitor box and set the details
     $("#edit-contestant").show();
     editCompHtml.after( $("#edit-contestant")); 
-    //var name = comp.children(".container-right").children("div:first").children("span:last").text();
     var name = comp.data("compData").name;
-    //var imgUrl = comp.children(".container-left").children("img").attr("src");
     var imgUrl = comp.data("compData").imageUrlA;
+    //set the old url data
+     $(".edit-comp-img-wrap .smallImg").data("url", comp.data("compData").imageUrlA);
+     $(".edit-comp-img-wrap .largeImg").data("url", comp.data("compData").imageUrlB);
 
     $("#edit-competitor-name").val(name);
     $("#edit-competitor-imgFile").attr("src", imgUrl);
@@ -455,7 +486,7 @@ function deleteCompetitor(deleteItem){
    var imgUrl = comp.children(".container-left").children("img").attr("src");
   
    //check if the user want to delete
-   var r=confirm("האם אתה בטוח שברצונל למחוק את "+ name);
+   var r=confirm("האם אתה בטוח שברצונך למחוק את "+ name+"?");
 if (r==true)
   {
     deleteCompetitorSend(deleteItem);

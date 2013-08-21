@@ -27,10 +27,14 @@ function showEvents(){
 
     $("#voteAndWaitList").delegate(".delete", "click", function() {
         if(isLivePage($(this).parents("tr").data("pageData"))){
-            alert("לא ניתן למחוק עמוד כאשר הוא חי")
+            alert("לא ניתן למחוק עמוד כאשר הוא בסטאטוס חי")
         }
         else{
-             pageDelete(this);
+          var r=confirm("האם אתה בטוח שברצונך למחוק את העמוד? ");
+            if (r==true){
+                pageDelete(this);
+            }
+             
         }
        
     });
@@ -40,10 +44,10 @@ function showEvents(){
            alert("לא ניתן לערוך דף שכבר פורסם")
        }
        else if(isLivePage($(this).parents("tr").data("pageData"))){
-           alert("לא ניתן לערוך דף שכרגע חי")
+           alert("לא ניתן לערוך עמוד כאשר הוא בסטאטוס חי")
        }
        else{
-           editPageData = $(this).parents("tr").data("pageData");
+            editPageData = $(this).parents("tr").data("pageData");
             editVotePage = true;
             editPageHtml = $(this).parents("tr");
             $("#addVoteBtn").text("ערוך");
@@ -59,7 +63,7 @@ function showEvents(){
         getVoteData($(this));
         //openVotingPage(this);
     });
-      $("#voteAndWaitList").delegate(".publish", "click", function() {
+    $("#voteAndWaitList").delegate(".publish", "click", function() {
         publishPage(this);
     });
 
@@ -78,9 +82,16 @@ function showEvents(){
 
     $("#firstCompAddVote").change(function(){
         setImgOnAddVote(this);
+        //check if the left side can be able
+        checkLeftCompAble();
     });
      $("#secondCompAddVote").change(function(){
         setImgOnAddVote(this);
+    });
+
+    $("#first-songs-name").bind("keydown",function(){
+        //check if the left side can be able
+        checkLeftCompAble();
     });
       $("#template-select").change(function(){
          setImageUploadBox(this);
@@ -102,31 +113,31 @@ function showEvents(){
         $("#add-page-title").click();
         hideAddPageBox();
     });
-    $("#screen-title").focus(function() {
-        if($(this).val() == SCREENTITLE) {
-            $(this).val("");
-        }
-    });
+    //$("#screen-title").focus(function() {
+    //    if($(this).val() == SCREENTITLE) {
+    //        $(this).val("");
+    //    }
+    //});
     //$("#screen-title").blur(function() {
     //   if($(this).val() == "") {
     //        $(this).val(SCREENTITLE);
     //    }
     //});
-    $("#screen-content").focus(function() {
-        if($(this).val() == SCREENCONTENT) {
-            $(this).val("");
-        }
-    });
-    $("#screen-info").focus(function() {
-        if($(this).val() == SCREENINFO) {
-            $(this).val("");
-        }
-    });
-     $("#screen-name").focus(function() {
-        if($(this).val() == SCREENNAME) {
-            $(this).val("");
-        }
-    });
+    //$("#screen-content").focus(function() {
+    //    if($(this).val() == SCREENCONTENT) {
+    //        $(this).val("");
+    //    }
+    //});
+    //$("#screen-info").focus(function() {
+    //    if($(this).val() == SCREENINFO) {
+    //        $(this).val("");
+    //    }
+    //});
+    // $("#screen-name").focus(function() {
+    //    if($(this).val() == SCREENNAME) {
+    //        $(this).val("");
+    //    }
+    //});
 
    
     $("#voteAndWaitList").delegate(".nav-arrow.up", "click", function() {
@@ -157,6 +168,7 @@ function openShow(show){
         $("#prog-title").text(name);
         currentShowId = showId;
         getShowData();
+
         setCompSelectList();
 
         //set the EDIT BOX prog name and text 
@@ -164,6 +176,7 @@ function openShow(show){
         $(".editProgName").val(name);
         var date = show.parents("li").data("showData").date;
         $("#datepicker-edit").datepicker( "setDate",new Date(date));
+        navigate("show");
 
 }
 
@@ -209,7 +222,7 @@ function setGetShow(data){
 
     //show show page
     //showShowPage();
-    navigate("show");
+    //navigate("show");
 }
 var pageHtml;
 
@@ -285,9 +298,20 @@ function setStatusText(data,numOfComp){
             break;
         case 100:
         if(data.type == "vote"){
-             var percents = data.votes[numOfComp-1].finalPercent;
-            var Judges = data.votes[numOfComp-1].numOfJudges;
-            text = percents + "%" + " (" + percents + ")";
+            //if this is a single vote
+            text="";
+            if(numOfComp >= 1){
+                var percents = data.votes[0].finalPercent;
+                var Judges = data.votes[0].numOfJudges;
+                text = percents + "%" + " (" + Judges + ")";
+            }
+            //if this is a double - add text for the second line
+            if(numOfComp == 2){
+                var percents = data.votes[1].finalPercent;
+                var Judges = data.votes[1].numOfJudges;
+                text += "<br/>"+ percents + "%" + " (" + Judges + ")";
+            }
+            
         }
         else{
             text ="פורסם";        }
@@ -400,12 +424,12 @@ function addVote(){
 function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
     var validate = true;
      var voteId1 =editPageData.votes[0].id;
-        var pid =editPageData.id;
+     var pid =editPageData.id;
         //check if the user insert second competitor or song
         if($("#secondCompAddVote option:selected").val() == "0"){
             if ($("#second-songs-name").val() == "")
             {
-                numOfComp = 1;
+                numOfComp =1;
             }
             //if the user insert song but didnt insert comp
             else{
@@ -423,9 +447,21 @@ function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
                 numOfComp = 1;  
             }
         }
+        //check if there is second comp
+        if($("#secondCompAddVote option:selected").val() != "0"){
+            if ($("#second-songs-name").val() != "")
+            {
+                numOfComp =2;
+            }
+            //if the user insert song but didnt insert comp
+            else{
+                alert("עליך להכניס שם שיר ומתמודד");
+                validate = false;
+            }
+        }
         if(validate){
          
-                if(numOfComp ==1){
+          if(numOfComp ==1){
             //type=updateVotePage&pid=1&vote_id1=1&competitor_id1=1&SongName1=ים%20של%20דמעות&vote_id2=1&competitor_id2=2&SongName2=המגפים&threshold=2
             $.ajax({
             type: "POST",
@@ -443,7 +479,12 @@ function editVote(firstId,firstSongName,threshold,secondId,secondSongName){
          });
         }
         else if(numOfComp ==2){
-            var voteId2 =editPageData.votes[1].id;
+            var voteId2 =0;
+            //if we come from 2 votes and edit to 2 votes -editPageData.votes[1] is defined,
+            //else - we come from 1 vote and edit to 2  votes - vote2ID =0
+            if(editPageData.votes.length ==2){
+                voteId2 =editPageData.votes[1].id;
+            }
             var pid =editPageData.id;
             //type=updateVotePage&pid=1&vote_id1=1&competitor_id1=1&SongName1=ים%20של%20דמעות&vote_id2=1&competitor_id2=2&SongName2=המגפים&threshold=2
             $.ajax({
@@ -516,6 +557,8 @@ function clearAddVoteBox(){
         editPageHtml = "";
         $("#addVoteBtn").text("הוסף");
        $("#threshold-add-vote").val(DEFAULTTHRESHOLD);
+        //check if the left comp have to e able or not
+       checkLeftCompAble();
 }
 
 function addVoteAndAppend(voteItem){
@@ -563,11 +606,11 @@ function addVoteAndAppend(voteItem){
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
 						'<span class="namber">'+number+'</span>' +
 					'</td>' +
-					'<td>'+ compsHtml+'</td>' +
-					'<td>'+songsHtml+'</td>' +
+					'<td class="ellipsisText">'+ compsHtml+'</td>' +
+					'<td class="ellipsisText">'+songsHtml+'</td>' +
 					'<td>' + status + '</td>' +
-					'<td class="row-options"><span class="edit '+isDisableClassLive +' ' +isDisableClassPublish+'">ערוך</span> <span class="delete '+isDisableClassLive+'">מחק</span> <span class="copy">שכפל</span></td>' +
-					'<td>פריוויו</td>' +
+					'<td class="row-options"><span class="edit '+isDisableClassLive +' ' +isDisableClassPublish+'">ערוך</span> <span class="delete '+isDisableClassLive +'">מחק</span> <span class="copy">שכפל</span></td>' +
+					'<td>הצג</td>' +
 					'<td class="open-voting">פתח</td>' +
 				'</tr>');
         $("#voteAndWaitList").children().children("tr:last").data("pageData", voteItem);
@@ -575,6 +618,8 @@ function addVoteAndAppend(voteItem){
 
 
 function pageEdit(pageItem){
+    //scroll to for focus
+    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
     var pageItemData = $(pageItem).data("pageData");
     if(pageItemData.type=="vote"){
         //open the addBox
@@ -621,6 +666,8 @@ function  setEditAddVote(pageItemData){
     //set the threshold
      var threshold = pageItemData.votes[0].threshold;
      $("#threshold-add-vote").val(threshold);
+
+     checkLeftCompAble();
 }
 
 function openAddVoteBox()
@@ -755,6 +802,7 @@ function addPageAndAppend(pageItem){
       var action ="פרסם";
       var statusClass="";
       var editClass = "";
+      var deleteClass="";
       if(pageItem.status == 100 ) {
           action = "-";
           statusClass = "disable";
@@ -764,6 +812,7 @@ function addPageAndAppend(pageItem){
           action = "-";
           statusClass = "live";
           editClass = "disable";
+          deleteClass ="disable"
       }
      initAddStaticPageText();
      //close the add page box 
@@ -774,10 +823,10 @@ function addPageAndAppend(pageItem){
 					'<img src="./img/Down Arrow.png" alt="arrow" class="nav-arrow down">'+
 					'<span class="namber">'+number+'</span>'+
 				'</td>'+
-				'<td colspan="2">'+name+'</td>'+
+				'<td colspan="2"  class="ellipsisText">'+name+'</td>'+
 				'<td>'+status+'</td>'+
-				'<td class="row-options"><span class=\"edit '+editClass+'\">ערוך</span> <span class=\"delete\">מחק</span> <span class=\"copy\">שכפל</span></td>'+
-				'<td>פריוויו</td>'+
+				'<td class="row-options"><span class=\"edit '+editClass+'\">ערוך</span> <span class=\"delete '+deleteClass+'\">מחק</span> <span class=\"copy\">שכפל</span></td>'+
+				'<td>הצג</td>'+
 				'<td class="publish">'+action+'</td>'+
 			'</tr>');
         $("#voteAndWaitList").children().children("tr:last").data("pageData", pageItem);
@@ -786,7 +835,7 @@ function addPageAndAppend(pageItem){
 }
 
 function setAddPage(data){
-     $("#add-page-title").click();
+      hideAddPageBox();
     addPageAndAppend(data);
 }
 
@@ -812,6 +861,15 @@ function  setEditAddPage(pageItemData){
         displayImg = "img/default.jpg";
     }
     $("#add-page-imgFile").attr("src", displayImg);
+        //if this is a template with image 
+    if(templateId =="1" ||templateId =="3"  ){
+        $(".add-page-img-wrap").show();
+    }
+    //else- hide it
+    else{
+        $(".add-page-img-wrap").hide();
+    }
+
     //change the add btn to edit
     $("#add-page-btn").text("ערוך");
     editStaticPage = true;
@@ -860,22 +918,41 @@ function addCopyPage(pageData){
     var content = pageData.text;
     var info = pageData.info;
     var name = pageData.name;
+    var validate =true;
+    var tamplateImage1 =pageData.tamplateImage1;
+    var tamplateImage2 =pageData.tamplateImage2;
 
+    //if its a template with image- validate that the user upload 2 images
+    //if(templateId ==1 || templateId ==3){
+    //    if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
+    //        alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
+    //        validate = false;
+    //    }
+    //   
+    //}
+    //else
+     if(templateId ==2 || templateId ==4  || templateId ==5){
+        tamplateImage1 ="";
+        tamplateImage2 ="";
+    }
+    if(validate == true){
 
-    $.ajax({
-        type: "POST",
-        url: domain + "type=addStaticPage",
-        data: { "showId": currentShowId,"page-type": "page","name":name,"title":title,
-                    "text":content,"templateId":templateId,
-                    "info":info},
-        success: function(data) {
-            console.log("success addPageStatic" + data);
-                setAddPage(data);
-        },
-        error: function(data) {
-            console.log("error addPageStatic " + data);
-        }
-    });
+        $.ajax({
+            type: "POST",
+            url: domain + "type=addStaticPage",
+            data: { "showId": currentShowId,"page-type": "page","name":name,"title":title,
+                        "text":content,"templateId":templateId,
+                        "info":info,
+                "tamplateImage1": tamplateImage1, "tamplateImage2": tamplateImage2},
+            success: function(data) {
+                console.log("success addPageStatic" + data);
+                    setAddPage(data);
+            },
+            error: function(data) {
+                console.log("error addPageStatic " + data);
+            }
+        });
+    }
 }
 
 //switch order
@@ -928,14 +1005,16 @@ function setSwitchPage(){
 }
 
 function switchDown(pageItem){
-    var pageData2 =$(pageItem).parents("tr").data("pageData");
+    
+    var pageData2 =$(pageItem).parents("tr").next().data("pageData"); 
     id2 = pageData2.id;
     switchOrderSecondItem = $(pageItem).parents("tr");
     switchOrderSecondItemData = pageData2;
-    var pageData1 =$(pageItem).parents("tr").prev().data("pageData");
-     id1 = pageData1.id;
-     switchOrderFirstItem = $(pageItem).parents("tr").prev();
-     switchOrderFirstItemData = pageData1;
+    
+    var pageData1 =$(pageItem).parents("tr").data("pageData");
+    id1 = pageData1.id;
+    switchOrderFirstItem = $(pageItem).parents("tr").next();
+    switchOrderFirstItemData = pageData1;
      //type=swapPageOrder&pageId1=1&pageId2=4
      $.ajax({
         type: "POST",
@@ -943,12 +1022,32 @@ function switchDown(pageItem){
         data: { "pageId1": id1,"pageId2":id2 },
         success: function(data) {
             console.log("success swapPageOrder: " + data);
-             setSwitchPage(data);
+             setSwitchPageDown(data);
         },
         error: function(data) {
             console.log("error swapPageOrder: " + data);
         }
     });
+}
+
+function setSwitchPageDown(){
+    $(switchOrderFirstItem).after($(switchOrderSecondItem).clone());
+    $(switchOrderSecondItem).after($(switchOrderFirstItem)).remove();
+
+    //switch the line's number
+    var firstNum = $($(switchOrderSecondItem).children("td")[0]).children(".namber").text();
+    var secondNum  =$($(switchOrderFirstItem).children("td")[0]).children(".namber").text();
+    var newFirstItem = $(switchOrderFirstItem).next();
+    $($(newFirstItem).children("td")[0]).children(".namber").text(secondNum);
+    $($(switchOrderFirstItem).children("td")[0]).children(".namber").text(firstNum);
+    // $($(switchOrderFirstItem).children("td")[0]).children(".namber").text(secondNum);
+    //$($(switchOrderSecondItem).children("td")[0]).children(".namber").text(firstNum);
+
+    //append the data
+    $(newFirstItem).data("pageData",switchOrderFirstItemData);
+    $(switchOrderSecondItem).data("pageData",switchOrderSecondItemData);
+
+
 }
 
 function showEditProgBox(){
@@ -1065,4 +1164,27 @@ function setShowEdited(data){
     $("#datepicker-edit").datepicker( "setDate",new Date(date));
 
     hideEditProgBox();
+}
+
+function checkLeftCompAble(){
+    //check if there is song name 
+    if($("#first-songs-name").val() != ""){
+             var value = $("#firstCompAddVote").children("option:selected").val();
+            if(value != 0 ){
+                $("#second-songs-name").removeAttr("disabled");
+                $("#secondCompAddVote").removeAttr("disabled");
+                $("#second-comp-wrap").removeClass("disable");
+            }
+            else{
+                 $("#second-songs-name").attr("disabled","disabled");
+                $("#secondCompAddVote").attr("disabled","disabled");
+                $("#second-comp-wrap").addClass("disable");
+            }
+       }
+        else{
+             $("#second-songs-name").attr("disabled","disabled");
+              $("#secondCompAddVote").attr("disabled","disabled");
+        }
+        
+    
 }
