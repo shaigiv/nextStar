@@ -78,6 +78,19 @@ function setVotePageData(data){
     //show the page
     navigate("vote")
    // openVotingPage();
+   
+   //get the registers' numbers by real time
+    if(data.status == 21 || data.status == 22){
+         getRegistersNumByRealTime();
+    }
+   
+
+   //set the real time percent - if this is a vote time
+   if(data.status == 23){
+    getPercentByRealTime(data);   
+   }
+
+    
 }
 
 
@@ -210,6 +223,8 @@ function setOpenRegister(data){
     setHeaderStatus(data.status);
     //set date
     setVoteStatusesDate(data);
+    //get the registers' numbers by real time
+    getRegistersNumByRealTime();
 
 }
 
@@ -219,27 +234,40 @@ function setVoteOpen(data){
     //set the header status
     setHeaderStatus(data.status);
     //set date
-    setVoteStatusesDate(data)
+    setVoteStatusesDate(data);
+    //get percent by real time
+    getPercentByRealTime(data);
+
 }
 
 function setVoteClose(data){
     console.log(data.status);
 
     //set the textbox percents
-    $("#vote1RealPerc").text(data.votes[0].finalPercent +"%");
-    $("#vote2RealPerc").text(data.votes[1].finalPercent +"%")
+    //$("#vote1RealPerc").text(data.votes[0].finalPercent +"%");
     $("#vote1RealPerc").show();
-    $("#vote2RealPerc").show();
-    var tempPerc =$("#vote1RealPerc").text().substring(0,$("#vote1RealPerc").text().length-1)
-    var perc1 =Math.round(parseInt(tempPerc));
-    tempPerc =$("#vote2RealPerc").text().substring(0,$("#vote2RealPerc").text().length-1)
-    var perc2 =Math.round(parseInt(tempPerc));
-    $("#vote1Perc").val(perc1);
-    $("#vote2Perc").val(perc2);
-    //set the header status
+   // var tempPerc =$("#vote1RealPerc").text().substring(0,$("#vote1RealPerc").text().length-1)
+   // var perc1 =Math.round(parseInt(tempPerc));
+   //$("#vote1Perc").val(perc1);
+
+   if(data.votes.length ==2){
+          //$("#vote2RealPerc").text(data.votes[1].finalPercent +"%")
+     $("#vote2RealPerc").show();
+    // tempPerc =$("#vote2RealPerc").text().substring(0,$("#vote2RealPerc").text().length-1)
+    // var perc2 =Math.round(parseInt(tempPerc));
+    //
+    //$("#vote2Perc").val(perc2);
+
+   }
+     //set the header status
     setHeaderStatus(data.status);
     //set date
     setVoteStatusesDate(data)
+
+
+    clearTimeoutRegisterAndVote();
+   
+
 }
 
 
@@ -432,6 +460,9 @@ function setCompImagesAndNamesVote(data){
         $("#vote2CompName").text(getCompNameByID(data.votes[1].cid));
         $("#vote2FinalPercName label").text(getCompNameByID(data.votes[1].cid));
         $("#vote2FinalPercName input").val(data.votes[1].finalPercent);
+
+         $("#voting-screens .container-left").show();
+         $("#vote2FinalPercName").show();
     }
     //if this is a single vote- hide the second comp
     else{
@@ -572,4 +603,167 @@ function registerGoingToClose(btn){
 function setRegisterGoingToClose(data){
 
     $("#register-going-to-close").addClass("active");
+}
+
+
+/******************************GET THE REGISTERS' NUMBERS IN REAL TIME**************************************/
+var registerNumTimeout;
+function getRegistersNumByRealTime(){
+    registerNumTimeout = setTimeout(function(){
+        getRegistersNum();
+    },1000);
+}
+
+function getRegistersNum(){
+    //getRegisterCounter
+     $.ajax({
+        type: "POST",
+        url: domain + "type=getRegisterCounter",
+        success: function(data) {
+            console.log("success getRegisterCounter: " + data);
+             setRegistersNumByRealTime(data);
+            //showShowPage();
+        },
+        error: function(data) {
+            console.log("error getRegisterCounter: " + data);
+        }
+    });
+}
+
+
+function setRegistersNumByRealTime(data){
+    console.log(data);
+    $("#num-of-users").text(data.RegisterCounter);
+    registerNumTimeout = setTimeout(function(){
+        getRegistersNum();
+    },1000);
+}
+
+
+/*********************GET PERCENTS IN REAL TIME*************************************/
+
+var graphJsonURLA="";
+var graphJsonURLB="";
+var firstPercentTimeout;
+var secondPercentTimeout;
+function getPercentByRealTime(data){
+    //vote1RealPerc,vote2RealPerc
+    
+    var urlSecond = "";
+    
+    if(data.votes.length ==1){
+        $("#vote1RealPerc").show();
+        $("#vote2RealPerc").hide();
+        graphJsonURLA =data.votes[0].graphJsonURL;
+        getFirstPercentRealTime();
+    }
+    else{
+        $("#vote1RealPerc").show();
+        $("#vote2RealPerc").show();
+        graphJsonURLA =data.votes[0].graphJsonURL;
+        graphJsonURLB =data.votes[1].graphJsonURL;
+
+        getFirstPercentRealTime();
+        getSecondPercentRealTime();
+    }
+}
+
+function getFirstPercentRealTime(){
+      var url = domainForJson +graphJsonURLA;
+         $.ajax({
+            type: "POST",
+            url: url,
+            success: function(data) {
+                console.log("success setFirstPercentRealTime: " + data);
+                 setFirstPercentRealTime(data);
+            },
+            error: function(data) {
+                console.log("error setFirstPercentRealTime: " + data);
+            }
+        });
+}
+
+function setFirstPercentRealTime(data){
+    console.log("setFirstPercentRealTime, " + data);
+    var dataArray = JSON.parse(data);
+    var relevantData = dataArray[dataArray.length - 1];
+    var perc;
+    //if num of users that register = 0
+    if(relevantData.voteRegister == 0){
+        perc = 0;
+    }
+    else{
+        perc = relevantData.voteTrue / relevantData.voteRegister*100;
+    }
+
+    $("#vote1RealPerc").text(perc.toFixed(2) + "%");
+
+    //set the textbox percent
+    var tempPerc =$("#vote1RealPerc").text().substring(0,$("#vote1RealPerc").text().length-1)
+    var perc1 =Math.round(parseInt(tempPerc));
+    $("#vote1Perc").val(perc1);
+
+    //get the percent every 5 seconds
+    firstPercentTimeout =setTimeout(function(){
+        getFirstPercentRealTime();
+    },5000);
+    
+}
+
+function getSecondPercentRealTime(){
+      var url = domainForJson +graphJsonURLB;
+         $.ajax({
+            type: "POST",
+            url: url,
+            success: function(data) {
+                console.log("success getSecondPercentRealTime: " + data);
+                 setSecondPercentRealTime(data);
+            },
+            error: function(data) {
+                console.log("error getSecondPercentRealTime: " + data);
+            }
+        });
+}
+
+function setSecondPercentRealTime(data){
+    console.log("setSecondPercentRealTime, " + data);
+    var dataArray = JSON.parse(data);
+    var relevantData = dataArray[dataArray.length - 1];
+    var perc;
+    //if num of users that register = 0
+    if(relevantData.voteRegister == 0){
+        perc = 0;
+    }
+    else{
+        perc = relevantData.voteTrue / relevantData.voteRegister *100;
+    }
+
+     $("#vote2RealPerc").text(perc.toFixed(2) + "%");
+    
+    
+     tempPerc =$("#vote2RealPerc").text().substring(0,$("#vote2RealPerc").text().length-1)
+     var perc2 =Math.round(parseInt(tempPerc));
+    $("#vote2Perc").val(perc2);
+    //get the percent every 5 seconds
+    secondPercentTimeout =setTimeout(function(){
+        getSecondPercentRealTime();
+    },5000);
+    
+}
+
+
+function clearTimeoutRegisterAndVote(){
+    //clear the timeout after 1.5 minute
+    //the server get time to end process
+    setTimeout(function(){
+        //clear the real register number
+        clearTimeout(registerNumTimeout);
+    
+        //clear the real percent timeout
+        clearTimeout(firstPercentTimeout);
+        clearTimeout(secondPercentTimeout);
+
+        console.log("timeout clear");
+    },90000);
+   
 }
