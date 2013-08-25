@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>login</title>
+        <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+    </head>
+    <body>
+        
+        <div>
+           <div class="">
+             שם משתמש:
+           </div>
+
+            <div class="">
+                <input type="text" id="name" />
+            </div>
+
+        </div>
+       
+            <div>
+           <div class="">
+           סיסמה:
+           </div>
+
+            <div class="">
+                <input type="text" id="pass" />
+            </div>
+
+        </div>
+        <div>
+            <input type="button" onclick="sendLoginRequest()"/>
+        </div>
+
+
+
+        <script>
+            var domain = "http://makosrv1.egoline.co.il:9090/nextStar/json?";
+
+            function sendLoginRequest() {
+                var userName = $("#name").val();
+                var password = $("#pass").val();
+
+                $.ajax({
+                    type: "POST",
+                    method: "POST",
+                    url: domain,
+                    data: "type=login&userName=" + userName + "&password=" + password,
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.login == 1) {
+                            alert("login success")
+                        }
+                        else {
+                            alert("login fail");
+                        }
+                    },
+                    error: function (data) {
+                        alert("login fail")
+                    }
+                });
+
+
+
+
+
+
+            }
+
+
+</script>
+
+    </body>
+</html>
