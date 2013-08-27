@@ -1,8 +1,15 @@
-var domain = "http://makosrv1.egoline.co.il:9090/nextStar/json?";
-//var domain = "http://makosrv1.egoline.co.il/nextStarTestA/json?";
-var domain = "http://makosrv1.egoline.co.il:9090/nextStarTestD/json?";
+  /********PRODUCTION!!!!*******/
+  var domain = "/nextStar/json?";
+  /********PRODUCTION!!!!*******/
+
+//E -mako
+//A -yerutech
+//cambium -D
+
+//var domain = "/nextStarTestA/json?";
+//var domain = "http://makosrv1.egoline.co.il:9090/nextStarTestD/json?";
 //var domain = "http://192.168.2.108:8080/nextStarQA/json?";
-var domainForJson = "http://makosrv1.egoline.co.il:9090";
+var domainForJson = "http://thenextstar.mako.co.il:9090";
 
 
 var editCompId = "";
@@ -105,7 +112,7 @@ function getShowsList() {
         url: domain + "type=getAllShow",
         success: function(data) {
             if(data.error =="not log in"){
-                window.location.href="login.html"
+                window.location.href="login.html";
             }
             else{
                 console.log("success getShowsList: " + data);
