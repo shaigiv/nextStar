@@ -1,7 +1,16 @@
-//var domain = "http://makosrv1.egoline.co.il/nextStar/json?";
-//var domain = "http://makosrv1.egoline.co.il/nextStarTestA/json?";
-var domain = "http://makosrv1.egoline.co.il/nextStarTestD/json?";
+  /********PRODUCTION!!!!*******/
+  var domain = "/nextStar/json?";
+  /********PRODUCTION!!!!*******/
+
+//E -mako
+//A -yerutech
+//cambium -D
+
+//var domain = "/nextStarTestA/json?";
+//var domain = "http://makosrv1.egoline.co.il:9090/nextStarTestD/json?";
 //var domain = "http://192.168.2.108:8080/nextStarQA/json?";
+var domainForJson = "http://thenextstar.mako.co.il:9090";
+
 
 var editCompId = "";
 var editCompHtml = "";
@@ -102,8 +111,14 @@ function getShowsList() {
          type:"POST",
         url: domain + "type=getAllShow",
         success: function(data) {
-            console.log("success getShowsList: " + data);
-            setShowList(data);
+            if(data.error =="not log in"){
+                window.location.href="login.html";
+            }
+            else{
+                console.log("success getShowsList: " + data);
+                setShowList(data);
+            }
+           
         },
         error: function(data) {
             console.log("error getShowsList: " + data);
@@ -157,8 +172,13 @@ function deleteShow(show){
                 url: domain + "type=deleteShow",
                 data:{"id":showId},
                 success: function(data) {
-                    console.log("success getShowsList: " + data);
-                    setShowDeleted(data);
+                    if(data.error =="not log in"){
+                        window.location.href="login.html"
+                    }
+                    else{
+                        console.log("success getShowsList: " + data);
+                        setShowDeleted(data);
+                    }
                 },
                 error: function(data) {
                     console.log("error getShowsList: " + data);
@@ -195,8 +215,13 @@ function addShow(){
             url: domain + "type=addShow",
             data:{"name":showName,"date":date},
             success: function(data) {
-                console.log("success addShow: " + data);
-                setShowAdded(data);
+                if(data.error =="not log in"){
+                    window.location.href="login.html"
+                }
+                else{
+                    console.log("success addShow: " + data);
+                    setShowAdded(data);
+                }
             },
             error: function(data) {
                 console.log("error addShow: " + data);
@@ -241,8 +266,13 @@ function getCompetitorsList() {
         type:"POST",
         url: domain + "type=getAllCompetitor",
         success: function(data) {
-            console.log("success getShowsList: " + data);
-            setCompetitorsList(data);
+            if(data.error =="not log in"){
+                window.location.href="login.html"
+            }
+            else{
+                console.log("success getShowsList: " + data);
+                setCompetitorsList(data);
+            }
         },
         error: function(data) {
             console.log("error getShowsList: " + data);
@@ -304,10 +334,15 @@ function addCompetitor(){
              url: domain + "type=addCompetitor",
              data: { "name": name, "imgUrlA": imgUrlSmall, "imgUrlB": imgUrlLarge },
              success: function(data) {
-                 console.log("success addCompetitor: " + data);
-                 setAddCompetitor(data);
-                 alert("המשתמש " + data.name + " נוסף בהצלחה");
-                 $("#add-contestant").fadeOut();
+                 if(data.error =="not log in"){
+                    window.location.href="login.html"
+                }
+                else{
+                     console.log("success addCompetitor: " + data);
+                     setAddCompetitor(data);
+                     alert("המשתמש " + data.name + " נוסף בהצלחה");
+                     $("#add-contestant").fadeOut();
+                 }
 
          },
          error: function(data) {
@@ -440,13 +475,18 @@ function editCompetitorSend(){
             url: domain + "type=updateComptitor",
             data:{"id":id,"name":name,"imgUrlA":imgUrla, "imgUrlB":imgUrlb},
             success: function(data) {
-                console.log("success editCompetitor: " + data);
-                if(data == "parameter miss"){
-                    console.log("parameter miss");
+                if(data.error =="not log in"){
+                window.location.href="login.html"
                 }
                 else{
-                    setEditCompetitor(data);
-                }
+                    console.log("success editCompetitor: " + data);
+                    if(data == "parameter miss"){
+                        console.log("parameter miss");
+                    }
+                    else{
+                        setEditCompetitor(data);
+                    }
+               }
             
             },
             error: function(data) {
@@ -504,9 +544,14 @@ function deleteCompetitorSend(deleteItem) {
          url: domain + "type=updateComptitorStatus",
          data: { "id": compId, "status": -1 },
          success: function(data) {
-             console.log("success deleteCompetitorSend: " + data);
-             deleteCompHtml.fadeOut();
+             if(data.error =="not log in"){
+                window.location.href="login.html"
+            }
+            else{
+                 console.log("success deleteCompetitorSend: " + data);
+                 deleteCompHtml.fadeOut();
              //leteCompHtml.remove();
+             }
          },
          error: function(data) {
              console.log("error deleteCompetitorSend: " + data);

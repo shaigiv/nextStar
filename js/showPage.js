@@ -8,7 +8,7 @@ TEXTWAITREGISTER = "פתיחת הרשמה";
 TEXTWAITVOTE = "פתיחת הצבעה";
 TEXTWAITCALC = "סגירת הצבעה";
 PUBLISHRESULTS = "פרסם תוצאות";
-DEFAULTTHRESHOLD ="50"
+DEFAULTTHRESHOLD ="66"
 //templates dictionary - also for the application
 //המתנה עם תמונה -1
 //המתנה בלי תמונה -2
