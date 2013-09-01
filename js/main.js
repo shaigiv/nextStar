@@ -45,6 +45,7 @@ $(document).ready(function() {
         else {
             showAddPageBox();
             initAddStaticPageText();
+             editStaticPage = false;
         }
     });
     $("#edit-prog-name").click(function() {

@@ -700,6 +700,8 @@ function initAddStaticPageText(){
      $(".add-page-img-wrap .smallImg").data("url", "");
      $(".add-page-img-wrap .largeImg").data("url", "");
      $("#add-page-imgFile").attr("src", "img/default.jpg");
+
+
 }
 
 function addPageStatic(){
