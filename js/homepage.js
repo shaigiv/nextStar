@@ -1,12 +1,12 @@
   /********PRODUCTION!!!!*******/
-  var domain = "/nextStar/json?";
+  //var domain = "/nextStar/json?";
   /********PRODUCTION!!!!*******/
 
 //E -mako
 //A -yerutech
 //cambium -D
 
-//var domain = "/nextStarTestA/json?";
+var domain = "http://thenextstar.mako.co.il:9090/nextStarTestD/json?";
 //var domain = "http://makosrv1.egoline.co.il:9090/nextStarTestD/json?";
 //var domain = "http://192.168.2.108:8080/nextStarQA/json?";
 var domainForJson = "http://thenextstar.mako.co.il:9090";

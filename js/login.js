@@ -1,10 +1,10 @@
  
   /********PRODUCTION!!!!*******/
-   var domain = "/nextStar/json?";
+   //var domain = "/nextStar/json?";
   /********PRODUCTION!!!!*******/
   
 
- //var domain = "/nextStarTestA/json?";
+ var domain = "http://thenextstar.mako.co.il:9090/nextStarTestD/json?";
  
 //E -mako
 //A -yerutech
