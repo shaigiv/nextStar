@@ -77,9 +77,14 @@ function setVotePageData(data){
     setTextboxPercent(data);
     //show the page
     navigate("vote")
-   // openVotingPage();
-   
-   //get the registers' numbers by real time
+    
+    
+    //init the num of user
+    $("#num-of-users").text(data.RegisterCounter);
+    $("#vote1RealPerc").text(data.votes[0].finalPercent+"%");
+    $("#vote2RealPerc").text(data.votes[1].finalPercent+"%");
+
+   //get the registers' numbers by real timenum-of-users
     if(data.status == 21 || data.status == 22){
          getRegistersNumByRealTime();
     }
@@ -681,7 +686,7 @@ function getRegistersNum(){
 
 
 function setRegistersNumByRealTime(data){
-    console.log(data);
+  //  console.log(data);
     $("#num-of-users").text(data.RegisterCounter);
   
 }
@@ -695,7 +700,7 @@ var firstPercentTimeout;
 var secondPercentTimeout;
 function getPercentByRealTime(data){
     //vote1RealPerc,vote2RealPerc
-    
+     $("#vote1RealPerc").text("0%");
     var urlSecond = "";
     
     if(data.votes.length ==1){

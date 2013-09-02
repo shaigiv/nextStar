@@ -7,8 +7,8 @@
 //cambium -D
 //var domain = "http://thenextstar.mako.co.il:9090/nextStarTestF/json?";
 
-var domain = "/nextStarTestD/json?";
-//var domain = "http://makosrv1.egoline.co.il:9090/nextStarTestD/json?";
+//var domain = "/nextStarTestE/json?";
+var domain = "http://makosrv1.egoline.co.il:9090/nextStarTestF/json?";
 //var domain = "http://192.168.2.108:8080/nextStarQA/json?";
 var domainForJson = "http://thenextstar.mako.co.il:9090";
 

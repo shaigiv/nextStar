@@ -1,7 +1,7 @@
 var currentShowId = "";
 //add static page const text
 SCREENCONTENT = "יצאנו לפרסומות";
-SCREENINFO = "מייד נמשיך בשידור";
+SCREENINFO = "ממתין להמשך השידור";
 SCREENTITLE = "הערב בכוכב נולד";
 SCREENNAME = "הזן שם מסך";
 TEXTWAITREGISTER = "ממתין לתחילת הביצוע";
