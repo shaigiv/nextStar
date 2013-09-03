@@ -8,39 +8,35 @@
         <script type="text/javascript" charset="utf-8" src="js/login.js"></script>
     </head>
     <body>
-        
-        <div>
-           <div class="">
-             שם משתמש:
-           </div>
+        <form onsubmit="return sendLoginRequest()">
+			<div>
+			   <div class="">
+				 שם משתמש:
+			   </div>
 
-            <div class="">
-                <input type="text" id="name" />
-            </div>
+				<div class="">
+					<input type="text" id="name" />
+				</div>
 
-        </div>
-       
-            <div>
-           <div class="">
-           סיסמה:
-           </div>
+			</div>
+		   
+				<div>
+			   <div class="">
+			   סיסמה:
+			   </div>
 
-            <div class="">
-                <input type="text" id="pass" />
-            </div>
+				<div class="">
+					<input type="password" id="pass" />
+				</div>
 
-        </div>
-        <div>
-            <input type="button" value="התחבר" onclick="sendLoginRequest()"/>
-        </div>
-
-
-
-        <script>
-          
+			</div>
+			<div>
+				<input type="submit" value="התחבר" />
+			</div>
+		
+		</form>
 
 
-</script>
 
     </body>
 </html>

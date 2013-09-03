@@ -4,8 +4,8 @@
   /********PRODUCTION!!!!*******/
   
 
- var domain = "http://thenextstar.mako.co.il:9090/nextStarTestF/json?";
- //var domain = "/nextStarTestE/json?";
+ //var domain = "http://thenextstar.mako.co.il:9090/nextStarTestF/json?";
+ var domain = "/nextStarTestE/json?";
  
 //E -mako
 //A -yerutech
@@ -25,7 +25,10 @@ function sendLoginRequest() {
         success: function(data) {
             if(data.login == 1) {
                 alert("login success");
-                 window.location.href = "index.html";
+				var returnHerf=getURLParameter("returnHerf");
+				if (returnHerf=="null") 
+					returnHerf="index.html";
+                window.location.href = returnHerf;
             }
             else {
                 alert("login fail");
@@ -35,10 +38,11 @@ function sendLoginRequest() {
             alert("login fail")
         }
     });
+	return false;
+}
 
-   
-
-
-
-
+function getURLParameter(name) {
+    return decodeURI(
+        (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]
+    );
 }

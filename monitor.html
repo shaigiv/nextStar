@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<title>The Next Star</title>
+<link href="css/style.css" rel="Stylesheet" type="text/css" />
+<link href="css/monitor.css" rel="Stylesheet" type="text/css" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/pollControllerV14.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/monitor.js"></script>
+
+
+
+</head>
+
+<body>
+<div class="bg-wrap">
+	<header>
+		<div class="main-header">
+			<div class="logo-wrap">
+				<div class="logo"></div>
+				<div class="title">מוניטור</div>
+			</div>
+		</div>
+	</header>
+	<div class="main-wrap"> 
+		<section id="voting-screens" style="font-size: 20px; margin-bottom: 20px;">
+			<div style="clear: both;overflow: hidden;">
+				<div class="usersAll">
+					משתתפים:<span id="num-of-users">0</span> 
+				</div>
+			</div>
+            <div id="register-going-to-close" class="disable">הרשמה עומדת להסתיים</div>
+			<ul class="horizonal-list blueH">
+				<li id="waitStat" class="statusItem"><span>ממתין</span></li>
+				<li id="openRegister" class="statusItem"><span>פתיחת הרשמה</span><br/>
+				</li>
+				<li id="openVote" class="statusItem"><span>פתיחת הצבעה</span><br/></li>
+				<li id="closeVote" class="statusItem"><span>סגירת הצבעה</span><br/></li>
+				<li id="publishResults" class="statusItem"><span>פרסם תוצאות</span><br/></li>
+			</ul>
+			<div id="current-contestants">
+				<div class="container-right"> <img id="vote-first-img" src="" class="contestant-img">
+					<div class="result">
+						<div id="vote1CompName" class="voting-name">נינט טייב</div>
+						<div id="vote1RealPerc" class="voting-precent green-text">0%</div>
+					</div>
+				</div>
+				<div class="container-left"> <img id="vote-second-img" src="" class="contestant-img">
+					<div class="result">
+						<div id="vote2CompName" class="voting-name">שירי מיימון</div>
+						<div id="vote2RealPerc" class="voting-precent red-text">0%</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+</body>
+</html>

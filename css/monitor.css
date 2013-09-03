@@ -1,0 +1,24 @@
+section {
+	display: block;
+}	
+
+#register-going-to-close {
+	top: 197px;
+}
+
+#register-going-to-close,
+.horizonal-list li{
+	color: black;
+	opacity: 0.15;
+}
+
+#register-going-to-close.current,
+.horizonal-list li.current{
+	color: white;
+	opacity: 1;
+}
+
+.voting-precent {
+	display: block;
+}
+
