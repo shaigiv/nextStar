@@ -158,6 +158,14 @@ function showEvents(){
      $("#cancel-edit-show-btn").click(function(){
         hideEditProgBox();
     });
+
+    /**********changes for load images*************/
+    $("#small-image-select").change(function(e){
+        imageChosen(this);
+    });
+     $("#large-image-select").change(function(e){
+        imageChosen(this);
+    });
 }
    
 function openShow(show){
@@ -697,8 +705,15 @@ function initAddStaticPageText(){
      $("#template-select option:first").prop('selected', 'selected');
 
      //init the images
-     $(".add-page-img-wrap .smallImg").data("url", "");
-     $(".add-page-img-wrap .largeImg").data("url", "");
+    // $(".add-page-img-wrap .smallImg").data("url", "");
+     //$(".add-page-img-wrap .largeImg").data("url", "");
+
+     $("#small-image-select option").removeAttr('selected');
+     $("#large-image-select option").removeAttr('selected');
+      $("#small-image-select option[value=0]").attr("selected","selected")
+      $("#large-image-select option[value=0]").attr("selected","selected")
+        
+
      $("#add-page-imgFile").attr("src", "img/default.jpg");
 
 
@@ -710,13 +725,24 @@ function addPageStatic(){
     var content = $("#screen-content").val();
     var info = $("#screen-info").val();
     var name = $("#screen-name").val();
-    var tamplateImage1 =$(".add-page-img-wrap .smallImg").data("url");
-    var tamplateImage2 =$(".add-page-img-wrap .largeImg").data("url");
+    // var tamplateImage1 =$(".add-page-img-wrap .smallImg").data("url");
+    // var tamplateImage2 =$(".add-page-img-wrap .largeImg").data("url");
+    var tamplateImage1 =$("#small-image-select").children("option:selected").text();
+    var tamplateImage2 =$("#large-image-select").children("option:selected").text();
     var validate = true;
     //if its a template with image- validate that the user upload 2 images
     if(templateId ==1 || templateId ==3){
-        if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
-            alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
+        //if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
+        //    alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
+        //    validate = false;
+        //}
+        var smallImgItem =$("#small-image-select").children("option:selected");
+        var largeImgItem =$("#large-image-select").children("option:selected");
+        if((smallImgItem.val() != 0) && (largeImgItem.val() != 0) ){
+            validate= true;
+        }
+        else{
+            alert("עליך לבחור 2 תמונות לפני העלאה של דף חדש");
             validate = false;
         }
        
@@ -756,13 +782,25 @@ function editPageStatic(){
     var content =$("#screen-content").val();
      var info =$("#screen-info").val();
     var templateID =$("#template-select option:selected").attr("value");
-    var tamplateImage1 = $(".add-page-img-wrap .smallImg").data("url");
-    var tamplateImage2 = $(".add-page-img-wrap .largeImg").data("url");
+   // var tamplateImage1 = $(".add-page-img-wrap .smallImg").data("url");
+    //var tamplateImage2 = $(".add-page-img-wrap .largeImg").data("url");
+    var tamplateImage1 =$("#small-image-select").children("option:selected").text();
+    var tamplateImage2 =$("#large-image-select").children("option:selected").text();
     var validate = true;
     //if its a template with image- validate that the user upload 2 images
     if(templateID ==1 || templateID ==3){
-        if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
-            alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
+        //if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
+        //    alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
+        //    validate = false;
+        //}
+
+        var smallImgItem =$("#small-image-select").children("option:selected");
+        var largeImgItem =$("#large-image-select").children("option:selected");
+        if((smallImgItem.val() != 0) && (largeImgItem.val() != 0) ){
+            validate= true;
+        }
+        else{
+            alert("עליך לבחור 2 תמונות לפני העלאה של דף חדש");
             validate = false;
         }
        
@@ -856,13 +894,15 @@ function  setEditAddPage(pageItemData){
     //set the info
     $("#screen-info").val(pageItemData.info);
     //set the images
-    $(".add-page-img-wrap .smallImg").data("url", pageItemData.tamplateImage1);
-    $(".add-page-img-wrap .largeImg").data("url", pageItemData.tamplateImage2);
+    //$(".add-page-img-wrap .smallImg").data("url", pageItemData.tamplateImage1);
+   // $(".add-page-img-wrap .largeImg").data("url", pageItemData.tamplateImage2);
     var displayImg =pageItemData.tamplateImage1;
     if(displayImg == ""){
         displayImg = "img/default.jpg";
     }
     $("#add-page-imgFile").attr("src", displayImg);
+    //set the select value
+    setSelectOptionImages(pageItemData);
         //if this is a template with image 
     if(templateId =="1" ||templateId =="3"  ){
         $(".add-page-img-wrap").show();
@@ -1189,4 +1229,28 @@ function checkLeftCompAble(){
         }
         
     
+}
+
+function imageChosen(optionItem){
+    var src =$(optionItem).children("option:selected").text();
+    $("#add-page-imgFile").attr("src",src);
+}
+
+function setSelectOptionImages(pageItemData){
+    var smallUrl =pageItemData.tamplateImage1;
+    var largeUrl =pageItemData.tamplateImage2;
+    $("#small-image-select option").each(function(){
+        if(smallUrl == $(this).text()){
+            
+            $("#small-image-select option:selected").removeAttr("selected");
+            $(this).attr("selected","selected");
+        }
+    });
+    $("#large-image-select option").each(function(){
+        if(largeUrl == $(this).text()){
+            
+            $("#large-image-select option:selected").removeAttr("selected");
+            $(this).attr("selected","selected");
+        }
+    });
 }
