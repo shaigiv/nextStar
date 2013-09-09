@@ -4,8 +4,8 @@
   /********PRODUCTION!!!!*******/
   
 
- //var domain = "http://thenextstar.mako.co.il:9090/nextStarTestF/json?";
- var domain = "/nextStarTestE/json?";
+ var domain = "http://thenextstar.mako.co.il:9090/nextStarTestE/json?";
+ //var domain = "/nextStarTestF/json?";
  
 //E -mako
 //A -yerutech

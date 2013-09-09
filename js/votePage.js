@@ -82,7 +82,10 @@ function setVotePageData(data){
     //init the num of user
     $("#num-of-users").text(data.RegisterCounter);
     $("#vote1RealPerc").text(data.votes[0].finalPercent+"%");
-    $("#vote2RealPerc").text(data.votes[1].finalPercent+"%");
+    if(data.votes.length == 2){
+        $("#vote2RealPerc").text(data.votes[1].finalPercent+"%");
+    }
+    
 
    //get the registers' numbers by real timenum-of-users
     if(data.status == 21 || data.status == 22){

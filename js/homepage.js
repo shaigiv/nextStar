@@ -7,8 +7,8 @@
 //cambium -D
 //var domain = "http://thenextstar.mako.co.il:9090/nextStarTestF/json?";
 
-var domain = "/nextStarTestE/json?";
-//var domain = "http://makosrv1.egoline.co.il:9090/nextStarTestF/json?";
+//var domain = "/nextStarTestF/json?";
+var domain = "http://makosrv1.egoline.co.il:9090/nextStarTestE/json?";
 //var domain = "http://192.168.2.108:8080/nextStarQA/json?";
 var domainForJson = "http://thenextstar.mako.co.il:9090";
 
@@ -99,6 +99,9 @@ function  homePageInitEvents(){
     });
 
     datepickerInit();
+
+    
+  
 }
 
 function getHomePageData(){
@@ -279,6 +282,22 @@ function getCompetitorsList() {
             console.log("error getShowsList: " + data);
         }
     });
+
+
+    //$.ajax({
+    //    type:"POST",
+    //    url: "compList.json",
+    //    success: function(data) {
+    //       console.log("");
+    //       var compListArr =JSON.parse(data);
+    //       setCompetitorsList(compListArr);
+    //    },
+    //    error: function(data){
+    //        console.log("");
+    //    }
+    //});
+    /*******image change*******/
+
 }
 
 function setCompetitorsList(data){

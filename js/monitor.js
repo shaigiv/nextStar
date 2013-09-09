@@ -1,5 +1,5 @@
-jsonPageUrl='/page/pageE.json';
-jsonUrl='/nextStarTestE'
+jsonPageUrl='/page/pageF.json';
+jsonUrl='/nextStarTestF'
 
 var pid= 0;
 var status=0;
