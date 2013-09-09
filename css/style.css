@@ -1228,3 +1228,35 @@ margin-right: 75px;
 float: right;
 text-align: center;
 }
+
+
+
+/***********changes for load images*************/
+#conestant-container .delete{
+    display: none;
+}
+
+#conestant-container .edit{
+    display: none;
+}
+
+#open-new-comp{
+    display: none;
+}
+
+#page-upload{
+    display: none;
+}
+#add-page-imgFile
+{
+    bottom:33px;
+}
+#small-image-select
+{
+    width: 171px;
+}
+
+#large-image-select
+{
+    width: 171px;
+}

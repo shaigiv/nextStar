@@ -442,19 +442,35 @@
 									<div class="add-page-img">
 										<div>
 											<label for="file">תמונה קטנה:</label>
-											<input type="file" name="smallImg" class="smallImg">
+											<!--<input type="file" name="smallImg" class="smallImg">-->
+                                            <select id="small-image-select">
+                                                <option value="0">בחר תמונה</option>
+                                                <option>http://thenextstar.mako.co.il/nextstarimg/35.73192599592206%D7%9B%D7%95%D7%9B%D7%91%20%D7%90%D7%99%D7%99%D7%A4%D7%95%D7%9F1.jpg</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
                                             <span class="small displayImgBtn">צפה בתמונה</span>
 										</div>
 										<div>
 											<label for="file">תמונה גדולה:</label>
-											<input class="largeImg" type="file" name="largeImg">
+											<!--<input class="largeImg" type="file" name="largeImg">-->
+                                            <select id="large-image-select">
+                                                <option value="0">בחר תמונה</option>
+                                                <option>http://thenextstar.mako.co.il/nextstarimg/35.73192599592206%D7%9B%D7%95%D7%9B%D7%91%20%D7%90%D7%99%D7%99%D7%A4%D7%95%D7%9F1.jpg</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                            </select>
                                             <span class="large displayImgBtn">צפה בתמונה</span>
 										</div>
 										<input id="page-upload" class="upload" type="button" name="submit" value="העלה תמונה">
 										<img id="add-page-imgFile" src="" /> </div>
 									
 									<input class="uploadSub" type="submit" style="display: none" id="page-submit" name="submit1" value="Submit">
-								</form>
+						</form>
                         <iframe style="display: none" id="pageIframeResultId" name="pageIframeResultId" onload="pageImageUploaded()"></iframe>
 						<div class="control-buttons">
 							<button type="button" class="button_show">הצג</button>
