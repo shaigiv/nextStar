@@ -1,0 +1,32 @@
+[
+    {
+        "id":22,
+        "imageUrlA":"/nextstarimg/46.94190737959629002_f.jpg",
+        "imageUrlB":"/nextstarimg/22.054597058381436002_f.jpg",
+        "name":"יונתן פריג'"
+    },
+    {
+        "id":9,
+        "imageUrlA":"/nextstarimg/34.670664347695001_f.jpg",
+        "imageUrlB":"/nextstarimg/24.275820018057903001_f.jpg",
+        "name":"אור טרגן"
+    },
+   {
+        "id":21,
+        "imageUrlA":"/nextstarimg/47.53335788683987003_f.jpg",
+        "imageUrlB":"/nextstarimg/0.6641625823996244003_f.jpg",
+        "name":"ניקי גולדשטיין"
+    },
+     {
+        "id":20,
+        "imageUrlA":"/nextstarimg/38.70600699980568004_f.jpg",
+        "imageUrlB":"/nextstarimg/24.09329161295377004_f.jpg",
+        "name":"עמוס בן דוד"
+    },
+     {
+        "id":19,
+        "imageUrlA":"/nextstarimg/33.083230709108946005_f.jpg",
+        "imageUrlB":"/nextstarimg/15.513339210578142005_f.jpg",
+        "name":"שי המבר"
+    }
+]
