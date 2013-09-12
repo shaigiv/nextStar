@@ -8,7 +8,7 @@ TEXTWAITREGISTER = "ממתין לתחילת הביצוע";
 TEXTWAITVOTE = "ממתין לסיום הביצוע";
 TEXTWAITCALC = "הביצוע הסתיים מיד נמשיך בשידור.";
 PUBLISHRESULTS = "מיד נמשיך בשידור";
-DEFAULTTHRESHOLD ="66"
+DEFAULTTHRESHOLD ="75"
 //templates dictionary - also for the application
 //המתנה עם תמונה -1
 //המתנה בלי תמונה -2
@@ -160,12 +160,12 @@ function showEvents(){
     });
 
     /**********changes for load images*************/
-    $("#small-image-select").change(function(e){
-        imageChosen(this);
-    });
-     $("#large-image-select").change(function(e){
-        imageChosen(this);
-    });
+    //$("#small-image-select").change(function(e){
+    //    imageChosen(this);
+    //});
+    // $("#large-image-select").change(function(e){
+    //    imageChosen(this);
+    //});
 }
    
 function openShow(show){
@@ -705,14 +705,14 @@ function initAddStaticPageText(){
      $("#template-select option:first").prop('selected', 'selected');
 
      //init the images
-    // $(".add-page-img-wrap .smallImg").data("url", "");
-     //$(".add-page-img-wrap .largeImg").data("url", "");
+     $(".add-page-img-wrap .smallImg").data("url", "");
+     $(".add-page-img-wrap .largeImg").data("url", "");
 
-     $("#small-image-select option").removeAttr('selected');
-     $("#large-image-select option").removeAttr('selected');
-      $("#small-image-select option[value=0]").attr("selected","selected")
-      $("#large-image-select option[value=0]").attr("selected","selected")
-        
+     //$("#small-image-select option").removeAttr('selected');
+     //$("#large-image-select option").removeAttr('selected');
+     // $("#small-image-select option[value=0]").attr("selected","selected")
+     // $("#large-image-select option[value=0]").attr("selected","selected")
+     //   
 
      $("#add-page-imgFile").attr("src", "img/default.jpg");
 
@@ -725,26 +725,26 @@ function addPageStatic(){
     var content = $("#screen-content").val();
     var info = $("#screen-info").val();
     var name = $("#screen-name").val();
-    // var tamplateImage1 =$(".add-page-img-wrap .smallImg").data("url");
-    // var tamplateImage2 =$(".add-page-img-wrap .largeImg").data("url");
-    var tamplateImage1 =$("#small-image-select").children("option:selected").text();
-    var tamplateImage2 =$("#large-image-select").children("option:selected").text();
+     var tamplateImage1 =$(".add-page-img-wrap .smallImg").data("url");
+    var tamplateImage2 =$(".add-page-img-wrap .largeImg").data("url");
+   // var tamplateImage1 =$("#small-image-select").children("option:selected").text();
+   // var tamplateImage2 =$("#large-image-select").children("option:selected").text();
     var validate = true;
     //if its a template with image- validate that the user upload 2 images
     if(templateId ==1 || templateId ==3){
-        //if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
-        //    alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
-        //    validate = false;
-        //}
-        var smallImgItem =$("#small-image-select").children("option:selected");
-        var largeImgItem =$("#large-image-select").children("option:selected");
-        if((smallImgItem.val() != 0) && (largeImgItem.val() != 0) ){
-            validate= true;
-        }
-        else{
-            alert("עליך לבחור 2 תמונות לפני העלאה של דף חדש");
+        if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
+            alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
             validate = false;
         }
+        //var smallImgItem =$("#small-image-select").children("option:selected");
+        //var largeImgItem =$("#large-image-select").children("option:selected");
+        //if((smallImgItem.val() != 0) && (largeImgItem.val() != 0) ){
+        //    validate= true;
+        //}
+        //else{
+        //    alert("עליך לבחור 2 תמונות לפני העלאה של דף חדש");
+        //    validate = false;
+        //}
        
     }
     else if(templateId ==2 || templateId ==4  || templateId ==5){
@@ -782,27 +782,27 @@ function editPageStatic(){
     var content =$("#screen-content").val();
      var info =$("#screen-info").val();
     var templateID =$("#template-select option:selected").attr("value");
-   // var tamplateImage1 = $(".add-page-img-wrap .smallImg").data("url");
-    //var tamplateImage2 = $(".add-page-img-wrap .largeImg").data("url");
-    var tamplateImage1 =$("#small-image-select").children("option:selected").text();
-    var tamplateImage2 =$("#large-image-select").children("option:selected").text();
+    var tamplateImage1 = $(".add-page-img-wrap .smallImg").data("url");
+    var tamplateImage2 = $(".add-page-img-wrap .largeImg").data("url");
+    //var tamplateImage1 =$("#small-image-select").children("option:selected").text();
+   // var tamplateImage2 =$("#large-image-select").children("option:selected").text();
     var validate = true;
     //if its a template with image- validate that the user upload 2 images
     if(templateID ==1 || templateID ==3){
-        //if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
-        //    alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
-        //    validate = false;
-        //}
-
-        var smallImgItem =$("#small-image-select").children("option:selected");
-        var largeImgItem =$("#large-image-select").children("option:selected");
-        if((smallImgItem.val() != 0) && (largeImgItem.val() != 0) ){
-            validate= true;
-        }
-        else{
-            alert("עליך לבחור 2 תמונות לפני העלאה של דף חדש");
+        if(tamplateImage1 == "" || tamplateImage1 == undefined || tamplateImage2 == "" || tamplateImage2 == undefined){
+            alert("עליך להעלות 2 תמונות לפני העלאה של דף חדש");
             validate = false;
         }
+
+        //var smallImgItem =$("#small-image-select").children("option:selected");
+        //var largeImgItem =$("#large-image-select").children("option:selected");
+        //if((smallImgItem.val() != 0) && (largeImgItem.val() != 0) ){
+        //    validate= true;
+        //}
+        //else{
+        //    alert("עליך לבחור 2 תמונות לפני העלאה של דף חדש");
+        //    validate = false;
+        //}
        
     }
      else if(templateID ==2 || templateID ==4 || templateId ==5){
@@ -902,7 +902,7 @@ function  setEditAddPage(pageItemData){
     }
     $("#add-page-imgFile").attr("src", displayImg);
     //set the select value
-    setSelectOptionImages(pageItemData);
+    //setSelectOptionImages(pageItemData);
         //if this is a template with image 
     if(templateId =="1" ||templateId =="3"  ){
         $(".add-page-img-wrap").show();

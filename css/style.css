@@ -1245,11 +1245,11 @@ text-align: center;
 }
 
 #page-upload{
-    display: none;
+    /*display: none;*/
 }
 #add-page-imgFile
 {
-    bottom:33px;
+    /*bottom:33px;*/
 }
 #small-image-select
 {

@@ -79,11 +79,26 @@ function setVotePageData(data){
     navigate("vote")
     
     
-    //init the num of user
+    //init the num of user and real percent section
+    /*
+    numOfFalse: 0
+numOfJudges: 0
+numOfTrue: 0
+    */
+
     $("#num-of-users").text(data.RegisterCounter);
     $("#vote1RealPerc").text(data.votes[0].finalPercent+"%");
+    $("#vote1Yes").text(data.votes[0].numOfTrue);
+    $("#vote1No").text(data.votes[0].numOfFalse);
+    var avoidNum = data.votes[0].numOfJudges - data.votes[0].numOfTrue - data.votes[0].numOfFalse;
+    $("#vote1Avoid").text(avoidNum);
+
     if(data.votes.length == 2){
         $("#vote2RealPerc").text(data.votes[1].finalPercent+"%");
+        $("#vote2Yes").text(data.votes[1].numOfTrue);
+        $("#vote2No").text(data.votes[1].numOfFalse);
+        var avoidNum = data.votes[1].numOfJudges - data.votes[1].numOfTrue - data.votes[1].numOfFalse;
+        $("#vote2Avoid").text(avoidNum);
     }
     
 
@@ -588,17 +603,36 @@ function setRealPercent(data){
             //$("#voting-screens .container-left").hide();
             $("#vote2FinalPercName").hide();
             $("#vote1RealPerc").show();
+
+            relevantData = data.votes[0];
+            $("#vote1Yes").text(relevantData.numOfTrue);
+            $("#vote1No").text(relevantData.numOfFalse);
+            var avoidNum = relevantData.numOfJudges - relevantData.numOfTrue - relevantData.numOfFalse;
+            $("#vote1Avoid").text(avoidNum);
+
         }
         else{
-             perc2 =data.votes[1].finalPercent;
+            
+            perc2 =data.votes[1].finalPercent;
             $("#voting-screens .container-left").show();
             $("#vote2FinalPercName").show();
             $("#vote1RealPerc").show();
             $("#vote2RealPerc").show();
 
+            relevantData = data.votes[1];
+            $("#vote2Yes").text(relevantData.numOfTrue);
+            $("#vote2No").text(relevantData.numOfFalse);
+            var avoidNum = relevantData.numOfJudges - relevantData.numOfTrue - relevantData.numOfFalse;
+            $("#vote2Avoid").text(avoidNum);
+
         }
          $("#vote1RealPerc").text(perc1+"%");
          $("#vote2RealPerc").text(perc2+"%");
+     
+     
+       
+       
+   
     }
     //else -hide the real percent
     else
@@ -704,17 +738,26 @@ var secondPercentTimeout;
 function getPercentByRealTime(data){
     //vote1RealPerc,vote2RealPerc
      $("#vote1RealPerc").text("0%");
+     $("#vote1Yes").text(0);
+     $("#vote1No").text(0);
+     $("#vote1Avoid").text(0);
+
     var urlSecond = "";
     
     if(data.votes.length ==1){
         $("#vote1RealPerc").show();
         $("#vote2RealPerc").hide();
+        $("#extraDataFirst").show();
+        $("#extraDataSecond").hide();
         graphJsonURLA =data.votes[0].graphJsonURL;
         getFirstPercentRealTime();
     }
     else{
         $("#vote1RealPerc").show();
         $("#vote2RealPerc").show();
+        $("#extraDataFirst").show();
+        $("#extraDataSecond").show();
+
         graphJsonURLA =data.votes[0].graphJsonURL;
         graphJsonURLB =data.votes[1].graphJsonURL;
 
@@ -757,7 +800,10 @@ function setFirstPercentRealTime(data){
     }
 
     $("#vote1RealPerc").text(perc.toFixed(2) + "%");
-
+    $("#vote1Yes").text(relevantData.voteTrue);
+    $("#vote1No").text(relevantData.voteFalse);
+    var avoidNum = relevantData.voteRegister - relevantData.voteTrue - relevantData.voteFalse;
+    $("#vote1Avoid").text(avoidNum);
    
 
     
@@ -797,6 +843,10 @@ function setSecondPercentRealTime(data){
 
      $("#vote2RealPerc").text(perc.toFixed(2) + "%");
     
+    $("#vote2Yes").text(relevantData.voteTrue);
+    $("#vote2No").text(relevantData.voteFalse);
+    var avoidNum = relevantData.voteRegister - relevantData.voteTrue - relevantData.voteFalse;
+    $("#vote2Avoid").text(avoidNum);
     
     // tempPerc =$("#vote2RealPerc").text().substring(0,$("#vote2RealPerc").text().length-1)
     // var perc2 =Math.round(parseInt(tempPerc));

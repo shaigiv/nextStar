@@ -116,7 +116,7 @@
 								<input type="text" id="add-competitor-name">
 							</div>
 							<div>
-								<form class="add-comp-img-wrap" action="http://thenextstar.mako.co.il:9090/nextStar/upload" method="post" enctype="multipart/form-data" target="addIframeResult">
+								<form class="add-comp-img-wrap" action="http://thenextstaradmin.mako.co.il:9090/nextStar/upload" method="post" enctype="multipart/form-data" target="addIframeResult">
 									<div class="add-comp-img">
 										<div>
 											<label for="file">תמונה קטנה:</label>
@@ -149,7 +149,7 @@
 										<input type="text" id="edit-competitor-name">
 									</div>
 									<div>
-										<form class="edit-comp-img-wrap" action="http://thenextstar.mako.co.il:9090/nextStar/upload" method="post" enctype="multipart/form-data" target="editIframeResult">
+										<form class="edit-comp-img-wrap" action="http://thenextstaradmin.mako.co.il:9090/nextStar/upload" method="post" enctype="multipart/form-data" target="editIframeResult">
 											<div class="add-comp-img">
 												<div>
 													<label for="file">תמונה קטנה:</label>
@@ -279,12 +279,29 @@
 					<div class="result">
 						<div id="vote1CompName" class="voting-name">נינט טייב</div>
 						<div id="vote1RealPerc" class="voting-precent green-text"></div>
+                        
+                        <br>
+                        <br>
+                       <div id="extraDataFirst">
+                            <div><span>בעד: </span><span id="vote1Yes"></span></div>
+                            <div id=""><span>נגד: </span><span id="vote1No"></span></div>
+                            <div id=""><span>נמנעים: </span><span id="vote1Avoid"></span></div>
+                       </div>
+                        
 					</div>
 				</div>
 				<div class="container-left"> <img id="vote-second-img" src="img/shiri.jpg" alt="shiri" class="contestant-img">
 					<div class="result">
 						<div id="vote2CompName" class="voting-name">שירי מיימון</div>
 						<div id="vote2RealPerc" class="voting-precent red-text"></div>
+
+                        <br>
+                        <br>
+                        <div id="extraDataSecond">
+                            <div><span>בעד: </span><span id="vote2Yes"></span></div>
+                            <div id=""><span>נגד: </span><span id="vote2No"></span></div>
+                            <div id=""><span>נמנעים: </span><span id="vote2Avoid"></span></div>
+                       </div>
 					</div>
 				</div>
 			</div>
@@ -438,12 +455,12 @@
 							<input type="text" id="screen-info" value="">
 							<input type="text" id="screen-name" value="הזן שם מסך">
 						</div>
-                        <form class="add-page-img-wrap" action="http://thenextstar.mako.co.il:9090/nextStar/upload" method="post" enctype="multipart/form-data" target="pageIframeResultId">
+                        <form class="add-page-img-wrap" action="http://thenextstaradmin.mako.co.il:9090/nextStar/upload" method="post" enctype="multipart/form-data" target="pageIframeResultId">
 									<div class="add-page-img">
 										<div>
 											<label for="file">תמונה קטנה:</label>
-											<!--<input type="file" name="smallImg" class="smallImg">-->
-                                            <select id="small-image-select">
+											<input type="file" name="smallImg" class="smallImg">
+                                           <!-- <select id="small-image-select">
                                                 <option value="0">בחר תמונה</option>
                                                 <option>../nextstarimg/001_L_f.jpg</option>
                                                 <option>../nextstarimg/002_L_f.jpg</option>
@@ -452,13 +469,13 @@
                                                 <option>../nextstarimg/005_L_f.jpg</option>
                                                 <option>../nextstarimg/006_L_f.jpg</option>
 
-                                            </select>
+                                            </select>-->
                                             <span class="small displayImgBtn">צפה בתמונה</span>
 										</div>
 										<div>
 											<label for="file">תמונה גדולה:</label>
-											<!--<input class="largeImg" type="file" name="largeImg">-->
-                                            <select id="large-image-select">
+											<input class="largeImg" type="file" name="largeImg">
+                                           <!-- <select id="large-image-select">
                                                 <option value="0">בחר תמונה</option>
                                                 <option>../nextstarimg/001_S_f.jpg</option>
                                                 <option>../nextstarimg/002_S_f.jpg</option>
@@ -466,7 +483,7 @@
                                                 <option>../nextstarimg/004_S_f.jpg</option>
                                                 <option>../nextstarimg/005_S_f.jpg</option>
                                                 <option>../nextstarimg/006_S_f.jpg</option>
-                                            </select>
+                                            </select>-->
                                             <span class="large displayImgBtn">צפה בתמונה</span>
 										</div>
 										<input id="page-upload" class="upload" type="button" name="submit" value="העלה תמונה">
