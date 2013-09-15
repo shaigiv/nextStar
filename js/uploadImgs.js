@@ -195,6 +195,7 @@ function addImageUploaded(){
     $(".add-comp-img-wrap .smallImg").data("url", imgUrlSmall);
     $(".add-comp-img-wrap .largeImg").data("url", imgUrlLarge);
     alert("התמונות עלו");
+   
     //show the dispaly img btns
     $(".add-comp-img-wrap .displayImgBtn").show();
     //init the inicators for images chosen
@@ -237,7 +238,14 @@ function editImageUploaded(){
 /*add page function*/
 function pageImageUploaded(){
     var iframeName = $("#pageIframeResultId").attr("name");
-   // console.log("load iframe:" + $(window[iframeName].document.getElementsByTagName("body")[0]).text());
+
+    //if the user upload image large than 50K
+    if($(window[iframeName].document.getElementsByTagName("head")[0]).text() == "413 Request Entity Too Large" || $(window[iframeName].document.getElementsByTagName("head")[0]).text().toLowerCase().indexOf("large")>-1){
+        alert("עליך להעלות תמונות מתחת ל50K!");
+    }
+    //else - continue
+    else{
+         // console.log("load iframe:" + $(window[iframeName].document.getElementsByTagName("body")[0]).text());
     var imagesUrlJson = $.parseJSON($(window[iframeName].document.getElementsByTagName("body")[0]).text());
     imgUrlSmall = imagesUrlJson.smallImg;
     imgUrlLarge = imagesUrlJson.largeImg;
@@ -250,6 +258,11 @@ function pageImageUploaded(){
     $(".add-page-img-wrap .smallImg").data("url", imgUrlSmall);
     $(".add-page-img-wrap .largeImg").data("url", imgUrlLarge);
     alert("התמונות עלו");
-    //show the dispaly img btns
+    $("#disaplyImgSmall").click();
+    $("#disaplyImgLarge").click();
+    disaplyImgSmall
+   //show the dispaly img btns
     $(".add-page-img-wrap .displayImgBtn").show();
+    }
+  
 }

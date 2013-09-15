@@ -86,7 +86,7 @@ numOfJudges: 0
 numOfTrue: 0
     */
 
-    $("#num-of-users").text(data.RegisterCounter);
+    $("#num-of-users").text(data.votes[0].numOfJudges);
     $("#vote1RealPerc").text(data.votes[0].finalPercent+"%");
     $("#vote1Yes").text(data.votes[0].numOfTrue);
     $("#vote1No").text(data.votes[0].numOfFalse);
@@ -101,6 +101,13 @@ numOfTrue: 0
         $("#vote2Avoid").text(avoidNum);
     }
     
+    //if another vote or page open -hide ths section
+    if(data.status == 0){
+        $("#extraDataFirst").hide();
+        $("#extraDataSecond").hide();
+
+    }
+
 
    //get the registers' numbers by real timenum-of-users
     if(data.status == 21 || data.status == 22){
@@ -194,10 +201,10 @@ function publishResult(){
      
         updateVoteStatus(26,setPublishResult);
     }
-    //do nothing
-    else{
-        
-    } 
+
+    //clear the timeout if the results published
+    clearTimeoutRegisterAndVote();
+   
 }
 
 function setVotePercent(data){

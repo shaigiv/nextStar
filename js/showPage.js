@@ -4,11 +4,11 @@ SCREENCONTENT = "יצאנו לפרסומות";
 SCREENINFO = "ממתין להמשך השידור";
 SCREENTITLE = "הערב בכוכב נולד";
 SCREENNAME = "הזן שם מסך";
-TEXTWAITREGISTER = "ממתין לתחילת הביצוע";
-TEXTWAITVOTE = "ממתין לסיום הביצוע";
-TEXTWAITCALC = "הביצוע הסתיים מיד נמשיך בשידור.";
+TEXTWAITREGISTER = "ממתין לתחילת השיר";
+TEXTWAITVOTE = "ממתין לסיום השיר";
+TEXTWAITCALC = "השיר הסתיים מיד נמשיך בשידור.";
 PUBLISHRESULTS = "מיד נמשיך בשידור";
-DEFAULTTHRESHOLD ="75"
+DEFAULTTHRESHOLD ="70"
 //templates dictionary - also for the application
 //המתנה עם תמונה -1
 //המתנה בלי תמונה -2

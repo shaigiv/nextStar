@@ -5,9 +5,9 @@
 //E -mako
 //A -yerutech
 //cambium -D
-//var domain = "http://thenextstaradmin.mako.co.il:9090/nextStarTestE/json?";
+var domain = "http://thenextstaradmin.mako.co.il:9090/nextStarTestF/json?";
 
-var domain = "/nextStarTestF/json?";
+//var domain = "/nextStarTestF/json?";
 var domainForJson = "http://thenextstaradmin.mako.co.il:9090";
 
 

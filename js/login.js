@@ -4,8 +4,8 @@
   /********PRODUCTION!!!!*******/
   
 
-// var domain = "http://thenextstaradmin.mako.co.il:9090/nextStarTestE/json?";
- var domain = "/nextStarTestF/json?";
+var domain = "http://thenextstaradmin.mako.co.il:9090/nextStarTestF/json?";
+//  var domain = "/nextStarTestF/json?";
  
 //E -mako
 //A -yerutech
@@ -23,7 +23,7 @@ function sendLoginRequest() {
         data: "type=login&userName=" + userName + "&password=" + password,
         dataType: 'json',
         success: function(data) {
-            if(data.login == 1) {
+            if(data.login >0) {
                 alert("login success");
 				var returnHerf=getURLParameter("returnHerf");
 				if (returnHerf=="null") 

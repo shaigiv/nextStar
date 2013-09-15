@@ -84,6 +84,6 @@ function addAttention(item){
 //display img as a big - in new tab
 function displayImg(itemClicked){
    var url =$(itemClicked).parent("div").children("input").data("url");
-   $("#displayImgLink").attr("href", url);
+   $("#displayImgLink").attr("href", "http://thenextStar.mako.co.il"+url);
    $("#displayImgLink")[0].click();
 }
