@@ -6,7 +6,7 @@ SCREENTITLE = "הערב בכוכב נולד";
 SCREENNAME = "הזן שם מסך";
 TEXTWAITREGISTER = "ממתין לתחילת השיר";
 TEXTWAITVOTE = "ממתין לסיום השיר";
-TEXTWAITCALC = "השיר הסתיים מיד נמשיך בשידור";
+TEXTWAITCALC = "השיר הסתיים. מיד נמשיך בשידור";
 PUBLISHRESULTS = "מיד נמשיך בשידור";
 DEFAULTTHRESHOLD ="70"
 //templates dictionary - also for the application
@@ -894,8 +894,8 @@ function  setEditAddPage(pageItemData){
     //set the info
     $("#screen-info").val(pageItemData.info);
     //set the images
-    //$(".add-page-img-wrap .smallImg").data("url", pageItemData.tamplateImage1);
-   // $(".add-page-img-wrap .largeImg").data("url", pageItemData.tamplateImage2);
+    $(".add-page-img-wrap .smallImg").data("url", pageItemData.tamplateImage1);
+    $(".add-page-img-wrap .largeImg").data("url", pageItemData.tamplateImage2);
     var displayImg =pageItemData.tamplateImage1;
     if(displayImg == ""){
         displayImg = "img/default.jpg";

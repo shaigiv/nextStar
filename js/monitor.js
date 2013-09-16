@@ -1,5 +1,10 @@
-jsonPageUrl='/page/pageF.json';
-jsonUrl='/nextStarTestF'
+ /********PRODUCTION!!!!*******/
+ // var jsonPageUrl = "/page/page.json";
+ //var jsonUrl = '/nextStar';
+  /********PRODUCTION!!!!*******/
+
+var jsonPageUrl='/page/pageF.json';
+var jsonUrl='/nextStarTestF'
 
 var pid= 0;
 var status=0;
