@@ -6,7 +6,7 @@ SCREENTITLE = "הערב בכוכב נולד";
 SCREENNAME = "הזן שם מסך";
 TEXTWAITREGISTER = "ממתין לתחילת השיר";
 TEXTWAITVOTE = "ממתין לסיום השיר";
-TEXTWAITCALC = "השיר הסתיים מיד נמשיך בשידור.";
+TEXTWAITCALC = "השיר הסתיים מיד נמשיך בשידור";
 PUBLISHRESULTS = "מיד נמשיך בשידור";
 DEFAULTTHRESHOLD ="70"
 //templates dictionary - also for the application
