@@ -34,9 +34,9 @@ function votePageAttachEvents(){
 function getVoteData(voteItem){
     //type=getPage&PageId=3
     //getPage&PageId=3
-   var voteItemData =  $(voteItem).parents("tr").data("pageData");
-   var id = voteItemData.id;
-   currentPageId = id;
+    var voteItemData =  $(voteItem).parents("tr").data("pageData");
+    var id = voteItemData.id;
+    currentPageId = id;
     $.ajax({
         type: "POST",
         url: domain + "type=getPage",
@@ -116,7 +116,7 @@ numOfTrue: 0
    
 
    //set the real time percent - if this is a vote time
-   if(data.status == 23){
+   if(data.status == 23 || data.status == 25){
     getPercentByRealTime(data);   
    }
 
@@ -293,7 +293,8 @@ function setVoteClose(data){
      //set the header status
     setHeaderStatus(data.status);
     //set date
-    setVoteStatusesDate(data)
+    setVoteStatusesDate(data);
+	
 
 
     //clearTimeoutRegisterAndVote();
@@ -601,7 +602,7 @@ function setRealPercent(data){
     var perc1="";
     var perc2="";
     //if the vote was published or vote in publish results - show the real percent
-    if(data.status ==100 || data.status == 25 || data.status == 26)
+    if(data.status ==100 || /*data.status == 25 ||*/ data.status == 26)
     {
          perc1 =data.votes[0].finalPercent;
          perc2=0;
@@ -711,7 +712,7 @@ function getRegistersNumByRealTime(){
 
 function getRegistersNum(){
     //getRegisterCounter
-     $.ajax({
+    $.ajax({
         type: "POST",
         url: domain + "type=getRegisterCounter",
         success: function(data) {
@@ -723,7 +724,7 @@ function getRegistersNum(){
             console.log("error getRegisterCounter: " + data);
         }
     });
-      registerNumTimeout = setTimeout(function(){
+    registerNumTimeout = setTimeout(function(){
         getRegistersNum();
     },1000);
 }
@@ -771,6 +772,7 @@ function getPercentByRealTime(data){
         getFirstPercentRealTime();
         getSecondPercentRealTime();
     }
+	clearTimeout(registerNumTimeout);
 }
 
 function getFirstPercentRealTime(){
@@ -811,10 +813,9 @@ function setFirstPercentRealTime(data){
     $("#vote1No").text(relevantData.voteFalse);
     var avoidNum = relevantData.voteRegister - relevantData.voteTrue - relevantData.voteFalse;
     $("#vote1Avoid").text(avoidNum);
-   
-
-    
-    
+	
+	$("#num-of-users").text(relevantData.voteRegister);
+	
 }
 
 function getSecondPercentRealTime(){
@@ -865,17 +866,9 @@ function setSecondPercentRealTime(data){
 
 
 function clearTimeoutRegisterAndVote(){
-    //clear the timeout after 1.5 minute
-    //the server get time to end process
-    setTimeout(function(){
-        //clear the real register number
-        clearTimeout(registerNumTimeout);
-    
-        //clear the real percent timeout
-        clearTimeout(firstPercentTimeout);
-        clearTimeout(secondPercentTimeout);
-
-        console.log("timeout clear");
-    },90000);
-   
+    //clear the real register number
+    clearTimeout(registerNumTimeout);
+    //clear the real percent timeout
+    clearTimeout(firstPercentTimeout);
+    clearTimeout(secondPercentTimeout);
 }
