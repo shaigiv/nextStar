@@ -65,6 +65,7 @@ function showVotePage(data){
 	else
 		$('.container-left').hide();
 	$('#vote1RealPerc,#vote2RealPerc').html('0%').removeClass('green-text').addClass('red-text');
+	$("#vote2Yes,#vote2No,#vote2Avoid,#vote1Yes,#vote1No,#vote1Avoid").text('0');
 	$('#current-contestants').show();
 }
 
@@ -117,6 +118,10 @@ function get_data(){
 					percent=Math.round(100*data.voteTrue/data.voteRegister);
 				$('#num-of-users').html(data.voteRegister);
 				$('#vote1RealPerc').html(percent+"%");
+				$("#vote1Yes").text(data.voteTrue);
+				$("#vote1No").text(data.voteFalse);
+				var avoidNum = data.voteRegister - data.voteTrue - data.voteFalse;
+				$("#vote1Avoid").text(avoidNum);
 				$('#vote1RealPerc').removeClass('green-text').removeClass('red-text');
 				if (percent>=threshold)
 					$('#vote1RealPerc').addClass('green-text');
@@ -134,6 +139,10 @@ function get_data(){
 					if (data.voteRegister>0)	
 						percent=Math.round(100*data.voteTrue/data.voteRegister);
 					$('#vote2RealPerc').html(percent+"%");
+					$("#vote2Yes").text(data.voteTrue);
+					$("#vote2No").text(data.voteFalse);
+					var avoidNum = data.voteRegister - data.voteTrue - data.voteFalse;
+					$("#vote2Avoid").text(avoidNum);
 					$('#vote2RealPerc').removeClass('green-text').removeClass('red-text');
 					if (percent>=threshold)
 						$('#vote2RealPerc').addClass('green-text');

@@ -807,7 +807,7 @@ function setFirstPercentRealTime(data){
     else{
         perc = relevantData.voteTrue / relevantData.voteRegister*100;
     }
-
+	$("#num-of-users").text(relevantData.voteRegister);
     $("#vote1RealPerc").text(perc.toFixed(2) + "%");
     $("#vote1Yes").text(relevantData.voteTrue);
     $("#vote1No").text(relevantData.voteFalse);
