@@ -1,13 +1,15 @@
 var currentShowId = "";
 //add static page const text
 SCREENCONTENT = "יצאנו לפרסומות";
-SCREENINFO = "ממתין להמשך השידור";
+SCREENINFO = "מיד נעבור לשיר הבא";
 SCREENTITLE = "הערב בכוכב נולד";
 SCREENNAME = "הזן שם מסך";
 TEXTWAITREGISTER = "ממתין לתחילת השיר";
 TEXTWAITVOTE = "ממתין לסיום השיר";
-TEXTWAITCALC = "השיר הסתיים. מיד נמשיך בשידור";
-PUBLISHRESULTS = "מיד נמשיך בשידור";
+TEXTWAITCALC = "השיר הסתיים. מיד ממשיכים";
+PUBLISHRESULTS = "מיד ממשיכים";
+FINALSCREENTITLE = "תודה שהשתתפתם!";
+FINALSCREENNAME ="מסך סיום"
 DEFAULTTHRESHOLD ="70"
 //templates dictionary - also for the application
 //המתנה עם תמונה -1
@@ -1128,6 +1130,16 @@ function setImageUploadBox(){
     //else- hide it
     else{
         $(".add-page-img-wrap").hide();
+    }
+
+    //set the final screen text
+    if(templateId =="5"){
+        $("#screen-title").val(FINALSCREENTITLE);
+        $("#screen-name").val(FINALSCREENNAME);
+    }
+    else{
+         $("#screen-title").val(SCREENTITLE);
+        $("#screen-name").val(SCREENNAME);
     }
 }
 
