@@ -9,8 +9,9 @@ TEXTWAITVOTE = "ממתין לסיום השיר";
 TEXTWAITCALC = "השיר הסתיים. מיד ממשיכים";
 PUBLISHRESULTS = "מיד ממשיכים";
 FINALSCREENTITLE = "תודה שהשתתפתם!";
-FINALSCREENNAME ="מסך סיום"
-DEFAULTTHRESHOLD ="70"
+FINALSCREENNAME ="מסך סיום";
+FINALSCREENSUBTITLE ="הורידו את הביצועים שאהבתם";
+DEFAULTTHRESHOLD ="75";
 //templates dictionary - also for the application
 //המתנה עם תמונה -1
 //המתנה בלי תמונה -2
@@ -1135,10 +1136,12 @@ function setImageUploadBox(){
     //set the final screen text
     if(templateId =="5"){
         $("#screen-title").val(FINALSCREENTITLE);
+        $("#screen-content").val(FINALSCREENSUBTITLE);
         $("#screen-name").val(FINALSCREENNAME);
     }
     else{
          $("#screen-title").val(SCREENTITLE);
+         $("#screen-content").val(SCREENCONTENT);
         $("#screen-name").val(SCREENNAME);
     }
 }
