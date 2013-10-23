@@ -11,7 +11,7 @@ PUBLISHRESULTS = "מיד ממשיכים";
 FINALSCREENTITLE = "תודה שהשתתפתם!";
 FINALSCREENNAME ="מסך סיום";
 FINALSCREENSUBTITLE ="הורידו את הביצועים שאהבתם";
-DEFAULTTHRESHOLD ="70"
+DEFAULTTHRESHOLD ="75";
 //templates dictionary - also for the application
 //המתנה עם תמונה -1
 //המתנה בלי תמונה -2
