@@ -506,7 +506,19 @@ function setCompImagesAndNamesVote(data){
 }
 function getDateByLong(longTemp){
      tempDate =new Date(longTemp);
-     tempDate = tempDate.getDate() + "/" + (tempDate.getMonth() * 1 + 1 * 1) + "/" + tempDate.getFullYear() + " " + tempDate.getHours() + ":" + tempDate.getMinutes() + ":" + tempDate.getSeconds();
+     var hour =  tempDate.getHours();
+     if(hour<10){
+         hour = "0" + hour;
+      }
+     var minute = tempDate.getMinutes();
+     if(minute<10){
+         minute = "0" + minute;
+       }
+     var second = tempDate.getSeconds();
+      if(second<10){
+         second = "0" + second;
+       }
+     tempDate = tempDate.getDate() + "/" + (tempDate.getMonth() * 1 + 1 * 1) + "/" + tempDate.getFullYear() + " " + hour + ":" + minute + ":" + second;
      return tempDate;
 }
 
